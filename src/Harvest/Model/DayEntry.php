@@ -49,7 +49,7 @@ namespace Harvest\Model;
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_DayEntry extends Harvest
+class DayEntry extends Harvest
 {
     /**
      * @var string request

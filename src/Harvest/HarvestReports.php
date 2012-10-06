@@ -225,7 +225,7 @@ class HarvestReports extends HarvestAPI
      * }
      * </code>
      *
-     * @param  int            $client_id Client Identifier
+     * @param  int    $client_id Client Identifier
      * @return Result
      */
     public function getClientActiveProjects( $client_id )
@@ -256,7 +256,7 @@ class HarvestReports extends HarvestAPI
      * }
      * </code>
      *
-     * @param  int            $client_id Client Identifier
+     * @param  int    $client_id Client Identifier
      * @return Result
      */
     public function getClientInactiveProjects( $client_id )

@@ -99,7 +99,7 @@ class Range
      * $range = Range:today( "EST" );
      * </code>
      *
-     * @param  string        $timeZone User Time Zone
+     * @param  string $timeZone User Time Zone
      * @return Range
      */
     public static function today( $timeZone = null )
@@ -125,8 +125,8 @@ class Range
      * $range = Range:thisWeek( "EST", Range::SUNDAY );
      * </code>
      *
-     * @param  string        $timeZone    User Time Zone
-     * @param  int           $startOfWeek Starting day of the week
+     * @param  string $timeZone    User Time Zone
+     * @param  int    $startOfWeek Starting day of the week
      * @return Range
      */
     public static function thisWeek( $timeZone = null, $startOfWeek = 0 )
@@ -155,8 +155,8 @@ class Range
      * $range = Range:lastWeek( "EST", Range::MONDAY );
      * </code>
      *
-     * @param  string        $timeZone    User Time Zone
-     * @param  int           $startOfWeek Starting day of the week
+     * @param  string $timeZone    User Time Zone
+     * @param  int    $startOfWeek Starting day of the week
      * @return Range
      */
     public static function lastWeek( $timeZone = null, $startOfWeek = 0 )
@@ -188,7 +188,7 @@ class Range
      * $range = Range:thisMonth( "EST" );
      * </code>
      *
-     * @param  string        $timeZone User Time Zone
+     * @param  string $timeZone User Time Zone
      * @return Range
      */
     public static function thisMonth( $timeZone = null )
@@ -217,7 +217,7 @@ class Range
      * $range = Range:lastMonth( "EST" );
      * </code>
      *
-     * @param  string        $timeZone User Time Zone
+     * @param  string $timeZone User Time Zone
      * @return Range
      */
     public static function lastMonth( $timeZone = null )

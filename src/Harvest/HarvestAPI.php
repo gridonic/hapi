@@ -236,8 +236,8 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $day_of_year Day of Year
-     * @param  int            $year        Year
+     * @param  int    $day_of_year Day of Year
+     * @param  int    $year        Year
      * @return Result
      */
     public function getDailyActivity( $day_of_year = null, $year = null )
@@ -264,7 +264,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $entry_id Entry Identifier
+     * @param  int    $entry_id Entry Identifier
      * @return Result
      */
     public function getEntry( $entry_id )
@@ -426,7 +426,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  mixed          $updated_since DateTime
+     * @param  mixed  $updated_since DateTime
      * @return Result
      */
     public function getClients( $updated_since = null)
@@ -449,7 +449,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $client_id Client Identifier
+     * @param  int    $client_id Client Identifier
      * @return Result
      */
     public function getClient( $client_id )
@@ -547,7 +547,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $client_id Client Identifier
+     * @param  int    $client_id Client Identifier
      * @return Result
      */
     public function deleteClient( $client_id )
@@ -572,7 +572,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  mixed          $updated_since DateTime
+     * @param  mixed  $updated_since DateTime
      * @return Result
      */
     public function getContacts($updated_since = null)
@@ -595,7 +595,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $client_id Client Identifier
+     * @param  int    $client_id Client Identifier
      * @return Result
      */
     public function getClientContacts( $client_id )
@@ -617,7 +617,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $contact_id Contact Identifier
+     * @param  int    $contact_id Contact Identifier
      * @return Result
      */
     public function getContact( $contact_id )
@@ -696,7 +696,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $contact_Id Contact Identifier
+     * @param  int    $contact_Id Contact Identifier
      * @return Result
      */
     public function deleteContact( $contact_id )
@@ -722,7 +722,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  mixed          $updated_since DateTime
+     * @param  mixed  $updated_since DateTime
      * @return Result
      */
     public function getProjects( $updated_since = null )
@@ -744,7 +744,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $client_id Client Identifier
+     * @param  int    $client_id Client Identifier
      * @return Result
      */
     public function getClientProjects( $client_id)
@@ -767,7 +767,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $project_id Project Identifier
+     * @param  int    $project_id Project Identifier
      * @return Result
      */
     public function getProject( $project_id )
@@ -844,7 +844,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $project_id Project Identifier
+     * @param  int    $project_id Project Identifier
      * @return Result
      */
     public function toggleProject( $project_id )
@@ -867,7 +867,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $project_id Project Identifier
+     * @param  int    $project_id Project Identifier
      * @return Result
      */
     public function deleteProject( $project_id )
@@ -915,7 +915,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $task_id Task Identifier
+     * @param  int    $task_id Task Identifier
      * @return Result
      */
     public function getTask( $task_id )
@@ -993,7 +993,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $task_id Task Identifier
+     * @param  int    $task_id Task Identifier
      * @return Result
      */
     public function deleteTask( $task_id )
@@ -1041,7 +1041,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $user_id User Identifier
+     * @param  int    $user_id User Identifier
      * @return Result
      */
     public function getUser( $user_id )
@@ -1124,7 +1124,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $user_id User Identifier
+     * @param  int    $user_id User Identifier
      * @return Result
      */
     public function toggleUser( $user_id )
@@ -1147,7 +1147,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $user_id User Identifier
+     * @param  int    $user_id User Identifier
      * @return Result
      */
     public function resetUserPassword( $user_id )
@@ -1170,7 +1170,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $user_id User Identifier
+     * @param  int    $user_id User Identifier
      * @return Result
      */
     public function deleteUser( $user_id )
@@ -1272,7 +1272,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $expense_category_id Expense Category Identifier
+     * @param  int    $expense_category_id Expense Category Identifier
      * @return Result
      */
     public function deleteExpenseCategory( $expense_category_id )
@@ -1299,7 +1299,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $expense_id Expense Identifier
+     * @param  int    $expense_id Expense Identifier
      * @return Result
      */
     public function getExpense( $expense_id)
@@ -1408,7 +1408,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $expense_id Expense Identifier
+     * @param  int    $expense_id Expense Identifier
      * @return Result
      */
     public function deleteExpense( $expense_id )
@@ -1487,7 +1487,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $project_id Project Identifier
+     * @param  int    $project_id Project Identifier
      * @return Result
      */
     public function getProjectUserAssignments( $project_id )
@@ -1511,8 +1511,8 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int                    $project_id         Project Identifier
-     * @param  int                    $user_assignment_id User Assignment Identifier
+     * @param  int            $project_id         Project Identifier
+     * @param  int            $user_assignment_id User Assignment Identifier
      * @return UserAssignment
      */
     public function getProjectUserAssignment( $project_id, $user_assignment_id )
@@ -1538,8 +1538,8 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $project_id Project Identifier
-     * @param  int            $user_id    User Identifier
+     * @param  int    $project_id Project Identifier
+     * @param  int    $user_id    User Identifier
      * @return Result
      */
     public function assignUserToProject( $project_id, $user_id )
@@ -1564,8 +1564,8 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $project_id         Project Identifier
-     * @param  int            $user_assignment_id User Assignment Identifier
+     * @param  int    $project_id         Project Identifier
+     * @param  int    $user_assignment_id User Assignment Identifier
      * @return Result
      */
     public function removeUserFromProject( $project_id, $user_assignment_id )
@@ -1621,7 +1621,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $project_id Project Identifier
+     * @param  int    $project_id Project Identifier
      * @return Result
      */
     public function getProjectTaskAssignments( $project_id )
@@ -1646,8 +1646,8 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $project_id         Project Identifier
-     * @param  int            $task_assignment_id Task Assignment Identifier
+     * @param  int    $project_id         Project Identifier
+     * @param  int    $task_assignment_id Task Assignment Identifier
      * @return Result
      */
     public function getProjectTaskAssignment( $project_id, $task_assignment_id )
@@ -1673,8 +1673,8 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $project_id Project Identifier
-     * @param  int            $task_id    Task Identifier
+     * @param  int    $project_id Project Identifier
+     * @param  int    $task_id    Task Identifier
      * @return Result
      */
     public function assignTaskToProject( $project_id, $task_id )
@@ -1701,7 +1701,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $project_id Project Identifier
+     * @param  int    $project_id Project Identifier
      * @param  Task   $task       Task
      * @return Result
      */
@@ -1727,8 +1727,8 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $project_id         Project Identifier
-     * @param  int            $task_assignment_id Task Assignment Identifier
+     * @param  int    $project_id         Project Identifier
+     * @param  int    $task_assignment_id Task Assignment Identifier
      * @return Result
      */
     public function deleteProjectTaskAssignment( $project_id, $task_assignment_id )
@@ -1786,9 +1786,9 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $project_id Project Identifier
+     * @param  int    $project_id Project Identifier
      * @param  Range  $range      Time Range
-     * @param  int            $user_id    User identifier optional
+     * @param  int    $user_id    User identifier optional
      * @return Result
      */
     public function getProjectEntries( $project_id, Range $range, $user_id = null )
@@ -1817,9 +1817,9 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $user_id    User Identifier
+     * @param  int    $user_id    User Identifier
      * @param  Range  $range      Time Range
-     * @param  int            $project_id Project identifier optional
+     * @param  int    $project_id Project identifier optional
      * @return Result
      */
     public function getUserEntries( $user_id, Range $range, $project_id = null )
@@ -1847,7 +1847,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $user_id User Identifier
+     * @param  int    $user_id User Identifier
      * @param  Range  $range   Time Range
      * @return Result
      */
@@ -1904,7 +1904,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $invoice_id Invoice Identifier
+     * @param  int    $invoice_id Invoice Identifier
      * @return Result
      */
     public function getInvoice( $invoice_id )
@@ -1982,7 +1982,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $invoice_id Invoice Identifier
+     * @param  int    $invoice_id Invoice Identifier
      * @return Result
      */
     public function deleteInvoice( $invoice_id )
@@ -2006,7 +2006,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $invoice_id Invoice Identifier
+     * @param  int    $invoice_id Invoice Identifier
      * @return Result
      */
     public function closeInvoice( $invoice_id )
@@ -2030,7 +2030,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $invoice_id Invoice Identifier
+     * @param  int    $invoice_id Invoice Identifier
      * @return Result
      */
     public function markOffInvoice( $invoice_id )
@@ -2056,7 +2056,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $invoice_id Invoice Identifier
+     * @param  int    $invoice_id Invoice Identifier
      * @return Result
      */
     public function getInvoiceMessages( $invoice_id )
@@ -2081,8 +2081,8 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $invoice_id Invoice Identifier
-     * @param  int            $message_id Message Identifier
+     * @param  int    $invoice_id Invoice Identifier
+     * @param  int    $message_id Message Identifier
      * @return Result
      */
     public function getInvoiceMessage( $invoice_id, $message_id )
@@ -2111,7 +2111,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int                    $invoice_id Invoice Identifier
+     * @param  int            $invoice_id Invoice Identifier
      * @param  InvoiceMessage $message    Invoice Message
      * @return Result
      */
@@ -2137,8 +2137,8 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $invoice_id Invoice Identifier
-     * @param  int            $message_id Invoice Message Identifier
+     * @param  int    $invoice_id Invoice Identifier
+     * @param  int    $message_id Invoice Message Identifier
      * @return Result
      */
     public function deleteInvoiceMessage( $invoice_id, $message_id )
@@ -2166,7 +2166,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int                    $invoice_id Invoice Identifier
+     * @param  int            $invoice_id Invoice Identifier
      * @param  InvoiceMessage $message    Invoice Message
      * @return Result
      */
@@ -2195,7 +2195,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int                    $invoice_id Invoice Identifier
+     * @param  int            $invoice_id Invoice Identifier
      * @param  InvoiceMessage $message    Invoice Message
      * @return Result
      */
@@ -2224,7 +2224,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int                    $invoice_id Invoice Identifier
+     * @param  int            $invoice_id Invoice Identifier
      * @param  InvoiceMessage $message    Invoice Message
      * @return Result
      */
@@ -2253,7 +2253,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int                    $invoice_id Invoice Identifier
+     * @param  int            $invoice_id Invoice Identifier
      * @param  InvoiceMessage $message    Invoice Message
      * @return Result
      */
@@ -2281,7 +2281,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $invoice_id Invoice Identifier
+     * @param  int    $invoice_id Invoice Identifier
      * @return Result
      */
     public function getInvoicePayments( $invoice_id )
@@ -2306,8 +2306,8 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $invoice_id Invoice Identifier
-     * @param  int            $payment_id Payment Identifier
+     * @param  int    $invoice_id Invoice Identifier
+     * @param  int    $payment_id Payment Identifier
      * @return Result
      */
     public function getInvoicePayment( $invoice_id, $payment_id )
@@ -2334,7 +2334,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int             $invoice_id Invoice Identifier
+     * @param  int     $invoice_id Invoice Identifier
      * @param  Payment $payment    Payment
      * @return Result
      */
@@ -2360,8 +2360,8 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $invoice_id Invoice Identifier
-     * @param  int            $payment_id Payment Identifier
+     * @param  int    $invoice_id Invoice Identifier
+     * @param  int    $payment_id Payment Identifier
      * @return Result
      */
     public function deleteInvoicePayment( $invoice_id, $payment_id )
@@ -2462,7 +2462,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int            $invoiceCategory_id Invoice Category Identifier
+     * @param  int    $invoiceCategory_id Invoice Category Identifier
      * @return Result
      */
     public function deleteInvoiceCategory( int $invoiceCategory_id )
@@ -2494,8 +2494,8 @@ use Harvest\Model\Client,
 
     /**
      * perform http get command
-     * @param  string         $url   url of server to process request
-     * @param  mixed          $multi Flag to specify if multiple items are returned by request
+     * @param  string $url   url of server to process request
+     * @param  mixed  $multi Flag to specify if multiple items are returned by request
      * @return Result
      */
     protected function performGET( $url, $multi = true )
@@ -2552,8 +2552,8 @@ use Harvest\Model\Client,
 
     /**
      * perform http put command
-     * @param  string         $url  url of server to process request
-     * @param  string         $data data to be sent
+     * @param  string $url  url of server to process request
+     * @param  string $data data to be sent
      * @return Result
      */
     protected function performPUT( $url, $data )
@@ -2593,8 +2593,8 @@ use Harvest\Model\Client,
 
     /**
      * perform http post command
-     * @param  string         $url  url of server to process request
-     * @param  string         $data data to be sent
+     * @param  string $url  url of server to process request
+     * @param  string $data data to be sent
      * @return Result
      */
     protected function performPOST( $url, $data, $multi = "id" )
@@ -2645,7 +2645,7 @@ use Harvest\Model\Client,
 
     /**
      * perform http delete command
-     * @param  string         $url url of server to process request
+     * @param  string $url url of server to process request
      * @return Result
      */
     protected function performDELETE( $url)
@@ -2684,8 +2684,8 @@ use Harvest\Model\Client,
     /**
      * perform http post of MultiPart Form-Data
      *
-     * @param  string         $url  url of server to process request
-     * @param  array          $data Associated Aray of form data
+     * @param  string $url  url of server to process request
+     * @param  array  $data Associated Aray of form data
      * @return Result
      */
     protected function performMultiPart( $url, $data )
