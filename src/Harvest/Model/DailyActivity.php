@@ -18,10 +18,14 @@
  * along with HarvestAPI. If not, see <http://www.gnu.org/licenses/>.
  */
 
+namespace Harvest\Model;
+
+use Harvest\Exception\HarvestException;
+
 /**
  * DailyActivity
  *
- * This file contains the class Harvest_DailyActivity
+ * This file contains the class DailyActivity
  *
  * @author Matthew John Denton <matt@mdbitz.com>
  * @package com.mdbitz.harvest
@@ -39,7 +43,7 @@
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_DailyActivity extends Harvest_Abstract
+class DailyActivity extends Harvest
 {
     /**
      * @var string daily
@@ -57,7 +61,7 @@ class Harvest_DailyActivity extends Harvest_Abstract
     protected $_dayEntries = null;
 
     /**
-     * @var array Harvest_Project objects of the Daily Activity
+     * @var array Project objects of the Daily Activity
      */
     protected $_projects = null;
     /**
@@ -96,7 +100,7 @@ class Harvest_DailyActivity extends Harvest_Abstract
         } elseif ($property == "projects" || $property == "projects") {
             $this->_projects = $value;
         } else {
-            throw new Harvest_Exception( sprintf('Unknown property %s::%s', get_class($this), $property));
+            throw new HarvestException( sprintf('Unknown property %s::%s', get_class($this), $property));
         }
     }
 
@@ -115,7 +119,7 @@ class Harvest_DailyActivity extends Harvest_Abstract
             return $this->set( $method, $arguments[0] );
         }
 
-        throw new Harvest_Exception( sprintf('Unknown method %s::%s', get_class($this), $method));
+        throw new HarvestException( sprintf('Unknown method %s::%s', get_class($this), $method));
     }
 
     /**
@@ -178,7 +182,7 @@ class Harvest_DailyActivity extends Harvest_Abstract
                 $item = new Harvest_DayEntry();
             break;
             case "project":
-                $item = new Harvest_Project();
+                $item = new Project();
             break;
             default:
             break;

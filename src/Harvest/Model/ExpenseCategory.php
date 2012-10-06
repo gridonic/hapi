@@ -18,35 +18,39 @@
  * along with HarvestAPI. If not, see <http://www.gnu.org/licenses/>.
  */
 
+namespace Harvest\Model;
+
 /**
- * InvoiceItemCategory
+ * ExpenseCategory
  *
- * This file contains the class Harvest_InvoiceItemCategory
+ * This file contains the class ExpenseCategory
  *
  * @author Matthew John Denton <matt@mdbitz.com>
  * @package com.mdbitz.harvest
  */
 
 /**
- * Harvest InvoiceItemCategory Object
+ * Harvest Expense Categroy Object
  *
  * <b>Properties</b>
  * <ul>
+ *   <li>cache-version</li>
  *   <li>created-at</li>
+ *   <li>deactivated</li>
  *   <li>id</li>
  *   <li>name</li>
+ *   <li>unit-name</li>
+ *   <li>unit-price</li>
  *   <li>updated-at</li>
- *   <li>use-as-expense</li>
- *   <li>use-as-service</li>
  * </ul>
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_InvoiceItemCategory extends Harvest_Abstract
+class ExpenseCategory extends Harvest
 {
     /**
-     * @var string invoice-item-category
+     * @var string expense-category
      */
-    protected $_root = "invoice-item-category";
+    protected $_root = "expense-category";
 
 }

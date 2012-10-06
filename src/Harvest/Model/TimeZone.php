@@ -18,21 +18,23 @@
  * along with HarvestAPI. If not, see <http://www.gnu.org/licenses/>.
  */
 
+namespace Harvest\Model;
+
 /**
- * Harvest_TimeZone
+ * TimeZone
  *
- * This file contains the class Harvest_TimeZone
+ * This file contains the class TimeZone
  *
  * @author Matthew John Denton <matt@mdbitz.com>
  * @package com.mdbitz.harvest
  */
 
 /**
- * Harvest_TimeZone defines the timezone options supported by Harvest
+ * TimeZone defines the timezone options supported by Harvest
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_TimeZone
+class TimeZone
 {
 
     /**

@@ -18,37 +18,42 @@
  * along with HarvestAPI. If not, see <http://www.gnu.org/licenses/>.
  */
 
+namespace Harvest\Model;
+
 /**
- * Filter
+ * InvoiceMessage
  *
- * This file contains the class Harvest_TaskAssignment
+ * This file contains the class InvoiceMessage
  *
  * @author Matthew John Denton <matt@mdbitz.com>
  * @package com.mdbitz.harvest
  */
 
 /**
- * Harvest TaskAssignment Object
+ * Harvest InvoiceMessage Object
  *
- * <p>Properties</p>
+ * <b>Properties</b>
  * <ul>
- *   <li>billable</li>
- *   <li>budget</li>
- *   <li>deactivated</li>
- *   <li>hourly-rate</li>
+ *   <li>body</li>
+ *   <li>created-at</li>
  *   <li>id</li>
- *   <li>project-id</li>
- *   <li>task-id</li>
- *   <li>estimate</li>
+ *   <li>include-pay-pal-link</li>
+ *   <li>invoice-id</li>
+ *   <li>send-me-a-copy</li>
+ *   <li>sent-by</li>
+ *   <li>sent-by-email</li>
+ *   <li>subject</li>
+ *   <li>thank-you</li>
+ *   <li>full-recipient-list</li>
  * </ul>
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_TaskAssignment extends Harvest_Abstract
+class InvoiceMessage extends Harvest
 {
     /**
-     * @var string task-assignment
+     * @var string invoice-message
      */
-    protected $_root = "task-assignment";
+    protected $_root = "invoice-message";
 
 }

@@ -18,10 +18,12 @@
  * along with HarvestAPI. If not, see <http://www.gnu.org/licenses/>.
  */
 
+namespace Harvest\Model;
+
 /**
  * Timer
  *
- * This file contains the class Harvest_Timer
+ * This file contains the class Timer
  *
  * @author Matthew John Denton <matt@mdbitz.com>
  * @package com.mdbitz.harvest
@@ -38,7 +40,7 @@
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_Timer extends Harvest_Abstract
+class Timer extends Harvest
 {
     /**
      * @var Harvest_DayEntry object of the timer

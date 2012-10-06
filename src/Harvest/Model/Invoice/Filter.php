@@ -18,10 +18,14 @@
  * along with HarvestAPI. If not, see <http://www.gnu.org/licenses/>.
  */
 
+namespace Harvest\Model\Invoice;
+
+use Harvest\Exception\HarvestException;
+
 /**
  * Filter
  *
- * This file contains the class Harvest_Invoice_Filter
+ * This file contains the class Filter
  *
  * @author Matthew John Denton <matt@mdbitz.com>
  * @package com.mdbitz.harvest
@@ -32,7 +36,7 @@
  *
  * <b>Properties</b>
  * <ul>
- *   <li>range - Harvest_Range</li>
+ *   <li>range - Range</li>
  *   <li>status</li>
  *   <li>client</li>
  *   <li>page</li>
@@ -40,7 +44,7 @@
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_Invoice_Filter
+class Filter
 {
     /**
      * Status : "open"
@@ -73,7 +77,7 @@ class Harvest_Invoice_Filter
     const PASTDUE                    = "pastdue";
 
     /**
-     * @var Harvest_Range Time Range
+     * @var Range Time Range
      */
     protected $_range = null;
 
@@ -134,7 +138,7 @@ class Harvest_Invoice_Filter
                 return $this->_updated_since;
             break;
             default:
-                throw new Harvest_Exception( sprintf('Unknown method %s::%s', get_class($this), $method));
+                throw new HarvestException( sprintf('Unknown method %s::%s', get_class($this), $method));
             break;
         }
     }
@@ -176,7 +180,7 @@ class Harvest_Invoice_Filter
                 $this->_updated_since = $value;
             break;
             default:
-                throw new Harvest_Exception( sprintf('Unknown method %s::%s', get_class($this), $method));
+                throw new HarvestException( sprintf('Unknown method %s::%s', get_class($this), $method));
             break;
         }
     }
@@ -196,7 +200,7 @@ class Harvest_Invoice_Filter
             return $this->set( $method, $arguments[0] );
         }
 
-        throw new Harvest_Exception( sprintf('Unknown method %s::%s', get_class($this), $method));
+        throw new HarvestException( sprintf('Unknown method %s::%s', get_class($this), $method));
     }
 
     /**

@@ -18,43 +18,40 @@
  * along with HarvestAPI. If not, see <http://www.gnu.org/licenses/>.
  */
 
+namespace Harvest\Model;
+
 /**
- * Expense
+ * Contact
  *
- * This file contains the class Harvest_Expense
+ * This file contains the class Contact
  *
  * @author Matthew John Denton <matt@mdbitz.com>
  * @package com.mdbitz.harvest
  */
 
 /**
- * Harvest Expense Object
+ * Harvest Contact Object
  *
  * <b>Properties</b>
  * <ul>
- *   <li>created-at</li>
- *   <li>expense-category-id</li>
+ *   <li>client-id</li>
+ *   <li>email</li>
+ *   <li>fax</li>
+ *   <li>first-name</li>
  *   <li>id</li>
- *   <li>is-billed</li>
- *   <li>is-closed</li>
- *   <li>notes</li>
- *   <li>project-id</li>
- *   <li>spent-at</li>
- *   <li>total-cost</li>
- *   <li>units</li>
- *   <li>updated-at</li>
- *   <li>user-id</li>
- *   <li>has-receipt</li>
- *   <li>receipt-url</li>
+ *   <li>last-name</li>
+ *   <li>phone-mobile</li>
+ *   <li>phone-office</li>
+ *   <li>title</li>
  * </ul>
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_Expense extends Harvest_Abstract
+class Contact extends Harvest
 {
     /**
-     * @var string expense
+     * @var string contact
      */
-    protected $_root = "expense";
+    protected $_root = "contact";
 
 }

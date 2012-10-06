@@ -26,7 +26,7 @@ This is the changelog of the HarvestAPI library for PHP. The original library ca
     * *getProjects* optional updated_since parameter added
     * *getClients* optional updated_since parameter added
     * *getContacts* optional updated_since parameter added
-    * *Harvest_Invoice_Filter* optional updated_since parameter added
+    * *Filter* optional updated_since parameter added
 
 * 1.0.1 (released 08-05-2010)
 
@@ -64,8 +64,8 @@ This is the changelog of the HarvestAPI library for PHP. The original library ca
         * getActiveTimers
         * getUsersActiveTimer
 
-    * Added DateTime support to Harvest_Range
-    * Added the following pre set ranges to Harvest_Range
+    * Added DateTime support to Range
+    * Added the following pre set ranges to Range
         * today
         * thisWeek
         * lastWeek
@@ -87,7 +87,7 @@ This is the changelog of the HarvestAPI library for PHP. The original library ca
 
     Changes:
 
-    * Harvest_DailyActivity object is used both in the time and extended api, however they are inconsistent with the token character used -, _. daily-activity added to parser for quick fix, Version 1.0 will contain conversion checking.
+    * DailyActivity object is used both in the time and extended api, however they are inconsistent with the token character used -, _. daily-activity added to parser for quick fix, Version 1.0 will contain conversion checking.
 
 * 0.4.1 (released 04-16-2010)
 
@@ -119,8 +119,8 @@ This is the changelog of the HarvestAPI library for PHP. The original library ca
     Changes:
 
     * phpDocument - documentation compliant
-    * Creation of Harvest_Currency Class
-    * Creation of Harvest_TimeZone Class
+    * Creation of Currency Class
+    * Creation of TimeZone Class
     * HarvestAPI - extended REST Support
     * HarvestAPI - ssl support
 
@@ -132,7 +132,7 @@ This is the changelog of the HarvestAPI library for PHP. The original library ca
 
     Changes:
 
-    * Added _toXML_ function to Harvest_Abstract
+    * Added _toXML_ function to Harvest
     * Added helper functions to HarvestAPI
         * performPUT -> performs PUT request
         * performPOST -> performs POST request
@@ -151,10 +151,10 @@ This is the changelog of the HarvestAPI library for PHP. The original library ca
         * createContact - Create a new Client Contact
         * updateContact - Update an existing Client Contact
         * deleteContact - Delete an existing Client Contact
-    * Addition of Harvest_Timer Class
+    * Addition of Timer Class
         * Addition of __root_ variable to classes for xml conversion
-        * Bug Fix: _isSuccess_ method of Harvest_Result
-        * Bug Fix: replacement of YahooFinance_Exception with Harvest_Exception
+        * Bug Fix: _isSuccess_ method of Result
+        * Bug Fix: replacement of YahooFinance_Exception with HarvestException
 
 * 0.1.0 (released 11-04-2009)
 

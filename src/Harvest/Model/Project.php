@@ -18,10 +18,12 @@
  * along with HarvestAPI. If not, see <http://www.gnu.org/licenses/>.
  */
 
+namespace Harvest\Model;
+
 /**
  * Project
  *
- * This file contains the class Harvest_Project
+ * This file contains the class Project
  *
  * @author Matthew John Denton <matt@mdbitz.com>
  * @package com.mdbitz.harvest
@@ -62,7 +64,7 @@
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_Project extends Harvest_Abstract
+class Project extends Harvest
 {
     /**
      * @var string project
@@ -70,7 +72,7 @@ class Harvest_Project extends Harvest_Abstract
     protected $_root = "project";
 
     /**
-     * @var array Harvest_Tasks
+     * @var array Tasks
      */
     protected $_tasks = array();
 
@@ -162,7 +164,7 @@ class Harvest_Project extends Harvest_Abstract
 
         switch ($node->nodeName) {
             case "task":
-                $item = new Harvest_Task();
+                $item = new Task();
             break;
             default:
             break;

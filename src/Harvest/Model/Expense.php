@@ -18,38 +18,45 @@
  * along with HarvestAPI. If not, see <http://www.gnu.org/licenses/>.
  */
 
+namespace Harvest\Model;
+
 /**
- * Payment
+ * Expense
  *
- * This file contains the class Harvest_Payment
+ * This file contains the class Expense
  *
  * @author Matthew John Denton <matt@mdbitz.com>
  * @package com.mdbitz.harvest
  */
 
 /**
- * Harvest Payment Object
+ * Harvest Expense Object
  *
  * <b>Properties</b>
  * <ul>
- *   <li>amount</li>
  *   <li>created-at</li>
+ *   <li>expense-category-id</li>
  *   <li>id</li>
- *   <li>invoice-id</li>
+ *   <li>is-billed</li>
+ *   <li>is-closed</li>
  *   <li>notes</li>
- *   <li>paid-at</li>
- *   <li>pay-pal-transaction-id</li>
- *   <li>recorded-by</li>
- *   <li>recorded-by-email</li>
+ *   <li>project-id</li>
+ *   <li>spent-at</li>
+ *   <li>total-cost</li>
+ *   <li>units</li>
+ *   <li>updated-at</li>
+ *   <li>user-id</li>
+ *   <li>has-receipt</li>
+ *   <li>receipt-url</li>
  * </ul>
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_Payment extends Harvest_Abstract
+class Expense extends Harvest
 {
     /**
-     * @var string payment
+     * @var string expense
      */
-    protected $_root = "payment";
+    protected $_root = "expense";
 
 }

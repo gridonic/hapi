@@ -18,37 +18,47 @@
  * along with HarvestAPI. If not, see <http://www.gnu.org/licenses/>.
  */
 
+namespace Harvest\Model;
+
 /**
- * Client
+ * DayEntry
  *
- * This file contains the class Harvest_Client
+ * This file contains the class Harvest_DayEntry
  *
  * @author Matthew John Denton <matt@mdbitz.com>
  * @package com.mdbitz.harvest
  */
 
 /**
- * Harvest Client Object
+ * Harvest DayEntry Object
  *
  * <b>Properties</b>
  * <ul>
- *  <li>active</li>
- *  <li>cache-version</li>
- *  <li>currency</li>
- *  <li>default-invoice-timeframe</li>
- *  <li>details</li>
- *  <li>highrise-id</li>
- *  <li>id</li>
- *  <li>name</li>
+ *   <li>created-at</li>
+ *   <li>hours</li>
+ *   <li>id</li>
+ *   <li>is-billed</li>
+ *   <li>is-closed</li>
+ *   <li>notes</li>
+ *   <li>project-id</li>
+ *   <li>spent-at</li>
+ *   <li>task-id</li>
+ *   <li>timer-started-at</li>
+ *   <li>user-id</li>
  * </ul>
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_Client extends Harvest_Abstract
+class Harvest_DayEntry extends Harvest
 {
     /**
-     * @var string client
+     * @var string request
      */
-    protected $_root = "client";
+    protected $_root = "request";
+
+    /**
+     * @var boolean convert underscore
+     */
+    protected $_convert = true;
 
 }

@@ -18,21 +18,23 @@
  * along with HarvestAPI. If not, see <http://www.gnu.org/licenses/>.
  */
 
+namespace Harvest\Model;
+
 /**
- * Harvest_Currency
+ * Currency
  *
- * This file contains the class Harvest_Currency
+ * This file contains the class Currency
  *
  * @author Matthew John Denton <matt@mdbitz.com>
  * @package com.mdbitz.harvest
  */
 
 /**
- * Harvest_Currency defines the currency options supported by Harvest
+ * Currency defines the currency options supported by Harvest
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_Currency
+class Currency
 {
     /**
      *  United States Dollars

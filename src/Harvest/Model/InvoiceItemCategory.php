@@ -18,40 +18,37 @@
  * along with HarvestAPI. If not, see <http://www.gnu.org/licenses/>.
  */
 
+namespace Harvest\Model;
+
 /**
- * InvoiceMessage
+ * InvoiceItemCategory
  *
- * This file contains the class Harvest_InvoiceMessage
+ * This file contains the class InvoiceItemCategory
  *
  * @author Matthew John Denton <matt@mdbitz.com>
  * @package com.mdbitz.harvest
  */
 
 /**
- * Harvest InvoiceMessage Object
+ * Harvest InvoiceItemCategory Object
  *
  * <b>Properties</b>
  * <ul>
- *   <li>body</li>
  *   <li>created-at</li>
  *   <li>id</li>
- *   <li>include-pay-pal-link</li>
- *   <li>invoice-id</li>
- *   <li>send-me-a-copy</li>
- *   <li>sent-by</li>
- *   <li>sent-by-email</li>
- *   <li>subject</li>
- *   <li>thank-you</li>
- *   <li>full-recipient-list</li>
+ *   <li>name</li>
+ *   <li>updated-at</li>
+ *   <li>use-as-expense</li>
+ *   <li>use-as-service</li>
  * </ul>
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_InvoiceMessage extends Harvest_Abstract
+class InvoiceItemCategory extends Harvest
 {
     /**
-     * @var string invoice-message
+     * @var string invoice-item-category
      */
-    protected $_root = "invoice-message";
+    protected $_root = "invoice-item-category";
 
 }

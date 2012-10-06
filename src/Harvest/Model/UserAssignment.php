@@ -18,34 +18,38 @@
  * along with HarvestAPI. If not, see <http://www.gnu.org/licenses/>.
  */
 
+namespace Harvest\Model;
+
 /**
- * Throttle
+ * UserAssignment
  *
- * This file contains the class Harvest_Throttle
+ * This file contains the class UserAssignment
  *
  * @author Matthew John Denton <matt@mdbitz.com>
  * @package com.mdbitz.harvest
  */
 
 /**
- * Harvest Throttle Object
+ * Harvest UserAssignment Object
  *
  * <b>Properties</b>
  * <ul>
- *   <li>timeframe_limit</li>
- *   <li>count</li>
- *   <li>max_calls</li>
- *   <li>lockout_seconds</li>
- *   <li>last_access_at</li>
+ *   <li>budget</li>
+ *   <li>deactivated</li>
+ *   <li>hourly-rate</li>
+ *   <li>id</li>
+ *   <li>is-project-manager</li>
+ *   <li>project-id</li>
+ *   <li>user-id</li>
+ *   <li>estimate</li>
  * </ul>
- *
  * @package com.mdbitz.harvest
  */
-class Harvest_Throttle extends Harvest_Abstract
+class UserAssignment extends Harvest
 {
     /**
-     * @var string hash
+     * @var string user-assignment
      */
-    protected $_root = "hash";
+    protected $_root = "user-assignment";
 
 }

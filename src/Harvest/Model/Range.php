@@ -18,10 +18,12 @@
  * along with HarvestAPI. If not, see <http://www.gnu.org/licenses/>.
  */
 
+namespace Harvest\Model;
+
 /**
  * Range
  *
- * This file contains the class Harvest_Range
+ * This file contains the class Range
  *
  * @author Matthew John Denton <matt@mdbitz.com>
  * @package com.mdbitz.harvest
@@ -32,7 +34,7 @@
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_Range
+class Range
 {
     /**
      *  MONDAY
@@ -60,7 +62,7 @@ class Harvest_Range
      * @param String $from
      * @param String $to
      */
-    public function Harvest_Range( $from, $to )
+    public function Range( $from, $to )
     {
         $this->_from = $from;
         $this->_to = $to;
@@ -91,14 +93,14 @@ class Harvest_Range
     }
 
     /**
-     * return Harvest_Range object set to today
+     * return Range object set to today
      *
      * <code>
-     * $range = Harvest_Range:today( "EST" );
+     * $range = Range:today( "EST" );
      * </code>
      *
      * @param  string        $timeZone User Time Zone
-     * @return Harvest_Range
+     * @return Range
      */
     public static function today( $timeZone = null )
     {
@@ -111,21 +113,21 @@ class Harvest_Range
             $now = new DateTime( "now", new DateTimeZone( $timeZone ) );
             $before = new DateTime( "now", new DateTimeZone( $timeZone ) );
         }
-        $range = new Harvest_Range( $before, $now );
+        $range = new Range( $before, $now );
 
         return $range;
     }
 
     /**
-     * return Harvest_Range object set to this week
+     * return Range object set to this week
      *
      * <code>
-     * $range = Harvest_Range:thisWeek( "EST", Harvest_Range::SUNDAY );
+     * $range = Range:thisWeek( "EST", Range::SUNDAY );
      * </code>
      *
      * @param  string        $timeZone    User Time Zone
      * @param  int           $startOfWeek Starting day of the week
-     * @return Harvest_Range
+     * @return Range
      */
     public static function thisWeek( $timeZone = null, $startOfWeek = 0 )
     {
@@ -141,21 +143,21 @@ class Harvest_Range
         $dayOfWeek = $now->format( "w" );
         $offset = (($dayOfWeek - $startOfWeek ) + 7 ) % 7;
         $before->modify( "-$offset day" );
-        $range = new Harvest_Range( $before, $now );
+        $range = new Range( $before, $now );
 
         return $range;
     }
 
     /**
-     * return Harvest_Range object set to last week
+     * return Range object set to last week
      *
      * <code>
-     * $range = Harvest_Range:lastWeek( "EST", Harvest_Range::MONDAY );
+     * $range = Range:lastWeek( "EST", Range::MONDAY );
      * </code>
      *
      * @param  string        $timeZone    User Time Zone
      * @param  int           $startOfWeek Starting day of the week
-     * @return Harvest_Range
+     * @return Range
      */
     public static function lastWeek( $timeZone = null, $startOfWeek = 0 )
     {
@@ -174,20 +176,20 @@ class Harvest_Range
         $endOffset = $offset + 1;
         $before->modify( "-$beginOffset day" );
         $now->modify( "-$endOffset day" );
-        $range = new Harvest_Range( $before, $now );
+        $range = new Range( $before, $now );
 
         return $range;
     }
 
     /**
-     * return Harvest_Range object set to this month
+     * return Range object set to this month
      *
      * <code>
-     * $range = Harvest_Range:thisMonth( "EST" );
+     * $range = Range:thisMonth( "EST" );
      * </code>
      *
      * @param  string        $timeZone User Time Zone
-     * @return Harvest_Range
+     * @return Range
      */
     public static function thisMonth( $timeZone = null )
     {
@@ -203,20 +205,20 @@ class Harvest_Range
         $dayOfMonth = $now->format( "j" );
         $offset = $dayOfMonth - 1;
         $before->modify( "-$offset day" );
-        $range = new Harvest_Range( $before, $now );
+        $range = new Range( $before, $now );
 
         return $range;
     }
 
     /**
-     * return Harvest_Range object set to last month
+     * return Range object set to last month
      *
      * <code>
-     * $range = Harvest_Range:lastMonth( "EST" );
+     * $range = Range:lastMonth( "EST" );
      * </code>
      *
      * @param  string        $timeZone User Time Zone
-     * @return Harvest_Range
+     * @return Range
      */
     public static function lastMonth( $timeZone = null )
     {
@@ -234,7 +236,7 @@ class Harvest_Range
         $now->modify( "-$dayOfMonth day" );
         $before->modify( "-$offset day" );
         $before->modify( "-1 month" );
-        $range = new Harvest_Range( $before, $now );
+        $range = new Range( $before, $now );
 
         return $range;
     }

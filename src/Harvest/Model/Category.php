@@ -18,10 +18,12 @@
  * along with HarvestAPI. If not, see <http://www.gnu.org/licenses/>.
  */
 
+namespace Harvest\Model;
+
 /**
  * Category
  *
- * This file contains the class Harvest_Category
+ * This file contains the class Category
  *
  * @author Matthew John Denton <matt@mdbitz.com>
  * @version 0.1
@@ -33,6 +35,6 @@
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_Category extends Harvest_Abstract
+class Category extends Harvest
 {
 }

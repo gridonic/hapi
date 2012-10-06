@@ -18,37 +18,39 @@
  * along with HarvestAPI. If not, see <http://www.gnu.org/licenses/>.
  */
 
+namespace Harvest\Model;
+
 /**
- * ExpenseCategory
+ * Filter
  *
- * This file contains the class Harvest_ExpenseCategory
+ * This file contains the class TaskAssignment
  *
  * @author Matthew John Denton <matt@mdbitz.com>
  * @package com.mdbitz.harvest
  */
 
 /**
- * Harvest Expense Categroy Object
+ * Harvest TaskAssignment Object
  *
- * <b>Properties</b>
+ * <p>Properties</p>
  * <ul>
- *   <li>cache-version</li>
- *   <li>created-at</li>
+ *   <li>billable</li>
+ *   <li>budget</li>
  *   <li>deactivated</li>
+ *   <li>hourly-rate</li>
  *   <li>id</li>
- *   <li>name</li>
- *   <li>unit-name</li>
- *   <li>unit-price</li>
- *   <li>updated-at</li>
+ *   <li>project-id</li>
+ *   <li>task-id</li>
+ *   <li>estimate</li>
  * </ul>
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_ExpenseCategory extends Harvest_Abstract
+class TaskAssignment extends Harvest
 {
     /**
-     * @var string expense-category
+     * @var string task-assignment
      */
-    protected $_root = "expense-category";
+    protected $_root = "task-assignment";
 
 }

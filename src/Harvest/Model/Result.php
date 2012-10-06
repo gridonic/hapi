@@ -18,10 +18,14 @@
  * along with HarvestAPI. If not, see <http://www.gnu.org/licenses/>.
  */
 
+namespace Harvest\Model;
+
+use Harvest\Exception\HarvestException;
+
 /**
  * Result
  *
- * This file contains the class Harvest_Result
+ * This file contains the class Result
  *
  * @author Matthew John Denton <matt@mdbitz.com>
  * @package com.mdbitz.harvest
@@ -50,7 +54,7 @@
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_Result
+class Result
 {
 
     /**
@@ -116,7 +120,7 @@ class Harvest_Result
                 if ( $this->_headers != null && array_key_exists($property, $this->_headers) ) {
                     return $this->_headers[$property];
                 } else {
-                    throw new Harvest_Exception(sprintf('Unknown property %s::%s', get_class($this), $property));
+                    throw new HarvestException(sprintf('Unknown property %s::%s', get_class($this), $property));
                 }
             break;
         }
@@ -155,7 +159,7 @@ class Harvest_Result
                 $this->_headers = $value;
             break;
             default:
-                throw new Harvest_Exception(sprintf('Unknown property %s::%s', get_class($this), $property));
+                throw new HarvestException(sprintf('Unknown property %s::%s', get_class($this), $property));
             break;
         }
     }

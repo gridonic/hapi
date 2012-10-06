@@ -18,10 +18,12 @@
  * along with HarvestAPI. If not, see <http://www.gnu.org/licenses/>.
  */
 
+namespace Harvest\Model;
+
 /**
  * User
  *
- * This file contains the class Harvest_User
+ * This file contains the class User
  *
  * @author Matthew John Denton <matt@mdbitz.com>
  * @package com.mdbitz.harvest
@@ -63,7 +65,7 @@
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_User extends Harvest_Abstract
+class User extends Harvest
 {
     /**
      * @var string user

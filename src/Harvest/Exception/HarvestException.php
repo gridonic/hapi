@@ -18,38 +18,23 @@
  * along with HarvestAPI. If not, see <http://www.gnu.org/licenses/>.
  */
 
+namespace Harvest\Exception;
+
 /**
- * Task
+ * Exception
  *
- * This file contains the class Harvest_Task
+ * This file contains the class HarvestException
  *
  * @author Matthew John Denton <matt@mdbitz.com>
  * @package com.mdbitz.harvest
  */
 
 /**
- * Harvest Task Object
- *
- * <b>Properties</b>
- * <ul>
- *   <li>billable-by-default</li>
- *   <li>cache-version</li>
- *   <li>created-at</li>
- *   <li>deactivated</li>
- *   <li>default-hourly-rate</li>
- *   <li>id</li>
- *   <li>is-default</li>
- *   <li>name</li>
- *   <li>updated-at</li>
- * </ul>
+ * Harvest Exception Object
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_Task extends Harvest_Abstract
+class HarvestException extends Exception
 {
-    /**
-     * @var string task
-     */
-    protected $_root = "task";
 
 }

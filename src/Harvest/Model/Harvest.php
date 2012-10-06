@@ -18,21 +18,25 @@
  * along with HarvestAPI. If not, see <http://www.gnu.org/licenses/>.
  */
 
+namespace Harvest\Model;
+
+use Harvest\Exception\HarvestException;
+
 /**
  * Abstract
  *
- * This file contains the class Harvest_Abstract
+ * This file contains the class Harvest
  *
  * @author Matthew John Denton <matt@mdbitz.com>
  * @package com.mdbitz.harvest
  */
 
 /**
- * Harvest_Abstract defines the base class utilized by all Harvest Objects
+ * Harvest defines the base class utilized by all Harvest Objects
  *
  * @package com.mdbitz.harvest
  */
-abstract class Harvest_Abstract
+abstract class Harvest
 {
     /**
      * @var string Document Element Name
@@ -131,7 +135,7 @@ abstract class Harvest_Abstract
             return $this->set( $method, $arguments[0] );
         }
 
-        throw new Harvest_Exception( sprintf('Unknown method %s::%s', get_class($this), $method));
+        throw new HarvestException( sprintf('Unknown method %s::%s', get_class($this), $method));
     }
 
     /**

@@ -18,6 +18,8 @@
  * along with HarvestAPI. If not, see <http://www.gnu.org/licenses/>.
  */
 
+namespace Harvest;
+
 /**
  * HarvestReports
  *
@@ -103,7 +105,7 @@ class HarvestReports extends HarvestAPI
      * }
      * </code>
      *
-     * @return Harvest_Result
+     * @return Result
      */
     public function getActiveClients()
     {
@@ -133,7 +135,7 @@ class HarvestReports extends HarvestAPI
      * }
      * </code>
      *
-     * @return Harvest_Result
+     * @return Result
      */
     public function getInactiveClients()
     {
@@ -163,7 +165,7 @@ class HarvestReports extends HarvestAPI
      * }
      * </code>
      *
-     * @return Harvest_Result
+     * @return Result
      */
     public function getActiveProjects()
     {
@@ -193,7 +195,7 @@ class HarvestReports extends HarvestAPI
      * }
      * </code>
      *
-     * @return Harvest_Result
+     * @return Result
      */
     public function getInactiveProjects()
     {
@@ -224,7 +226,7 @@ class HarvestReports extends HarvestAPI
      * </code>
      *
      * @param  int            $client_id Client Identifier
-     * @return Harvest_Result
+     * @return Result
      */
     public function getClientActiveProjects( $client_id )
     {
@@ -255,7 +257,7 @@ class HarvestReports extends HarvestAPI
      * </code>
      *
      * @param  int            $client_id Client Identifier
-     * @return Harvest_Result
+     * @return Result
      */
     public function getClientInactiveProjects( $client_id )
     {
@@ -285,7 +287,7 @@ class HarvestReports extends HarvestAPI
      * }
      * </code>
      *
-     * @return Harvest_Result
+     * @return Result
      */
     public function getActiveUsers()
     {
@@ -315,7 +317,7 @@ class HarvestReports extends HarvestAPI
      * }
      * </code>
      *
-     * @return Harvest_Result
+     * @return Result
      */
     public function getInactiveUsers()
     {
@@ -345,7 +347,7 @@ class HarvestReports extends HarvestAPI
      * }
      * </code>
      *
-     * @return Harvest_Result
+     * @return Result
      */
     public function getAdmins()
     {
@@ -375,7 +377,7 @@ class HarvestReports extends HarvestAPI
      * }
      * </code>
      *
-     * @return Harvest_Result
+     * @return Result
      */
     public function getActiveAdmins()
     {
@@ -405,7 +407,7 @@ class HarvestReports extends HarvestAPI
      * }
      * </code>
      *
-     * @return Harvest_Result
+     * @return Result
      */
     public function getInactiveAdmins()
     {
@@ -435,7 +437,7 @@ class HarvestReports extends HarvestAPI
      * }
      * </code>
      *
-     * @return Harvest_Result
+     * @return Result
      */
     public function getContractors()
     {
@@ -465,7 +467,7 @@ class HarvestReports extends HarvestAPI
      * }
      * </code>
      *
-     * @return Harvest_Result
+     * @return Result
      */
     public function getActiveContractors()
     {
@@ -495,7 +497,7 @@ class HarvestReports extends HarvestAPI
      * }
      * </code>
      *
-     * @return Harvest_Result
+     * @return Result
      */
     public function getInactiveContractors()
     {
@@ -525,7 +527,7 @@ class HarvestReports extends HarvestAPI
      * }
      * </code>
      *
-     * @return Harvest_Result
+     * @return Result
      */
     public function getActiveTimers( )
     {
@@ -533,7 +535,7 @@ class HarvestReports extends HarvestAPI
         if ( $result->isSuccess() ) {
             $data = array();
             foreach ($result->data as $user) {
-                $subResult = $this->getUserEntries( $user->id, Harvest_Range::today( $this->_timeZone ) );
+                $subResult = $this->getUserEntries( $user->id, Range::today( $this->_timeZone ) );
                 if ( $subResult->isSuccess() ) {
                     foreach ($subResult->data as $entry) {
                         if ($entry->timer_started_at != null || $entry->timer_started_at != "") {
@@ -561,11 +563,11 @@ class HarvestReports extends HarvestAPI
      * }
      * </code>
      *
-     * @return Harvest_Result
+     * @return Result
      */
     public function getUsersActiveTimer( $user_id )
     {
-        $result = $this->getUserEntries( $user_id, Harvest_Range::today( $this->_timeZone ) );
+        $result = $this->getUserEntries( $user_id, Range::today( $this->_timeZone ) );
         if ( $result->isSuccess() ) {
             $data = null;
             foreach ($result->data as $entry) {
