@@ -47,13 +47,13 @@
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_DayEntry extends Harvest_Abstract {
-
+class Harvest_DayEntry extends Harvest_Abstract
+{
     /**
      * @var string request
      */
     protected $_root = "request";
-	
+
     /**
      * @var boolean convert underscore
      */

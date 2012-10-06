@@ -42,8 +42,8 @@
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_InvoiceItemCategory extends Harvest_Abstract {
-
+class Harvest_InvoiceItemCategory extends Harvest_Abstract
+{
     /**
      * @var string invoice-item-category
      */

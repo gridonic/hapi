@@ -33,6 +33,6 @@
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_Category extends Harvest_Abstract {
-	
+class Harvest_Category extends Harvest_Abstract
+{
 }

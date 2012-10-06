@@ -58,7 +58,7 @@ class Harvest_Timer extends Harvest_Abstract
      */
     public function get( $property )
     {
-        switch( $property ) {
+        switch ($property) {
             case "day_entry":
                 return $this->_dayEntry;
             break;
@@ -79,7 +79,7 @@ class Harvest_Timer extends Harvest_Abstract
      */
     public function set( $property, $value )
     {
-        switch( $property ) {
+        switch ($property) {
             case "day_entry":
                 $this->_dayEntry = $value;
             break;
@@ -95,13 +95,13 @@ class Harvest_Timer extends Harvest_Abstract
     /**
      * parse XML represenation into a Harvest Timer object
      *
-     * @param XMLNode $node        xml node to parse
-     * @return void            
+     * @param  XMLNode $node xml node to parse
+     * @return void
      */
     public function parseXML( $node )
-    {    
-        foreach ( $node->childNodes as $item ) {
-            switch( $item->nodeName ) {
+    {
+        foreach ($node->childNodes as $item) {
+            switch ($item->nodeName) {
                 case "day_entry":
                     $this->_dayEntry = new Harvest_DayEntry();
                     $this->_dayEntry->parseXML( $node );

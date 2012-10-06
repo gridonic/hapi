@@ -50,8 +50,8 @@
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_Expense extends Harvest_Abstract {
-
+class Harvest_Expense extends Harvest_Abstract
+{
     /**
      * @var string expense
      */

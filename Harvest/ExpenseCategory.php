@@ -44,11 +44,11 @@
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_ExpenseCategory extends Harvest_Abstract {
-
+class Harvest_ExpenseCategory extends Harvest_Abstract
+{
     /**
      * @var string expense-category
      */
     protected $_root = "expense-category";
-	
+
 }

@@ -41,8 +41,8 @@
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_Throttle extends Harvest_Abstract {
-
+class Harvest_Throttle extends Harvest_Abstract
+{
     /**
      * @var string hash
      */

@@ -44,11 +44,11 @@
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_Client extends Harvest_Abstract {
-
+class Harvest_Client extends Harvest_Abstract
+{
     /**
      * @var string client
      */
-    protected $_root = "client";	
+    protected $_root = "client";
 
 }

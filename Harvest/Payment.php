@@ -45,8 +45,8 @@
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_Payment extends Harvest_Abstract {
-
+class Harvest_Payment extends Harvest_Abstract
+{
     /**
      * @var string payment
      */

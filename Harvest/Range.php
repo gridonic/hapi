@@ -32,14 +32,14 @@
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_Range {
-
-	/**
+class Harvest_Range
+{
+    /**
      *  MONDAY
      */
     const MONDAY = 1;
 
-	/**
+    /**
      *  SUNDAY
      */
     const SUNDAY = 0;
@@ -48,7 +48,7 @@ class Harvest_Range {
      * @var string from date
      */
     protected $_from = null;
-	
+
     /**
      * @var string to date
      */
@@ -60,178 +60,183 @@ class Harvest_Range {
      * @param String $from
      * @param String $to
      */
-	public function Harvest_Range( $from, $to )
-	{
-		$this->_from = $from;
-		$this->_to = $to;
-	}
+    public function Harvest_Range( $from, $to )
+    {
+        $this->_from = $from;
+        $this->_to = $to;
+    }
 
     /**
      * @return _to
      */
-	public function to( ) 
-	{
-		if( $this->_to instanceof DateTime ) {
-			return $this->_to->format( "Ymd" );
-		} else {
-			return $this->_to;
-		}
-	}
-	
-	/**
-	 * @return _from
-	 */
-	public function from()
+    public function to( )
     {
-		if( $this->_from instanceof DateTime ) {
-			return $this->_from->format( "Ymd" );
-		} else {
-			return $this->_from;
-		}
-	}
-	
-	/**
+        if ($this->_to instanceof DateTime) {
+            return $this->_to->format( "Ymd" );
+        } else {
+            return $this->_to;
+        }
+    }
+
+    /**
+     * @return _from
+     */
+    public function from()
+    {
+        if ($this->_from instanceof DateTime) {
+            return $this->_from->format( "Ymd" );
+        } else {
+            return $this->_from;
+        }
+    }
+
+    /**
      * return Harvest_Range object set to today
      *
      * <code>
-	 * $range = Harvest_Range:today( "EST" );
+     * $range = Harvest_Range:today( "EST" );
      * </code>
      *
-     * @param string $timeZone User Time Zone
+     * @param  string        $timeZone User Time Zone
      * @return Harvest_Range
      */
-	public static function today( $timeZone = null )
-	{
-		$now = null;
-		$before = null;
-		if( is_null($timeZone) ) {
-			$now = new DateTime();
-			$before = new DateTime();
-		} else {
-			$now = new DateTime( "now", new DateTimeZone( $timeZone ) );
-			$before = new DateTime( "now", new DateTimeZone( $timeZone ) );
-		}
-		$range = new Harvest_Range( $before, $now );
-		return $range;
-	}
-	
-	/**
+    public static function today( $timeZone = null )
+    {
+        $now = null;
+        $before = null;
+        if ( is_null($timeZone) ) {
+            $now = new DateTime();
+            $before = new DateTime();
+        } else {
+            $now = new DateTime( "now", new DateTimeZone( $timeZone ) );
+            $before = new DateTime( "now", new DateTimeZone( $timeZone ) );
+        }
+        $range = new Harvest_Range( $before, $now );
+
+        return $range;
+    }
+
+    /**
      * return Harvest_Range object set to this week
      *
      * <code>
-	 * $range = Harvest_Range:thisWeek( "EST", Harvest_Range::SUNDAY );
+     * $range = Harvest_Range:thisWeek( "EST", Harvest_Range::SUNDAY );
      * </code>
      *
-     * @param string $timeZone User Time Zone
-	 * @param int $startOfWeek Starting day of the week
+     * @param  string        $timeZone    User Time Zone
+     * @param  int           $startOfWeek Starting day of the week
      * @return Harvest_Range
      */
-	public static function thisWeek( $timeZone = null, $startOfWeek = 0 )
-	{
-		$now = null;
-		$before = null;
-		if( is_null($timeZone) ) {
-			$now = new DateTime();
-			$before = new DateTime();
-		} else {
-			$now = new DateTime( "now", new DateTimeZone( $timeZone ) );
-			$before = new DateTime( "now", new DateTimeZone( $timeZone ) );
-		}
-		$dayOfWeek = $now->format( "w" );
-		$offset = (($dayOfWeek - $startOfWeek ) + 7 ) % 7;
-		$before->modify( "-$offset day" );
-		$range = new Harvest_Range( $before, $now );
-		return $range;
-	}
-	
-	/**
+    public static function thisWeek( $timeZone = null, $startOfWeek = 0 )
+    {
+        $now = null;
+        $before = null;
+        if ( is_null($timeZone) ) {
+            $now = new DateTime();
+            $before = new DateTime();
+        } else {
+            $now = new DateTime( "now", new DateTimeZone( $timeZone ) );
+            $before = new DateTime( "now", new DateTimeZone( $timeZone ) );
+        }
+        $dayOfWeek = $now->format( "w" );
+        $offset = (($dayOfWeek - $startOfWeek ) + 7 ) % 7;
+        $before->modify( "-$offset day" );
+        $range = new Harvest_Range( $before, $now );
+
+        return $range;
+    }
+
+    /**
      * return Harvest_Range object set to last week
      *
      * <code>
-	 * $range = Harvest_Range:lastWeek( "EST", Harvest_Range::MONDAY );
+     * $range = Harvest_Range:lastWeek( "EST", Harvest_Range::MONDAY );
      * </code>
      *
-     * @param string $timeZone User Time Zone
-	 * @param int $startOfWeek Starting day of the week
+     * @param  string        $timeZone    User Time Zone
+     * @param  int           $startOfWeek Starting day of the week
      * @return Harvest_Range
      */
-	public static function lastWeek( $timeZone = null, $startOfWeek = 0 )
-	{
-		$now = null;
-		$before = null;
-		if( is_null($timeZone) ) {
-			$now = new DateTime();
-			$before = new DateTime();
-		} else {
-			$now = new DateTime( "now", new DateTimeZone( $timeZone ) );
-			$before = new DateTime( "now", new DateTimeZone( $timeZone ) );
-		}
-		$dayOfWeek = $now->format( "w" );
-		$offset = (($dayOfWeek - $startOfWeek ) + 7 ) % 7;
-		$beginOffset = $offset + 7;
-		$endOffset = $offset + 1;
-		$before->modify( "-$beginOffset day" );
-		$now->modify( "-$endOffset day" );
-		$range = new Harvest_Range( $before, $now );
-		return $range;
-	}
-	
-	/**
+    public static function lastWeek( $timeZone = null, $startOfWeek = 0 )
+    {
+        $now = null;
+        $before = null;
+        if ( is_null($timeZone) ) {
+            $now = new DateTime();
+            $before = new DateTime();
+        } else {
+            $now = new DateTime( "now", new DateTimeZone( $timeZone ) );
+            $before = new DateTime( "now", new DateTimeZone( $timeZone ) );
+        }
+        $dayOfWeek = $now->format( "w" );
+        $offset = (($dayOfWeek - $startOfWeek ) + 7 ) % 7;
+        $beginOffset = $offset + 7;
+        $endOffset = $offset + 1;
+        $before->modify( "-$beginOffset day" );
+        $now->modify( "-$endOffset day" );
+        $range = new Harvest_Range( $before, $now );
+
+        return $range;
+    }
+
+    /**
      * return Harvest_Range object set to this month
      *
      * <code>
-	 * $range = Harvest_Range:thisMonth( "EST" );
+     * $range = Harvest_Range:thisMonth( "EST" );
      * </code>
      *
-     * @param string $timeZone User Time Zone
+     * @param  string        $timeZone User Time Zone
      * @return Harvest_Range
      */
-	public static function thisMonth( $timeZone = null )
-	{
-		$now = null;
-		$before = null;
-		if( is_null($timeZone) ) {
-			$now = new DateTime();
-			$before = new DateTime();
-		} else {
-			$now = new DateTime( "now", new DateTimeZone( $timeZone ) );
-			$before = new DateTime( "now", new DateTimeZone( $timeZone ) );
-		}
-		$dayOfMonth = $now->format( "j" );
-		$offset = $dayOfMonth - 1;
-		$before->modify( "-$offset day" );
-		$range = new Harvest_Range( $before, $now );
-		return $range;
-	}
-	
-	/**
+    public static function thisMonth( $timeZone = null )
+    {
+        $now = null;
+        $before = null;
+        if ( is_null($timeZone) ) {
+            $now = new DateTime();
+            $before = new DateTime();
+        } else {
+            $now = new DateTime( "now", new DateTimeZone( $timeZone ) );
+            $before = new DateTime( "now", new DateTimeZone( $timeZone ) );
+        }
+        $dayOfMonth = $now->format( "j" );
+        $offset = $dayOfMonth - 1;
+        $before->modify( "-$offset day" );
+        $range = new Harvest_Range( $before, $now );
+
+        return $range;
+    }
+
+    /**
      * return Harvest_Range object set to last month
      *
      * <code>
-	 * $range = Harvest_Range:lastMonth( "EST" );
+     * $range = Harvest_Range:lastMonth( "EST" );
      * </code>
      *
-     * @param string $timeZone User Time Zone
+     * @param  string        $timeZone User Time Zone
      * @return Harvest_Range
      */
-	public static function lastMonth( $timeZone = null )
-	{
-		$now = null;
-		$before = null;
-		if( is_null($timeZone) ) {
-			$now = new DateTime();
-			$before = new DateTime();
-		} else {
-			$now = new DateTime( "now", new DateTimeZone( $timeZone ) );
-			$before = new DateTime( "now", new DateTimeZone( $timeZone ) );
-		}
-		$dayOfMonth = $now->format( "j" );
-		$offset = $dayOfMonth - 1;
-		$now->modify( "-$dayOfMonth day" );
-		$before->modify( "-$offset day" );
-		$before->modify( "-1 month" );
-		$range = new Harvest_Range( $before, $now );
-		return $range;
-	}
-	
+    public static function lastMonth( $timeZone = null )
+    {
+        $now = null;
+        $before = null;
+        if ( is_null($timeZone) ) {
+            $now = new DateTime();
+            $before = new DateTime();
+        } else {
+            $now = new DateTime( "now", new DateTimeZone( $timeZone ) );
+            $before = new DateTime( "now", new DateTimeZone( $timeZone ) );
+        }
+        $dayOfMonth = $now->format( "j" );
+        $offset = $dayOfMonth - 1;
+        $now->modify( "-$dayOfMonth day" );
+        $before->modify( "-$offset day" );
+        $before->modify( "-1 month" );
+        $range = new Harvest_Range( $before, $now );
+
+        return $range;
+    }
+
 }

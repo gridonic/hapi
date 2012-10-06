@@ -45,8 +45,8 @@
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_Contact extends Harvest_Abstract {
-
+class Harvest_Contact extends Harvest_Abstract
+{
     /**
      * @var string contact
      */

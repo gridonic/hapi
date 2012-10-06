@@ -62,8 +62,8 @@
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_Project extends Harvest_Abstract {
-
+class Harvest_Project extends Harvest_Abstract
+{
     /**
      * @var string project
      */
@@ -74,107 +74,105 @@ class Harvest_Project extends Harvest_Abstract {
      */
     protected $_tasks = array();
 
-	/**
-	 * get specifed property
-	 *
-	 * @param mixed $property
+    /**
+     * get specifed property
+     *
+     * @param  mixed $property
      * @return mixed
-	 */
-	public function get( $property )
+     */
+    public function get( $property )
     {
-        if( $property == "tasks" ) {
-	        return $this->_tasks;
-		} else if (array_key_exists($property, $this->_values)) {
+        if ($property == "tasks") {
+            return $this->_tasks;
+        } elseif (array_key_exists($property, $this->_values)) {
             return $this->_values[$property];
         } else {
-			return null;
-		}
-		
-	}
-	
-	/**
-	 * set property to specified value
-	 *
-	 * @param mixed $property
-	 * @param mixed $value
+            return null;
+        }
+
+    }
+
+    /**
+     * set property to specified value
+     *
+     * @param  mixed $property
+     * @param  mixed $value
      * @return void
-	 */
-	public function set($property, $value)
+     */
+    public function set($property, $value)
     {
-		if( $property == "tasks" ) {
-			$this->_tasks = $value;
-		} else {
-			$this->_values[$property] = $value;
-		}
-	}
-	
-	/**
+        if ($property == "tasks") {
+            $this->_tasks = $value;
+        } else {
+            $this->_values[$property] = $value;
+        }
+    }
+
+    /**
      * parse XML represenation into a Harvest Project object
      *
-     * @param XMLNode $node xml node to parse
-     * @return void            
+     * @param  XMLNode $node xml node to parse
+     * @return void
      */
-	public function parseXML( $node ) {
-		
-		foreach ( $node->childNodes as $item ) {
-			switch( $item->nodeName ) 
-			{	
-				case "tasks":
-					$this->_tasks = $this->parseItems( $item );
-				break;
-				default:
-					if( $item->nodeName != "#text" ){
-						$this->set( $item->nodeName, $item->nodeValue);
-					}
-				break;
-			}
-		}
-		
-	}
-	
-	/**
-	 * parse xml list
-	 * @param string $xml
-	 * @return array
-	 */
-	private function parseItems( $xml ) {
-		$items = array();
-		
-		foreach ($xml->childNodes AS $item)
-		{
-			$item = $this->parseNode( $item );
-			if( ! is_null( $item ) ) 
-			{
-				$items[$item->id()] = $item;
-			}
-		}
-		
-		return $items;
-		
-	}
-	
-	/**
-	 * parse xml node
-	 * @param XMLNode $node
-	 * @return mixed
-	 */
-	private function parseNode( $node ) {
-		$item = null;
-		
-		switch( $node->nodeName ) 
-		{	
-			case "task":
-				$item = new Harvest_Task();
-			break;
-			default:
-			break;
-		}
-		if( ! is_null( $item ) ) {
-			$item->parseXML( $node );
-		}
-		
-		return $item;
-		
-	}
-	
+    public function parseXML( $node )
+    {
+        foreach ($node->childNodes as $item) {
+            switch ($item->nodeName) {
+                case "tasks":
+                    $this->_tasks = $this->parseItems( $item );
+                break;
+                default:
+                    if ($item->nodeName != "#text") {
+                        $this->set( $item->nodeName, $item->nodeValue);
+                    }
+                break;
+            }
+        }
+
+    }
+
+    /**
+     * parse xml list
+     * @param  string $xml
+     * @return array
+     */
+    private function parseItems( $xml )
+    {
+        $items = array();
+
+        foreach ($xml->childNodes AS $item) {
+            $item = $this->parseNode( $item );
+            if ( ! is_null( $item ) ) {
+                $items[$item->id()] = $item;
+            }
+        }
+
+        return $items;
+
+    }
+
+    /**
+     * parse xml node
+     * @param  XMLNode $node
+     * @return mixed
+     */
+    private function parseNode( $node )
+    {
+        $item = null;
+
+        switch ($node->nodeName) {
+            case "task":
+                $item = new Harvest_Task();
+            break;
+            default:
+            break;
+        }
+        if ( ! is_null( $item ) ) {
+            $item->parseXML( $node );
+        }
+
+        return $item;
+
+    }
+
 }

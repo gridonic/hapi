@@ -71,9 +71,9 @@ class Harvest_Result
     /**
      * Constructor initializes {@link $_code} {@link $_data}
      *
-     * @param string $code response code
-     * @param array $data array of Quote Objects
-     * @param array $headers array of Header Response values
+     * @param string $code    response code
+     * @param array  $data    array of Quote Objects
+     * @param array  $headers array of Header Response values
      */
     public function __construct( $code = null, $data = null, $headers = null)
     {
@@ -86,8 +86,8 @@ class Harvest_Result
      * magic method to return non public properties
      *
      * @see     get
-     * @param   mixed $property
-     * @return  mixed
+     * @param  mixed $property
+     * @return mixed
      */
     public function __get( $property )
     {
@@ -97,23 +97,23 @@ class Harvest_Result
     /**
      * Return the specified property
      *
-     * @param mixed $property     The property to return
+     * @param  mixed $property The property to return
      * @return mixed
      */
     public function get( $property )
     {
-        switch( $property ){
+        switch ($property) {
             case 'code':
                 return $this->_code;
             break;
             case 'data':
                 return $this->_data;
             break;
-			case 'headers':
-				return $this->_headers;
-			break;
+            case 'headers':
+                return $this->_headers;
+            break;
             default:
-                if( $this->_headers != null && array_key_exists($property, $this->_headers) ) {
+                if ( $this->_headers != null && array_key_exists($property, $this->_headers) ) {
                     return $this->_headers[$property];
                 } else {
                     throw new Harvest_Exception(sprintf('Unknown property %s::%s', get_class($this), $property));
@@ -138,13 +138,13 @@ class Harvest_Result
     /**
      * sets the specified property
      *
-     * @param mixed $property The property to set
-     * @param mixed $value value of property
+     * @param  mixed $property The property to set
+     * @param  mixed $value    value of property
      * @return void
      */
     public function set( $property, $value )
     {
-        switch( $property ){
+        switch ($property) {
             case 'code':
                 $this->_code = $value;
             break;
@@ -164,9 +164,9 @@ class Harvest_Result
      * is request successfull
      * @return boolean
      */
-    public function isSuccess() 
+    public function isSuccess()
     {
-        if( "2" == substr( $this->_code, 0, 1 ) ) {
+        if ( "2" == substr( $this->_code, 0, 1 ) ) {
             return true;
         } else {
             return false;

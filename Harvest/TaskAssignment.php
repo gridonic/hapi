@@ -44,8 +44,8 @@
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_TaskAssignment extends Harvest_Abstract {
-
+class Harvest_TaskAssignment extends Harvest_Abstract
+{
     /**
      * @var string task-assignment
      */

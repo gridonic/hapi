@@ -45,8 +45,8 @@
  *
  * @package com.mdbitz.harvest
  */
-class Harvest_Task extends Harvest_Abstract {
-
+class Harvest_Task extends Harvest_Abstract
+{
     /**
      * @var string task
      */

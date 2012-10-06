@@ -779,35 +779,35 @@ class Harvest_Currency
      */
     const THAILAND_BAHT = "Thailand Baht - THB";
 
-	/**
-	 *  Trinidad and Tobago Dollars
-	 */
-	const TTD = "Trinidad and Tobago Dollars - TTD";
+    /**
+     *  Trinidad and Tobago Dollars
+     */
+    const TTD = "Trinidad and Tobago Dollars - TTD";
 
-	/**
-	 *  Trinidad and Tobago Dollars
-	 */
-	const TRINIDAD_AND_TOBAGO_DOLLARS = "Trinidad and Tobago Dollars - TTD";
-	
-	/**
-	 *  Tunisia Dinars
-	 */
-	const TND = "Tunisia Dinars - TND";
+    /**
+     *  Trinidad and Tobago Dollars
+     */
+    const TRINIDAD_AND_TOBAGO_DOLLARS = "Trinidad and Tobago Dollars - TTD";
 
-	/**
-	 *  Tunisia Dinars
-	 */
-	const TUNISIA_DINARS = "Tunisia Dinars - TND";
+    /**
+     *  Tunisia Dinars
+     */
+    const TND = "Tunisia Dinars - TND";
 
-	/*
-	 *  Turkey New Lira
-	 */
-	//const TRY = "Turkey New Lira - TRY";
+    /**
+     *  Tunisia Dinars
+     */
+    const TUNISIA_DINARS = "Tunisia Dinars - TND";
 
-	/**
-	 *  Turkey New Lira
-	 */
-	const TURKEY_NEW_LIRA = "Turkey New Lira - TRY";	
+    /*
+     *  Turkey New Lira
+     */
+    //const TRY = "Turkey New Lira - TRY";
+
+    /**
+     *  Turkey New Lira
+     */
+    const TURKEY_NEW_LIRA = "Turkey New Lira - TRY";
 
     /**
      *  United Arab Emirates Dirham

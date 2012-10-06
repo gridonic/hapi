@@ -43,8 +43,8 @@
  * </ul>
  * @package com.mdbitz.harvest
  */
-class Harvest_UserAssignment extends Harvest_Abstract {
-
+class Harvest_UserAssignment extends Harvest_Abstract
+{
     /**
      * @var string user-assignment
      */

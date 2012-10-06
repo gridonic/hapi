@@ -60,11 +60,11 @@
  *   <li>twitter-username</li>
  *   <li>wants-newsletter</li>
  * </ul>
- * 
+ *
  * @package com.mdbitz.harvest
  */
-class Harvest_User extends Harvest_Abstract {
-
+class Harvest_User extends Harvest_Abstract
+{
     /**
      * @var string user
      */

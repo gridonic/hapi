@@ -32,8 +32,8 @@
  *
  * @package com.mdbitz.harvest
  */
-abstract class Harvest_Abstract {
-
+abstract class Harvest_Abstract
+{
     /**
      * @var string Document Element Name
      */
@@ -43,49 +43,49 @@ abstract class Harvest_Abstract {
      * @var boolean Convert underscores
      */
     protected $_convert = true;
-	
+
     /**
      * @var array Object Values
      */
     protected $_values = array();
-	
-	/**
+
+    /**
      * magic method to return non public properties
      *
      * @see     get
-     * @param   mixed $property
-     * @return  mixed
+     * @param  mixed $property
+     * @return mixed
      */
     public function __get( $property )
     {
         return $this->get( $property );
     }
-	
-	/**
-	 * get specifed property
-	 *
-	 * @param mixed $property
+
+    /**
+     * get specifed property
+     *
+     * @param  mixed $property
      * @return mixed
-	 */
-	public function get( $property )
+     */
+    public function get( $property )
     {
         $value = null;
 
-		if( $this->_convert ) {
-			$property = str_replace( "_", "-", $property );
-		} else {
-			$property = str_replace( "-", "_", $property );
-		}
-		
+        if ($this->_convert) {
+            $property = str_replace( "_", "-", $property );
+        } else {
+            $property = str_replace( "-", "_", $property );
+        }
+
         if (array_key_exists($property, $this->_values)) {
             return $this->_values[$property];
         } else {
-			return null;
-		}
-		
-	}
-	
-	/**
+            return null;
+        }
+
+    }
+
+    /**
      * magic method to set non public properties
      *
      * @see    set
@@ -97,58 +97,58 @@ abstract class Harvest_Abstract {
     {
         $this->set( $property, $value );
     }
-	
-	/**
-	 * set property to specified value
-	 *
-	 * @param mixed $property
-	 * @param mixed $value
+
+    /**
+     * set property to specified value
+     *
+     * @param  mixed $property
+     * @param  mixed $value
      * @return void
-	 */
-	public function set($property, $value)
+     */
+    public function set($property, $value)
     {
-		if( $this->_convert ) {
-			$property = str_replace( "_", "-", $property );
-		} else {
-			$property = str_replace( "-", "_", $property );
-		}
-		
-		$this->_values[$property] = $value;
-	}
-	
-	/**
+        if ($this->_convert) {
+            $property = str_replace( "_", "-", $property );
+        } else {
+            $property = str_replace( "-", "_", $property );
+        }
+
+        $this->_values[$property] = $value;
+    }
+
+    /**
      * magic method used for method overloading
      *
-     * @param string $method        name of the method
-     * @param array $args           method arguments
-     * @return mixed                the return value of the given method
+     * @param  string $method name of the method
+     * @param  array  $args   method arguments
+     * @return mixed  the return value of the given method
      */
     public function __call($method, $arguments)
     {
-    	if( count($arguments) == 0 ) {
-			return $this->get( $method );
-		} else if( count( $arguments ) == 1 ) {
-			return $this->set( $method, $arguments[0] );
-		}
-		
-		throw new Harvest_Exception( sprintf('Unknown method %s::%s', get_class($this), $method));
+        if ( count($arguments) == 0 ) {
+            return $this->get( $method );
+        } elseif ( count( $arguments ) == 1 ) {
+            return $this->set( $method, $arguments[0] );
+        }
+
+        throw new Harvest_Exception( sprintf('Unknown method %s::%s', get_class($this), $method));
     }
-	
-	/**
+
+    /**
      * magic method used for method overloading
      *
-     * @param XMLNode $node xml node to parse
-     * @return void            
+     * @param  XMLNode $node xml node to parse
+     * @return void
      */
-	public function parseXML( $node ) {
-		
-		foreach ( $node->childNodes as $item ) {
-			if( $item->nodeName != "#text" ){
-				$this->set( $item->nodeName, $item->nodeValue);
-			}
-		}
-		
-	}
+    public function parseXML( $node )
+    {
+        foreach ($node->childNodes as $item) {
+            if ($item->nodeName != "#text") {
+                $this->set( $item->nodeName, $item->nodeValue);
+            }
+        }
+
+    }
 
     /**
      * Convert Harvest Object to XML representation
@@ -158,10 +158,11 @@ abstract class Harvest_Abstract {
     public function toXML( )
     {
         $xml = "<$this->_root>";
-        foreach ( $this->_values as $key => $value ) {
+        foreach ($this->_values as $key => $value) {
             $xml .= "<$key>$value</$key>";
         }
         $xml .= "</$this->_root>";
+
         return $xml;
     }
 
