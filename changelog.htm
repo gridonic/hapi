@@ -1,0 +1,177 @@
+<h1>HarvestAPI PHP Wrapper Library Changelog</h1>
+<p>This is the changelog of the HarvestAPI library for PHP. The current available release of the library can be found <a href="http://resources.mdbitz.com/2009/11/">here</a></p>
+<hr/>
+
+<div class="entry">
+	<h2>Version: <b>1.1.1</b> Released: 10-04-2010</h2>
+	<div class="log">
+		<div class="comment">getClientProjects Bug Fix Release</div>
+		<ul>
+			<li>missing query parameter fixed &#8211; thanks to Warren Sherliker for identifying this issue.</li>
+		</ul>
+	</div>
+</div>
+<div class="entry">
+	<h2>Version: <b>1.1.0</b> Released: 08-19-2010</h2>
+	<div class="log">
+		<div class="comment">Enhancement Release to incorporate latest Harvest API changes including default <a href="http://www.getharvest.com/blog/2010/08/secure-connection-for-all-accounts/" onclick="javascript:pageTracker._trackPageview('/outbound/article/www.getharvest.com');" target="_blank">SSL security</a> and <a href="http://forum.getharvest.com/forums/api-and-developer-chat/topics/announcement-updated_since-available-in-invoices-api" onclick="javascript:pageTracker._trackPageview('/outbound/article/forum.getharvest.com');" target="_blank">updated_since option</a></div>
+		<ul>
+			<li>default SSL mode set to TRUE</li>
+			<li>Follow Redirects enabled on underlying curl settings to follow 30X redirects</li>
+			<li><em>getProjects</em> optional updated_since parameter added</li>
+			<li><em>getClients</em> optional updated_since parameter added</li>
+			<li><em>getContacts</em> optional updated_since parameter added</li>
+			<li><em>Harvest_Invoice_Filter</em> optional updated_since parameter added</li>
+		</ul>
+	</div>
+</div>
+<div class="entry">
+	<h2>Version: <b>1.0.1</b> Released: 08-05-2010</h2>
+	<div class="log">
+		<div class="comment">assignUserToProject Bug Fix Release</div>
+		<ul>
+			<li>Typo corrected in assignUserToProject function &#8211; thanks to John Vitelli for identifying this issue.</li>
+		</ul>
+	</div>
+</div>
+<div class="entry">
+    <h2>Version: <b>1.0.0</b> Released: 05-01-2010</h2>
+    <div class="log">
+        <div class="comment">Official 1.0 release of the HaPi - PHP Wrapper Library for the Harvest API. This release contains multiple bug fixes as well as the HarvestReports interface for performing common tasks like getting only the active projects and clients.</div>
+        <ul>
+			<li>New HarvestReports extension class - extends the HarvestAPI class with additional reporting features
+				<ul>
+					<li>getActiveClients</li>
+					<li>getInactiveClients</li>
+					<li>getActiveProjects</li>
+					<li>getInActiveProjects</li>
+					<li>getClientActiveProjects</li>
+					<li>getClientInActiveProjects</li>
+					<li>getActiveUsers</li>
+					<li>getInactiveUsers</li>
+					<li>getAdmins</li>
+					<li>getActiveAdmins</li>
+					<li>getInActiveAdmins</li>
+					<li>getContractors</li>
+					<li>getActiveContractors</li>
+					<li>getInactiveContractors</li>
+					<li>getActiveTimers</li>
+					<li>getUsersActiveTimer</li>
+				</ul>
+			</li>
+			<li>Added DateTime support to Harvest_Range</li>
+			<li>Added the following pre set ranges to Harvest_Range
+				<ul>
+					<li>today</li>
+					<li>thisWeek</li>
+					<li>lastWeek</li>
+					<li>thisMonth</li>
+					<li>lastMonth</li>
+				</ul>
+			</li>
+			<li>Added support for getClientProjects to return projects that belong to a single client</li>
+			<li>Addition of underscore converter so users can call properties directly without utilizing get.</li>
+            <li>Bug Fix for createEntry returned data</li>
+			<li>Bug Fix for getUserEntries</li>
+			<li>Conversion of Request class to Throttle</li>
+			<li>Cleanup of code samples in documentation</li>
+        </ul>
+    </div>
+</div>
+
+<div class="entry">
+    <h2>Version: <b>0.4.2</b> Released: 04-20-2010</h2>
+    <div class="log">
+        <div class="comment">Bug Fix for User & Project Activity</div>
+        <ul>
+            <li>Harvest_DailyActivity object is used both in the time and extended api, however they are inconsistent with the token character used -, _. daily-activity added to parser for quick fix, Version 1.0 will contain conversion checking.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="entry">
+    <h2>Version: <b>0.4.1</b> Released: 04-16-2010</h2>
+    <div class="log">
+        <div class="comment">Bug Fix for SSL support</div>
+        <ul>
+            <li>CURLOPT_SSL_VERIFYPEER option set to false so that request does not fail if SSL Certificate isn't verified</li>
+        </ul>
+    </div>
+</div>
+
+<div class="entry">
+    <h2>Version: <b>0.4.0</b> Released: 12-2-2009</h2>
+    <div class="log">
+        <div class="comment">Support for Full API</div>
+        <ul>
+            <li>getExpense - bug fix of improper generated url</li>
+            <li>parseNode - bug fix for parsing of task assignments</li>
+            <li>Documentation - Class Object Properties added</li>
+            <li>Full Testing of GET methods</li>
+        </ul>
+    </div>
+</div>
+
+<div class="entry">
+    <h2>Version: <b>0.3.0</b> Released: 11-15-2009</h2>
+    <div class="log">
+        <div class="comment">Support for Full extends REST API minus payment receipts</div>
+        <ul>
+            <li>phpDocument - documentation compliant</li>
+            <li>Creation of Harvest_Currency Class</li>
+            <li>Creation of Harvest_TimeZone Class</li>
+            <li>HarvestAPI - extended REST Support</li>
+			<li>HarvestAPI - ssl support</li>
+        </ul>
+    </div>
+</div>
+
+<div class="entry">
+    <h2>Version: <b>0.2.0</b> Released: 11-11-2009</h2>
+    <div class="log">
+        <div class="comment">Added support for POST, PUT, and DELETE requests, toXML functions for Harvest Classes, and Full API implementation of Projects, Clients, Client Contacts</div>
+        <ul>
+            <li>Added <i>toXML</i> function to Harvest_Abstract</li>
+            <li>Added helper functions to HarvestAPI
+                <ul>
+	                <li>performPUT -> performs PUT request</li>
+	                <li>performPOST -> performs POST request</li>
+	                <li>performDELETE -> performs DELETE request</li>
+                    <li>parseHeader -> parse header into array that can be used in perform functions</li>
+                    <li>resetHeader -> reset header array.
+	            </ul>
+            </li>
+            <li>Addition of HarvestAPI functions for Clients, Projects, and Client Contacts</li>
+                <ul>
+                    <li>createClient - Create a new Client</li>
+                    <li>updateClient - Update an existing Client</li>
+                    <li>toggleClient - Toggle CLient active-inactive</li>
+                    <li>deleteClient - Delete an existing Client</li>
+                    <li>createProject - Create a new Project</li>
+                    <li>updateProject - Update an existing Project</li>
+                    <li>toggleProject - Toggle Project active-inactive</li>
+                    <li>deleteClient - Delete an existing Project</li>
+                    <li>createContact - Create a new Client Contact</li>
+                    <li>updateContact - Update an existing Client Contact</li>
+                    <li>deleteContact - Delete an existing Client Contact</li>
+                </ul>
+            </li>
+            <li>Addition of Harvest_Timer Class</li>
+            <li>Addition of <i>_root<i> variable to classes for xml conversion</li>
+            <li>Bug Fix: <i>isSuccess</i> method of Harvest_Result</li>
+            <li>Bug Fix: replacement of YahooFinance_Exception with Harvest_Exception</li>
+        </ul>
+    </div>
+</div>
+
+<div class="entry">
+    <h2>Version: <b>0.1.0</b> Released: 11-04-2009</h2>
+    <div class="log">
+        <div class="comment">Initial Version of the HarvestAPI</div>
+        <ul>
+            <li>Creation of main Class HarvestAPI</li>
+            <li>Creation of Harvest Class Objects</li>
+            <li>Implementation of GET methods of Harvest API</li>
+        </ul>
+    </div>
+</div>
