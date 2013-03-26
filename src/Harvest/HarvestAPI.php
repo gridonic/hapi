@@ -302,7 +302,7 @@ use Harvest\Model\Client,
      * create an entry
      *
      * <code>
-     * $entry = new Harvest_DayEntry();
+     * $entry = new DayEntry();
      * $entry->set( "notes", "Test Support" );
      * $entry->set( "hours", 3 );
      * $entry->set( "project_id", 3 );

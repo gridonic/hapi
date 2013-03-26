@@ -21,6 +21,7 @@
 namespace Harvest\Model;
 
 use Harvest\Exception\HarvestException;
+use Harvest\Model\DayEntry;
 
 /**
  * DailyActivity
@@ -56,7 +57,7 @@ class DailyActivity extends Harvest
     protected $_forDay = null;
 
     /**
-     * @var array Harvest_DayEntry objects of the Daily Activity
+     * @var array DayEntry objects of the Daily Activity
      */
     protected $_dayEntries = null;
 
@@ -179,7 +180,7 @@ class DailyActivity extends Harvest
 
         switch ($node->nodeName) {
             case "day_entry":
-                $item = new Harvest_DayEntry();
+                $item = new DayEntry();
             break;
             case "project":
                 $item = new Project();

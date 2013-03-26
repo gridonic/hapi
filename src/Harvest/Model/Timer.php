@@ -20,6 +20,8 @@
 
 namespace Harvest\Model;
 
+use Harvest\Model\DayEntry;
+
 /**
  * Timer
  *
@@ -43,7 +45,7 @@ namespace Harvest\Model;
 class Timer extends Harvest
 {
     /**
-     * @var Harvest_DayEntry object of the timer
+     * @var DayEntry object of the timer
      */
     protected $_dayEntry = null;
 
@@ -105,7 +107,7 @@ class Timer extends Harvest
         foreach ($node->childNodes as $item) {
             switch ($item->nodeName) {
                 case "day_entry":
-                    $this->_dayEntry = new Harvest_DayEntry();
+                    $this->_dayEntry = new DayEntry();
                     $this->_dayEntry->parseXML( $node );
                 break;
                 case "hours_for_previously_running_timer":

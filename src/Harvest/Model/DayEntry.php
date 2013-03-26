@@ -23,7 +23,7 @@ namespace Harvest\Model;
 /**
  * DayEntry
  *
- * This file contains the class Harvest_DayEntry
+ * This file contains the class DayEntry
  *
  * @author Matthew John Denton <matt@mdbitz.com>
  * @package com.mdbitz.harvest
