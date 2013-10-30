@@ -39,6 +39,7 @@ use Harvest\Model\Client,
     Harvest\Model\DailyActivity,
     Harvest\Model\Timer,
     Harvest\Model\Throttle,
+    Harvest\Model\Range,
 
     Harvest\Exception\HarvestException;
 
