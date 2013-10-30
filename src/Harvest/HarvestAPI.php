@@ -332,7 +332,7 @@ use Harvest\Model\Client,
      * creates an entry and starts its timer
      *
      * <code>
-     * $entry = new Harvest_DayEntry();
+     * $entry = new DayEntry();
      * $entry->set( "notes", "Test Support" );
      * $entry->set( "project_id", 3 );
      * $entry->set( "task_id", 14 );
@@ -385,7 +385,7 @@ use Harvest\Model\Client,
      * update an entry
      *
      * <code>
-     * $entry = new Harvest_DayEntry();
+     * $entry = new DayEntry();
      * $entry->set( "id" 11111 );
      * $entry->set( "notes", "Test Support" );
      * $entry->set( "hours", 3 );
@@ -2788,7 +2788,7 @@ use Harvest\Model\Client,
                 }
             case "day_entry":
             case "day-entry":
-                $item = new Harvest_DayEntry();
+                $item = new DayEntry();
             break;
             case "expense":
                 $item = new Expense();
