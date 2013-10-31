@@ -62,7 +62,7 @@ class Range
      * @param String $from
      * @param String $to
      */
-    public function Range( $from, $to )
+    public function __construct($from, $to)
     {
         $this->_from = $from;
         $this->_to = $to;
