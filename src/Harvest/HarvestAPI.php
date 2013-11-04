@@ -2486,7 +2486,7 @@ use Harvest\Model\Client,
     {
         if ( is_null( $updated_since) ) {
             return "";
-        } elseif ($updated_since instanceOf DateTime) {
+        } elseif ($updated_since instanceOf \DateTime) {
             return '?updated_since=' . urlencode($updated_since->format("Y-m-d G:i"));
         } else {
             return '?updated_since=' . urlencode($updated_since);
