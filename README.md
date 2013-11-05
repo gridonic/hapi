@@ -18,6 +18,18 @@ $api->setAccount('account');
 $result = $api->getClient(12345);
 ```
 
+Run tests
+---------
+
+Tests include some live API calls by default. For this to work, you will have to create a local copy of
+```harvest_api_config.json``` by copying the provided ```harvest_api_config.json.dist``` and providing your own
+Harvest account credentials.
+
+In order to exclude the tests that require a valid Harvest account and internet connection, invoke the test runner
+as follows:
+
+    phpunit --exclude-group=internet
+
 License
 -------
 
