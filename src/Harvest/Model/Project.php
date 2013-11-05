@@ -82,7 +82,7 @@ class Project extends Harvest
      * @param  mixed $property
      * @return mixed
      */
-    public function get($property)
+    public function get( $property )
     {
         if ($property == "tasks") {
             return $this->_tasks;
@@ -116,7 +116,7 @@ class Project extends Harvest
      * @param  XMLNode $node xml node to parse
      * @return void
      */
-    public function parseXML($node)
+    public function parseXML( $node )
     {
         foreach ($node->childNodes as $item) {
             switch ($item->nodeName) {
@@ -138,7 +138,7 @@ class Project extends Harvest
      * @param  string $xml
      * @return array
      */
-    private function parseItems($xml)
+    private function parseItems( $xml )
     {
         $items = array();
 
@@ -158,7 +158,7 @@ class Project extends Harvest
      * @param  XMLNode $node
      * @return mixed
      */
-    private function parseNode($node)
+    private function parseNode( $node )
     {
         $item = null;
 

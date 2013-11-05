@@ -79,7 +79,7 @@ class Result
      * @param array  $data    array of Quote Objects
      * @param array  $headers array of Header Response values
      */
-    public function __construct($code = null, $data = null, $headers = null)
+    public function __construct( $code = null, $data = null, $headers = null)
     {
         $this->_code = $code;
         $this->_data = $data;
@@ -93,7 +93,7 @@ class Result
      * @param  mixed $property
      * @return mixed
      */
-    public function __get($property)
+    public function __get( $property )
     {
         return $this->get( $property);
     }
@@ -104,7 +104,7 @@ class Result
      * @param  mixed $property The property to return
      * @return mixed
      */
-    public function get($property)
+    public function get( $property )
     {
         switch ($property) {
             case 'code':
@@ -134,7 +134,7 @@ class Result
      * @param  mixed $value
      * @return void
      */
-    public function __set($property, $value)
+    public function __set( $property, $value )
     {
         $this->set( $property, $value );
     }
@@ -146,7 +146,7 @@ class Result
      * @param  mixed $value    value of property
      * @return void
      */
-    public function set($property, $value)
+    public function set( $property, $value )
     {
         switch ($property) {
             case 'code':
