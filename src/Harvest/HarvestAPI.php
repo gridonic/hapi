@@ -40,6 +40,7 @@ use Harvest\Model\Client,
     Harvest\Model\Timer,
     Harvest\Model\Throttle,
     Harvest\Model\Range;
+use Harvest\Model\Invoice\Filter;
 
 /**
  * HarvestAPI
@@ -1981,7 +1982,7 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int    $invoice_id Invoice Identifier
+     * @param  $invoice_id int Invoice Identifier
      * @return Result
      */
     public function deleteInvoice($invoice_id)
@@ -2012,7 +2013,7 @@ use Harvest\Model\Client,
     {
         $url = "invoices/$invoice_id/mark_as_closed";
 
-        return $this->performPUT( $url );
+        return $this->performPUT($url, null);
     }
 
     /**
@@ -2461,14 +2462,14 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param  int    $invoiceCategory_id Invoice Category Identifier
+     * @param  $invoiceCategory_id int Invoice Category Identifier
      * @return Result
      */
-    public function deleteInvoiceCategory(int $invoiceCategory_id)
+    public function deleteInvoiceCategory($invoiceCategory_id)
     {
         $url = "invoice_item_categories/$invoiceCategory_id";
 
-        return $this->performDELETE( $url );
+        return $this->performDELETE($url);
     }
 
     /*--------------------------------------------------------------*/
