@@ -60,7 +60,7 @@ abstract class Harvest
      * @param  mixed $property
      * @return mixed
      */
-    public function __get($property)
+    public function __get( $property )
     {
         return $this->get( $property );
     }
@@ -71,7 +71,7 @@ abstract class Harvest
      * @param  mixed $property
      * @return mixed
      */
-    public function get($property)
+    public function get( $property )
     {
         $value = null;
 
@@ -97,7 +97,7 @@ abstract class Harvest
      * @param  mixed $value
      * @return void
      */
-    public function __set($property, $value)
+    public function __set( $property, $value )
     {
         $this->set( $property, $value );
     }
@@ -144,7 +144,7 @@ abstract class Harvest
      * @param  XMLNode $node xml node to parse
      * @return void
      */
-    public function parseXML($node)
+    public function parseXML( $node )
     {
         foreach ($node->childNodes as $item) {
             if ($item->nodeName != "#text") {
@@ -159,7 +159,7 @@ abstract class Harvest
      *
      * @return string
      */
-    public function toXML()
+    public function toXML( )
     {
         $xml = "<$this->_root>";
         foreach ($this->_values as $key => $value) {

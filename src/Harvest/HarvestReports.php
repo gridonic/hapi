@@ -72,7 +72,7 @@ class HarvestReports extends HarvestAPI
      * @param  string $startOfWeek Start day of work week
      * @return void
      */
-    public function setStartOfWeek($startOfWeek)
+    public function setStartOfWeek( $startOfWeek )
     {
         $this->_startOfWeek = $startOfWeek;
     }
@@ -88,7 +88,7 @@ class HarvestReports extends HarvestAPI
      * @param  string $timeZone User Time Zone
      * @return void
      */
-    public function setTimeZone($timeZone)
+    public function setTimeZone( $timeZone )
     {
         $this->_timeZone = $timeZone;
     }
@@ -228,7 +228,7 @@ class HarvestReports extends HarvestAPI
      * @param  int    $client_id Client Identifier
      * @return Result
      */
-    public function getClientActiveProjects($client_id)
+    public function getClientActiveProjects( $client_id )
     {
         $result = $this->getClientProjects( $client_id );
         if ( $result->isSuccess() ) {
@@ -259,7 +259,7 @@ class HarvestReports extends HarvestAPI
      * @param  int    $client_id Client Identifier
      * @return Result
      */
-    public function getClientInactiveProjects($client_id)
+    public function getClientInactiveProjects( $client_id )
     {
         $result = $this->getClientProjects( $client_id );
         if ( $result->isSuccess() ) {
@@ -529,7 +529,7 @@ class HarvestReports extends HarvestAPI
      *
      * @return Result
      */
-    public function getActiveTimers()
+    public function getActiveTimers( )
     {
         $result = $this->getActiveUsers( );
         if ( $result->isSuccess() ) {
@@ -565,7 +565,7 @@ class HarvestReports extends HarvestAPI
      *
      * @return Result
      */
-    public function getUsersActiveTimer($user_id)
+    public function getUsersActiveTimer( $user_id )
     {
         $result = $this->getUserEntries( $user_id, Range::today( $this->_timeZone ) );
         if ( $result->isSuccess() ) {

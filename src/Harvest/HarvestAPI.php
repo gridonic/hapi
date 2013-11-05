@@ -23,6 +23,7 @@ namespace Harvest;
 
 use Harvest\Model\Client,
     Harvest\Model\Contact,
+    Harvest\Model\DayEntry,
     Harvest\Model\Expense,
     Harvest\Model\ExpenseCategory,
     Harvest\Model\Invoice,
@@ -39,7 +40,6 @@ use Harvest\Model\Client,
     Harvest\Model\Timer,
     Harvest\Model\Throttle,
     Harvest\Model\Range;
-use Harvest\Model\DayEntry;
 
 /**
  * HarvestAPI
@@ -287,7 +287,7 @@ use Harvest\Model\DayEntry;
      * }
      * </code>
      *
-     * @param $entry_id    int Day Entry Identifier
+     * @param $entry_id    Day Entry Identifier
      * @return Result
      */
     public function toggleTimer($entry_id)
@@ -301,7 +301,7 @@ use Harvest\Model\DayEntry;
      * create an entry
      *
      * <code>
-     * $entry = new DayEntry();
+     * $entry = new Harvest_DayEntry();
      * $entry->set( "notes", "Test Support" );
      * $entry->set( "hours", 3 );
      * $entry->set( "project_id", 3 );
@@ -316,7 +316,7 @@ use Harvest\Model\DayEntry;
      * }
      * </code>
      *
-     * @param $entry    \Harvest\Model\DayEntry
+     * @param $entry    Day Entry
      * @return Result
      */
     public function createEntry($entry)
@@ -330,7 +330,7 @@ use Harvest\Model\DayEntry;
      * creates an entry and starts its timer
      *
      * <code>
-     * $entry = new DayEntry();
+     * $entry = new Harvest_DayEntry();
      * $entry->set( "notes", "Test Support" );
      * $entry->set( "project_id", 3 );
      * $entry->set( "task_id", 14 );
@@ -344,7 +344,7 @@ use Harvest\Model\DayEntry;
      * }
      * </code>
      *
-     * @param $entry    \Harvest\Model\DayEntry
+     * @param $entry    Day Entry
      * @return Result
      */
     public function startNewTimer($entry)
@@ -369,7 +369,7 @@ use Harvest\Model\DayEntry;
      * }
      * </code>
      *
-     * @param $entry_id    int Day Entry Identifier
+     * @param $entry_id    Day Entry Identifier
      * @return Result
      */
     public function deleteEntry($entry_id)
@@ -383,7 +383,7 @@ use Harvest\Model\DayEntry;
      * update an entry
      *
      * <code>
-     * $entry = new DayEntry();
+     * $entry = new Harvest_DayEntry();
      * $entry->set( "id" 11111 );
      * $entry->set( "notes", "Test Support" );
      * $entry->set( "hours", 3 );
@@ -399,7 +399,7 @@ use Harvest\Model\DayEntry;
      * }
      * </code>
      *
-     * @param $entry    \Harvest\Model\DayEntry
+     * @param $entry    Day Entry
      * @return Result
      */
     public function updateEntry($entry)
@@ -524,7 +524,8 @@ use Harvest\Model\DayEntry;
       * }
       * </code>
       *
-      * @param $client_id int Client Identifier
+      * @param $client_id
+      * @internal param \Harvest\client_id $int Client Identifier
       * @return Result
       */
     public function toggleClient($client_id)
@@ -695,7 +696,8 @@ use Harvest\Model\DayEntry;
       * }
       * </code>
       *
-      * @param $contact_id Contact Identifier
+      * @param $contact_id
+      * @internal param int $contact_Id Contact Identifier
       * @return Result
       */
     public function deleteContact($contact_id)
@@ -2461,10 +2463,10 @@ use Harvest\Model\DayEntry;
       * }
       * </code>
       *
-      * @param $invoiceCategory_id int Invoice Category Identifier
+      * @param \Harvest\int|int $invoiceCategory_id Invoice Category Identifier
       * @return Result
       */
-    public function deleteInvoiceCategory($invoiceCategory_id)
+    public function deleteInvoiceCategory(int $invoiceCategory_id)
     {
         $url = "invoice_item_categories/$invoiceCategory_id";
 
@@ -2477,7 +2479,8 @@ use Harvest\Model\DayEntry;
 
      /**
       * generate the update_since query params
-      * @param $updated_since mixed DateTime
+      * @param null $updated_since
+      * @internal param mixed $update_since DateTime
       * @return string
       */
     public function appendUpdatedSinceParam($updated_since = null)
@@ -2594,7 +2597,7 @@ use Harvest\Model\DayEntry;
       * perform http post command
       * @param  string $url url of server to process request
       * @param  string $data data to be sent
-      * @param  string $multi
+      * @param string $multi
       * @return Result
       */
     protected function performPOST($url, $data, $multi = "id")
