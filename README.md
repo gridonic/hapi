@@ -10,7 +10,7 @@ Usage
 <?php
 require __DIR__ . '/vendor/autoload.php';
 
-$api = new Harvest\HarvestApi();
+$api = new Harvest\HarvestAPI();
 $api->setUser('your@email.com');
 $api->setPassword('password');
 $api->setAccount('account');

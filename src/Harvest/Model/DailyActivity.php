@@ -21,6 +21,7 @@
 namespace Harvest\Model;
 
 use Harvest\Exception\HarvestException;
+use Harvest\Model\DayEntry;
 
 /**
  * DailyActivity
@@ -56,7 +57,7 @@ class DailyActivity extends Harvest
     protected $_forDay = null;
 
     /**
-     * @var array Harvest_DayEntry objects of the Daily Activity
+     * @var array DayEntry objects of the Daily Activity
      */
     protected $_dayEntries = null;
 
@@ -70,7 +71,7 @@ class DailyActivity extends Harvest
      * @param  mixed $property
      * @return mixed
      */
-    public function get( $property )
+    public function get($property)
     {
            if ($property == "for_day" || $property == "forDay") {
             return $this->_forDay;
@@ -128,7 +129,7 @@ class DailyActivity extends Harvest
      * @param  XMLNode $node xml node to parse
      * @return void
      */
-    public function parseXML( $node )
+    public function parseXML($node)
     {
         foreach ($node->childNodes as $item) {
             switch ($item->nodeName) {
@@ -153,7 +154,7 @@ class DailyActivity extends Harvest
      * @param  string $xml
      * @return array
      */
-    private function parseItems( $xml )
+    private function parseItems($xml)
     {
         $items = array();
 
@@ -173,13 +174,13 @@ class DailyActivity extends Harvest
      * @param  XMLNode $node
      * @return mixed
      */
-    private function parseNode( $node )
+    private function parseNode($node)
     {
         $item = null;
 
         switch ($node->nodeName) {
             case "day_entry":
-                $item = new Harvest_DayEntry();
+                $item = new DayEntry();
             break;
             case "project":
                 $item = new Project();

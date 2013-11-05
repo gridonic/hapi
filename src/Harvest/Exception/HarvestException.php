@@ -34,7 +34,7 @@ namespace Harvest\Exception;
  *
  * @package com.mdbitz.harvest
  */
-class HarvestException extends Exception
+class HarvestException extends \Exception
 {
 
 }

@@ -108,7 +108,7 @@ class Filter
      * @param  mixed $property
      * @return mixed
      */
-    public function __get( $property )
+    public function __get($property)
     {
         return $this->get( $property );
     }
@@ -119,7 +119,7 @@ class Filter
      * @param $mixed $property
      * @return mixed
      */
-    public function get( $property )
+    public function get($property)
     {
         switch ($property) {
             case 'range':
@@ -150,7 +150,7 @@ class Filter
      * @param mixed $property
      * @param mixed $value
      */
-    public function __set( $property, $value )
+    public function __set($property, $value)
     {
         $this->set( $property, $value );
     }
@@ -161,7 +161,7 @@ class Filter
      * @param mixed $property
      * @param mixed $value
      */
-    public function set( $property, $value )
+    public function set($property, $value)
     {
         switch ($property) {
             case 'range':

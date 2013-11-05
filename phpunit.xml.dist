@@ -10,6 +10,10 @@
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true">
 
+    <php>
+        <server name="API_CONFIG_FILE" value="harvest_api_config.json" />
+    </php>
+
     <testsuites>
         <testsuite name="hAPI Test Suite">
             <directory>./tests/Harvest/</directory>

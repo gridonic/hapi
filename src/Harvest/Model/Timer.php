@@ -20,6 +20,8 @@
 
 namespace Harvest\Model;
 
+use Harvest\Model\DayEntry;
+
 /**
  * Timer
  *
@@ -43,7 +45,7 @@ namespace Harvest\Model;
 class Timer extends Harvest
 {
     /**
-     * @var Harvest_DayEntry object of the timer
+     * @var DayEntry object of the timer
      */
     protected $_dayEntry = null;
 
@@ -58,7 +60,7 @@ class Timer extends Harvest
      * @param $mixed $property
      * @param mixed
      */
-    public function get( $property )
+    public function get($property)
     {
         switch ($property) {
             case "day_entry":
@@ -79,7 +81,7 @@ class Timer extends Harvest
      * @param $mixed $property
      * @return void
      */
-    public function set( $property, $value )
+    public function set($property, $value)
     {
         switch ($property) {
             case "day_entry":
@@ -100,12 +102,12 @@ class Timer extends Harvest
      * @param  XMLNode $node xml node to parse
      * @return void
      */
-    public function parseXML( $node )
+    public function parseXML($node)
     {
         foreach ($node->childNodes as $item) {
             switch ($item->nodeName) {
                 case "day_entry":
-                    $this->_dayEntry = new Harvest_DayEntry();
+                    $this->_dayEntry = new DayEntry();
                     $this->_dayEntry->parseXML( $node );
                 break;
                 case "hours_for_previously_running_timer":
