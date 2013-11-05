@@ -71,7 +71,7 @@ class Range
     /**
      * @return _to
      */
-    public function to( )
+    public function to()
     {
         if ($this->_to instanceof DateTime) {
             return $this->_to->format( "Ymd" );
@@ -102,7 +102,7 @@ class Range
      * @param  string $timeZone User Time Zone
      * @return Range
      */
-    public static function today( $timeZone = null )
+    public static function today($timeZone = null)
     {
         $now = null;
         $before = null;
@@ -129,7 +129,7 @@ class Range
      * @param  int    $startOfWeek Starting day of the week
      * @return Range
      */
-    public static function thisWeek( $timeZone = null, $startOfWeek = 0 )
+    public static function thisWeek($timeZone = null, $startOfWeek = 0)
     {
         $now = null;
         $before = null;
@@ -159,7 +159,7 @@ class Range
      * @param  int    $startOfWeek Starting day of the week
      * @return Range
      */
-    public static function lastWeek( $timeZone = null, $startOfWeek = 0 )
+    public static function lastWeek($timeZone = null, $startOfWeek = 0)
     {
         $now = null;
         $before = null;
@@ -191,7 +191,7 @@ class Range
      * @param  string $timeZone User Time Zone
      * @return Range
      */
-    public static function thisMonth( $timeZone = null )
+    public static function thisMonth($timeZone = null)
     {
         $now = null;
         $before = null;
@@ -220,7 +220,7 @@ class Range
      * @param  string $timeZone User Time Zone
      * @return Range
      */
-    public static function lastMonth( $timeZone = null )
+    public static function lastMonth($timeZone = null)
     {
         $now = null;
         $before = null;

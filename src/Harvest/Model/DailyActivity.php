@@ -71,7 +71,7 @@ class DailyActivity extends Harvest
      * @param  mixed $property
      * @return mixed
      */
-    public function get( $property )
+    public function get($property)
     {
            if ($property == "for_day" || $property == "forDay") {
             return $this->_forDay;
@@ -129,7 +129,7 @@ class DailyActivity extends Harvest
      * @param  XMLNode $node xml node to parse
      * @return void
      */
-    public function parseXML( $node )
+    public function parseXML($node)
     {
         foreach ($node->childNodes as $item) {
             switch ($item->nodeName) {
@@ -154,7 +154,7 @@ class DailyActivity extends Harvest
      * @param  string $xml
      * @return array
      */
-    private function parseItems( $xml )
+    private function parseItems($xml)
     {
         $items = array();
 
@@ -174,7 +174,7 @@ class DailyActivity extends Harvest
      * @param  XMLNode $node
      * @return mixed
      */
-    private function parseNode( $node )
+    private function parseNode($node)
     {
         $item = null;
 

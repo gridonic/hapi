@@ -23,7 +23,6 @@ namespace Harvest;
 
 use Harvest\Model\Client,
     Harvest\Model\Contact,
-    Harvest\Model\DayEntry,
     Harvest\Model\Expense,
     Harvest\Model\ExpenseCategory,
     Harvest\Model\Invoice,
@@ -39,9 +38,8 @@ use Harvest\Model\Client,
     Harvest\Model\DailyActivity,
     Harvest\Model\Timer,
     Harvest\Model\Throttle,
-    Harvest\Model\Range,
-
-    Harvest\Exception\HarvestException;
+    Harvest\Model\Range;
+use Harvest\Model\DayEntry;
 
 /**
  * HarvestAPI
@@ -130,7 +128,7 @@ use Harvest\Model\Client,
      * @param  string $user User name
      * @return void
      */
-    public function setUser( $user )
+    public function setUser($user)
     {
         $this->_user = $user;
     }
@@ -146,7 +144,7 @@ use Harvest\Model\Client,
      * @param  string $password User Password
      * @return void
      */
-    public function setPassword( $password )
+    public function setPassword($password)
     {
         $this->_password = $password;
     }
@@ -162,7 +160,7 @@ use Harvest\Model\Client,
      * @param  string $account Account Name
      * @return void
      */
-    public function setAccount( $account )
+    public function setAccount($account)
     {
         $this->_account = $account;
     }
@@ -178,7 +176,7 @@ use Harvest\Model\Client,
      * @param  boolean $ssl ssl enabled
      * @return void
      */
-    public function setSSL( $ssl )
+    public function setSSL($ssl)
     {
         $this->_ssl = $ssl;
     }
@@ -194,7 +192,7 @@ use Harvest\Model\Client,
      * @param  boolean $mode retry mode
      * @return void
      */
-    public function setRetryMode( $mode )
+    public function setRetryMode($mode)
     {
         $this->_mode = $mode;
     }
@@ -241,7 +239,7 @@ use Harvest\Model\Client,
      * @param  int    $year        Year
      * @return Result
      */
-    public function getDailyActivity( $day_of_year = null, $year = null )
+    public function getDailyActivity($day_of_year = null, $year = null)
     {
         $url = "daily/";
         if ( ! is_null( $day_of_year ) && ! is_null( $year ) ) {
@@ -268,7 +266,7 @@ use Harvest\Model\Client,
      * @param  int    $entry_id Entry Identifier
      * @return Result
      */
-    public function getEntry( $entry_id )
+    public function getEntry($entry_id)
     {
         $url = "daily/show/" . $entry_id;
 
@@ -289,10 +287,10 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param $entry_id    Day Entry Identifier
+     * @param $entry_id    int Day Entry Identifier
      * @return Result
      */
-    public function toggleTimer( $entry_id )
+    public function toggleTimer($entry_id)
     {
         $url = "daily/timer/" . $entry_id;
 
@@ -318,10 +316,10 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param $entry    Day Entry
+     * @param $entry    \Harvest\Model\DayEntry
      * @return Result
      */
-    public function createEntry( $entry )
+    public function createEntry($entry)
     {
         $url = "daily/add";
 
@@ -346,10 +344,10 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param $entry    Day Entry
+     * @param $entry    \Harvest\Model\DayEntry
      * @return Result
      */
-    public function startNewTimer( $entry )
+    public function startNewTimer($entry)
     {
         $entry->set( "hours", " " );
         $url = "daily/add";
@@ -371,10 +369,10 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param $entry_id    Day Entry Identifier
+     * @param $entry_id    int Day Entry Identifier
      * @return Result
      */
-    public function deleteEntry( $entry_id )
+    public function deleteEntry($entry_id)
     {
         $url = "daily/delete/" . $entry_id;
 
@@ -401,10 +399,10 @@ use Harvest\Model\Client,
      * }
      * </code>
      *
-     * @param $entry    Day Entry
+     * @param $entry    \Harvest\Model\DayEntry
      * @return Result
      */
-    public function updateEntry( $entry )
+    public function updateEntry($entry)
     {
         $url = "daily/update/$entry->id";
 
@@ -430,7 +428,7 @@ use Harvest\Model\Client,
      * @param  mixed  $updated_since DateTime
      * @return Result
      */
-    public function getClients( $updated_since = null)
+    public function getClients($updated_since = null)
     {
         $url = "clients" . $this->appendUpdatedSinceParam( $updated_since );
 
@@ -453,7 +451,7 @@ use Harvest\Model\Client,
      * @param  int    $client_id Client Identifier
      * @return Result
      */
-    public function getClient( $client_id )
+    public function getClient($client_id)
     {
         $url = "clients/$client_id";
 
@@ -480,7 +478,7 @@ use Harvest\Model\Client,
      * @param  Client $client Client
      * @return Result
      */
-    public function createClient( Client $client )
+    public function createClient(Client $client)
     {
         $url = "clients";
 
@@ -507,29 +505,29 @@ use Harvest\Model\Client,
      * @param  Client $client Client
      * @return Result
      */
-    public function updateClient( Client $client )
+    public function updateClient(Client $client)
     {
         $url = "clients/$client->id";
 
         return $this->performPUT( $url, $client->toXML() );
     }
 
-    /**
-     * activate / deactivate a client
-     *
-     * <code>
-     * $client_id = 11111;
-     * $api = new HarvestAPI();
-     * $result = $api->toggleClient( $client_id );
-     * if ( $result->isSuccess() ) {
-     *     // addtional logic
-     * }
-     * </code>
-     *
-     * @param $int client_id Client Identifier
-     * @return Result
-     */
-    public function toggleClient( $client_id )
+     /**
+      * activate / deactivate a client
+      *
+      * <code>
+      * $client_id = 11111;
+      * $api = new HarvestAPI();
+      * $result = $api->toggleClient( $client_id );
+      * if ( $result->isSuccess() ) {
+      *     // addtional logic
+      * }
+      * </code>
+      *
+      * @param $client_id int Client Identifier
+      * @return Result
+      */
+    public function toggleClient($client_id)
     {
         $url = "clients/$client_id/toggle";
 
@@ -551,7 +549,7 @@ use Harvest\Model\Client,
      * @param  int    $client_id Client Identifier
      * @return Result
      */
-    public function deleteClient( $client_id )
+    public function deleteClient($client_id)
     {
         $url = "clients/$client_id";
 
@@ -599,7 +597,7 @@ use Harvest\Model\Client,
      * @param  int    $client_id Client Identifier
      * @return Result
      */
-    public function getClientContacts( $client_id )
+    public function getClientContacts($client_id)
     {
         $url = "clients/$client_id/contacts";
 
@@ -621,7 +619,7 @@ use Harvest\Model\Client,
      * @param  int    $contact_id Contact Identifier
      * @return Result
      */
-    public function getContact( $contact_id )
+    public function getContact($contact_id)
     {
         $url = "contacts/$contact_id";
 
@@ -650,7 +648,7 @@ use Harvest\Model\Client,
      * @param  Contact $contact Contact
      * @return Result
      */
-    public function createContact( Contact $contact )
+    public function createContact(Contact $contact)
     {
         $url = "contacts";
 
@@ -677,30 +675,30 @@ use Harvest\Model\Client,
      * @param  Contact $contact Contact
      * @return Result
      */
-    public function updateContact( Contact $contact )
+    public function updateContact(Contact $contact)
     {
         $url = "contacts/$contact->id";
 
         return $this->performPUT( $url, $contact->toXML() );
     }
 
-    /**
-     * delete a contact
-     *
-     * <code>
-     * $contact_id = 11111;
-     * $api = new HarvestAPI();
-     *
-     * $result = $api->deleteContact( $contact_id );
-     * if ( $result->isSuccess() ) {
-     *      // additional logic
-     * }
-     * </code>
-     *
-     * @param  int    $contact_Id Contact Identifier
-     * @return Result
-     */
-    public function deleteContact( $contact_id )
+     /**
+      * delete a contact
+      *
+      * <code>
+      * $contact_id = 11111;
+      * $api = new HarvestAPI();
+      *
+      * $result = $api->deleteContact( $contact_id );
+      * if ( $result->isSuccess() ) {
+      *      // additional logic
+      * }
+      * </code>
+      *
+      * @param $contact_id Contact Identifier
+      * @return Result
+      */
+    public function deleteContact($contact_id)
     {
         $url = "contacts/$contact_id";
 
@@ -726,7 +724,7 @@ use Harvest\Model\Client,
      * @param  mixed  $updated_since DateTime
      * @return Result
      */
-    public function getProjects( $updated_since = null )
+    public function getProjects($updated_since = null)
     {
         $url = "projects" . $this->appendUpdatedSinceParam( $updated_since );
 
@@ -748,7 +746,7 @@ use Harvest\Model\Client,
      * @param  int    $client_id Client Identifier
      * @return Result
      */
-    public function getClientProjects( $client_id)
+    public function getClientProjects($client_id)
     {
         $url = "projects?client=$client_id";
 
@@ -771,7 +769,7 @@ use Harvest\Model\Client,
      * @param  int    $project_id Project Identifier
      * @return Result
      */
-    public function getProject( $project_id )
+    public function getProject($project_id)
     {
         $url = "projects/$project_id";
 
@@ -798,7 +796,7 @@ use Harvest\Model\Client,
      * @param  Project $project Project
      * @return Result
      */
-    public function createProject( Project $project )
+    public function createProject(Project $project)
     {
         $url = "projects";
 
@@ -825,7 +823,7 @@ use Harvest\Model\Client,
      * @param  Project $project Project
      * @return Result
      */
-    public function updateProject( Project $project )
+    public function updateProject(Project $project)
     {
         $url = "projects/$project->id";
 
@@ -848,7 +846,7 @@ use Harvest\Model\Client,
      * @param  int    $project_id Project Identifier
      * @return Result
      */
-    public function toggleProject( $project_id )
+    public function toggleProject($project_id)
     {
         $url = "projects/$project_id/toggle";
 
@@ -871,7 +869,7 @@ use Harvest\Model\Client,
      * @param  int    $project_id Project Identifier
      * @return Result
      */
-    public function deleteProject( $project_id )
+    public function deleteProject($project_id)
     {
         $url = "projects/$project_id";
 
@@ -919,7 +917,7 @@ use Harvest\Model\Client,
      * @param  int    $task_id Task Identifier
      * @return Result
      */
-    public function getTask( $task_id )
+    public function getTask($task_id)
     {
         $url = "tasks/$task_id";
 
@@ -947,7 +945,7 @@ use Harvest\Model\Client,
      * @param  Task   $task Task
      * @return Result
      */
-    public function createTask( Task $task )
+    public function createTask(Task $task)
     {
         $url = "tasks";
 
@@ -974,7 +972,7 @@ use Harvest\Model\Client,
      * @param  Task   $task Task
      * @return Result
      */
-    public function updateTask( Task $task )
+    public function updateTask(Task $task)
     {
         $url = "tasks/$task->id";
 
@@ -997,7 +995,7 @@ use Harvest\Model\Client,
      * @param  int    $task_id Task Identifier
      * @return Result
      */
-    public function deleteTask( $task_id )
+    public function deleteTask($task_id)
     {
         $url = "tasks/$task_id";
 
@@ -1045,7 +1043,7 @@ use Harvest\Model\Client,
      * @param  int    $user_id User Identifier
      * @return Result
      */
-    public function getUser( $user_id )
+    public function getUser($user_id)
     {
         $url = "people/$user_id";
 
@@ -1078,7 +1076,7 @@ use Harvest\Model\Client,
      * @param  User   $user User
      * @return Result
      */
-    public function createUser( User $user )
+    public function createUser(User $user)
     {
         $url = "people";
 
@@ -1105,7 +1103,7 @@ use Harvest\Model\Client,
      * @param  User   $user User
      * @return Result
      */
-    public function updateUser( User $user )
+    public function updateUser(User $user)
     {
         $url = "people/$user->id";
 
@@ -1128,7 +1126,7 @@ use Harvest\Model\Client,
      * @param  int    $user_id User Identifier
      * @return Result
      */
-    public function toggleUser( $user_id )
+    public function toggleUser($user_id)
     {
         $url = "people/$user_id/toggle";
 
@@ -1151,7 +1149,7 @@ use Harvest\Model\Client,
      * @param  int    $user_id User Identifier
      * @return Result
      */
-    public function resetUserPassword( $user_id )
+    public function resetUserPassword($user_id)
     {
         $url = "people/$user_id/reset_password";
 
@@ -1174,7 +1172,7 @@ use Harvest\Model\Client,
      * @param  int    $user_id User Identifier
      * @return Result
      */
-    public function deleteUser( $user_id )
+    public function deleteUser($user_id)
     {
         $url = "people/" . $user_id;
 
@@ -1227,7 +1225,7 @@ use Harvest\Model\Client,
      * @param  ExpenseCategory $expenseCategory Expense Category
      * @return Result
      */
-    public function createExpenseCategory( ExpenseCategory $expenseCategory )
+    public function createExpenseCategory(ExpenseCategory $expenseCategory)
     {
         $url = "expense_categories";
 
@@ -1253,7 +1251,7 @@ use Harvest\Model\Client,
      * @param  ExpenseCategory $expenseCategory Expense Category
      * @return Result
      */
-    public function updateExpenseCategory( ExpenseCategory $expenseCategory )
+    public function updateExpenseCategory(ExpenseCategory $expenseCategory)
     {
         $url = "expesnse_categories/$expenseCategory->id";
 
@@ -1276,7 +1274,7 @@ use Harvest\Model\Client,
      * @param  int    $expense_category_id Expense Category Identifier
      * @return Result
      */
-    public function deleteExpenseCategory( $expense_category_id )
+    public function deleteExpenseCategory($expense_category_id)
     {
         $url = "expense_categories/$expense_category_id";
 
@@ -1303,7 +1301,7 @@ use Harvest\Model\Client,
      * @param  int    $expense_id Expense Identifier
      * @return Result
      */
-    public function getExpense( $expense_id)
+    public function getExpense($expense_id)
     {
         $url = "expenses/$expense_id";
 
@@ -1348,7 +1346,7 @@ use Harvest\Model\Client,
      * @param  Expense $expense Expense
      * @return Result
      */
-    public function createExpense( Expense $expense )
+    public function createExpense(Expense $expense)
     {
         $url = "expenses";
 
@@ -1389,7 +1387,7 @@ use Harvest\Model\Client,
      * @param  Expense $expense Expense
      * @return Result
      */
-    public function updateExpense( Expense $expense )
+    public function updateExpense(Expense $expense)
     {
         $url = "expesnses/$expense->id";
 
@@ -1412,7 +1410,7 @@ use Harvest\Model\Client,
      * @param  int    $expense_id Expense Identifier
      * @return Result
      */
-    public function deleteExpense( $expense_id )
+    public function deleteExpense($expense_id)
     {
         $url = "expenses/" . $expense_id;
 
@@ -1436,7 +1434,7 @@ use Harvest\Model\Client,
      * @param $expense_id Expense Identifier
      * @return Result
      */
-    public function getReceipt( $expense_id )
+    public function getReceipt($expense_id)
     {
         $url = "expenses/$expense_id/receipt";
 
@@ -1462,7 +1460,7 @@ use Harvest\Model\Client,
      * @param $image_url Image URL
      * @return Result
      */
-    public function attachReceipt( $expense_id, $image_url )
+    public function attachReceipt($expense_id, $image_url)
     {
         $url = "expenses/$expense_id/$receipt";
         $data = array();
@@ -1491,7 +1489,7 @@ use Harvest\Model\Client,
      * @param  int    $project_id Project Identifier
      * @return Result
      */
-    public function getProjectUserAssignments( $project_id )
+    public function getProjectUserAssignments($project_id)
     {
         $url = "projects/$project_id/user_assignments";
 
@@ -1516,7 +1514,7 @@ use Harvest\Model\Client,
      * @param  int            $user_assignment_id User Assignment Identifier
      * @return UserAssignment
      */
-    public function getProjectUserAssignment( $project_id, $user_assignment_id )
+    public function getProjectUserAssignment($project_id, $user_assignment_id)
     {
         $url = "projects/$project_id/user_assignments/$user_assignment_id";
 
@@ -1543,7 +1541,7 @@ use Harvest\Model\Client,
      * @param  int    $user_id    User Identifier
      * @return Result
      */
-    public function assignUserToProject( $project_id, $user_id )
+    public function assignUserToProject($project_id, $user_id)
     {
         $url = "projects/$project_id/user_assignments";
 
@@ -1569,7 +1567,7 @@ use Harvest\Model\Client,
      * @param  int    $user_assignment_id User Assignment Identifier
      * @return Result
      */
-    public function removeUserFromProject( $project_id, $user_assignment_id )
+    public function removeUserFromProject($project_id, $user_assignment_id)
     {
         $url = "projects/$project_id/user_assignments/$user_assignment_id";
 
@@ -1598,7 +1596,7 @@ use Harvest\Model\Client,
      * @param  UserAssignment $userAssignment UserAssignment
      * @return Result
      */
-    public function updateProjectUserAssignment( UserAssignment $userAssignment )
+    public function updateProjectUserAssignment(UserAssignment $userAssignment)
     {
         $url = "projects/" . $userAssignment->get("project-id") . "/user_assignments/" . $userAssignment->get("user-id");
 
@@ -1625,7 +1623,7 @@ use Harvest\Model\Client,
      * @param  int    $project_id Project Identifier
      * @return Result
      */
-    public function getProjectTaskAssignments( $project_id )
+    public function getProjectTaskAssignments($project_id)
     {
         $url = "projects/$project_id/task_assignments";
 
@@ -1651,7 +1649,7 @@ use Harvest\Model\Client,
      * @param  int    $task_assignment_id Task Assignment Identifier
      * @return Result
      */
-    public function getProjectTaskAssignment( $project_id, $task_assignment_id )
+    public function getProjectTaskAssignment($project_id, $task_assignment_id)
     {
         $url = "projects/$project_id/task_assignments/$task_assignment_id";
 
@@ -1678,7 +1676,7 @@ use Harvest\Model\Client,
      * @param  int    $task_id    Task Identifier
      * @return Result
      */
-    public function assignTaskToProject( $project_id, $task_id )
+    public function assignTaskToProject($project_id, $task_id)
     {
         $url = "projects/$project_id/task_assignments";
 
@@ -1706,7 +1704,7 @@ use Harvest\Model\Client,
      * @param  Task   $task       Task
      * @return Result
      */
-    public function createProjectTaskAssignment( $project_id, $task )
+    public function createProjectTaskAssignment($project_id, $task)
     {
         $url = "projects/$project_id/task_assignments/add_with_create_new_task";
 
@@ -1732,7 +1730,7 @@ use Harvest\Model\Client,
      * @param  int    $task_assignment_id Task Assignment Identifier
      * @return Result
      */
-    public function deleteProjectTaskAssignment( $project_id, $task_assignment_id )
+    public function deleteProjectTaskAssignment($project_id, $task_assignment_id)
     {
         $url = "projects/$project_id/task_assignments/$task_assignment_id";
 
@@ -1760,7 +1758,7 @@ use Harvest\Model\Client,
      * @param  TaskAssignment $taskAssignment Task Assignment
      * @return Result
      */
-    public function updateProjectTaskAssignment( TaskAssignment $taskAssignment )
+    public function updateProjectTaskAssignment(TaskAssignment $taskAssignment)
     {
         $url = "projects/" . $taskAssignment->get("project-id") . "/task_assignments/" . $taskAssignment->get("id");
 
@@ -1792,7 +1790,7 @@ use Harvest\Model\Client,
      * @param  int    $user_id    User identifier optional
      * @return Result
      */
-    public function getProjectEntries( $project_id, Range $range, $user_id = null )
+    public function getProjectEntries($project_id, Range $range, $user_id = null)
     {
         $url = "projects/" . $project_id . "/entries?from=" . $range->from() . '&to=' . $range->to();
         if ( ! is_null( $user_id ) ) {
@@ -1823,7 +1821,7 @@ use Harvest\Model\Client,
      * @param  int    $project_id Project identifier optional
      * @return Result
      */
-    public function getUserEntries( $user_id, Range $range, $project_id = null )
+    public function getUserEntries($user_id, Range $range, $project_id = null)
     {
         $url = "people/" . $user_id . "/entries?from=" . $range->from() . '&to=' . $range->to();
         if ( ! is_null( $project_id ) ) {
@@ -1852,7 +1850,7 @@ use Harvest\Model\Client,
      * @param  Range  $range   Time Range
      * @return Result
      */
-    public function getUserExpenses( $user_id, Range $range )
+    public function getUserExpenses($user_id, Range $range)
     {
         $url = "people/" . $user_id . "/expenses?from=" . $range->from() . '&to=' . $range->to();
 
@@ -1881,7 +1879,7 @@ use Harvest\Model\Client,
      * @param  Filter $filter Filter Options
      * @return Result
      */
-    public function getInvoices( Filter $filter = null)
+    public function getInvoices(Filter $filter = null)
     {
         $url = "invoices";
         if ( ! is_null( $filter ) ) {
@@ -1908,7 +1906,7 @@ use Harvest\Model\Client,
      * @param  int    $invoice_id Invoice Identifier
      * @return Result
      */
-    public function getInvoice( $invoice_id )
+    public function getInvoice($invoice_id)
     {
         $url = "invoices/" . $invoice_id;
 
@@ -1936,7 +1934,7 @@ use Harvest\Model\Client,
      * @param  Invoice $invoice Invoice
      * @return Result
      */
-    public function createInvoice( Invoice $invoice )
+    public function createInvoice(Invoice $invoice)
     {
         $url = "invoices";
 
@@ -1962,7 +1960,7 @@ use Harvest\Model\Client,
      * @param  Invoice $invoice Invoice
      * @return Result
      */
-    public function updateInvoice( Invoice $invoice )
+    public function updateInvoice(Invoice $invoice)
     {
         $url = "invoices/" . $invoice->get("id");
 
@@ -1986,7 +1984,7 @@ use Harvest\Model\Client,
      * @param  int    $invoice_id Invoice Identifier
      * @return Result
      */
-    public function deleteInvoice( $invoice_id )
+    public function deleteInvoice($invoice_id)
     {
         $url = "invoices/" . $invoice_id;
 
@@ -2010,7 +2008,7 @@ use Harvest\Model\Client,
      * @param  int    $invoice_id Invoice Identifier
      * @return Result
      */
-    public function closeInvoice( $invoice_id )
+    public function closeInvoice($invoice_id)
     {
         $url = "invoices/$invoice_id/mark_as_closed";
 
@@ -2034,7 +2032,7 @@ use Harvest\Model\Client,
      * @param  int    $invoice_id Invoice Identifier
      * @return Result
      */
-    public function markOffInvoice( $invoice_id )
+    public function markOffInvoice($invoice_id)
     {
         return $this->closeInvoice( $invoice_id );
     }
@@ -2060,7 +2058,7 @@ use Harvest\Model\Client,
      * @param  int    $invoice_id Invoice Identifier
      * @return Result
      */
-    public function getInvoiceMessages( $invoice_id )
+    public function getInvoiceMessages($invoice_id)
     {
         $url = "invoices/" . $invoice_id . "/messages";
 
@@ -2086,7 +2084,7 @@ use Harvest\Model\Client,
      * @param  int    $message_id Message Identifier
      * @return Result
      */
-    public function getInvoiceMessage( $invoice_id, $message_id )
+    public function getInvoiceMessage($invoice_id, $message_id)
     {
         $url = "invoices/" . $invoice_id . "/messages/" . $message_id;
 
@@ -2116,7 +2114,7 @@ use Harvest\Model\Client,
      * @param  InvoiceMessage $message    Invoice Message
      * @return Result
      */
-    public function sendInvoiceMessage( $invoice_id, InvoiceMessage $message )
+    public function sendInvoiceMessage($invoice_id, InvoiceMessage $message)
     {
         $url = "invoices/$invoice_id/messages";
 
@@ -2142,7 +2140,7 @@ use Harvest\Model\Client,
      * @param  int    $message_id Invoice Message Identifier
      * @return Result
      */
-    public function deleteInvoiceMessage( $invoice_id, $message_id )
+    public function deleteInvoiceMessage($invoice_id, $message_id)
     {
         $url = "invoices/$inovice_id/messages/$message_id";
 
@@ -2171,7 +2169,7 @@ use Harvest\Model\Client,
      * @param  InvoiceMessage $message    Invoice Message
      * @return Result
      */
-    public function createSentInvoiceMessage( $invoice_id, InvoiceMessage $message )
+    public function createSentInvoiceMessage($invoice_id, InvoiceMessage $message)
     {
         $url = "invoices/$invoice_id/messages/mark_as_sent";
 
@@ -2200,7 +2198,7 @@ use Harvest\Model\Client,
      * @param  InvoiceMessage $message    Invoice Message
      * @return Result
      */
-    public function createClosedInvoiceMessage( $invoice_id, InvoiceMessage $message )
+    public function createClosedInvoiceMessage($invoice_id, InvoiceMessage $message)
     {
         $url = "invoices/$invoice_id/messages/mark_as_closed";
 
@@ -2229,7 +2227,7 @@ use Harvest\Model\Client,
      * @param  InvoiceMessage $message    Invoice Message
      * @return Result
      */
-    public function createReOpenInvoiceMessage( $invoice_id, InvoiceMessage $message )
+    public function createReOpenInvoiceMessage($invoice_id, InvoiceMessage $message)
     {
         $url = "invoices/$invoice_id/messages/re_open";
 
@@ -2258,7 +2256,7 @@ use Harvest\Model\Client,
      * @param  InvoiceMessage $message    Invoice Message
      * @return Result
      */
-    public function createMarkAsDraftInvoiceMessage( $invoice_id, InvoiceMessage $message )
+    public function createMarkAsDraftInvoiceMessage($invoice_id, InvoiceMessage $message)
     {
         $url = "invoices/$invoice_id/messages/mark_as_draft";
 
@@ -2285,7 +2283,7 @@ use Harvest\Model\Client,
      * @param  int    $invoice_id Invoice Identifier
      * @return Result
      */
-    public function getInvoicePayments( $invoice_id )
+    public function getInvoicePayments($invoice_id)
     {
         $url = "invoices/$invoice_id/payments";
 
@@ -2311,7 +2309,7 @@ use Harvest\Model\Client,
      * @param  int    $payment_id Payment Identifier
      * @return Result
      */
-    public function getInvoicePayment( $invoice_id, $payment_id )
+    public function getInvoicePayment($invoice_id, $payment_id)
     {
         $url = "invoices/$invoice_id/payments/$payment_id";
 
@@ -2339,7 +2337,7 @@ use Harvest\Model\Client,
      * @param  Payment $payment    Payment
      * @return Result
      */
-    public function createInvoicePayment( $invoice_id, Payment $payment )
+    public function createInvoicePayment($invoice_id, Payment $payment)
     {
         $url = "invoices/$invoice_id/payments";
 
@@ -2365,7 +2363,7 @@ use Harvest\Model\Client,
      * @param  int    $payment_id Payment Identifier
      * @return Result
      */
-    public function deleteInvoicePayment( $invoice_id, $payment_id )
+    public function deleteInvoicePayment($invoice_id, $payment_id)
     {
         $url = "invoices/$inovice_id/payments/$payment_id";
 
@@ -2416,7 +2414,7 @@ use Harvest\Model\Client,
      * @param  InvoiceItemCategory $invoiceCategory Invoice Category
      * @return Result
      */
-    public function createInvoiceCategory( InvoiceItemCategory $invoiceCategory )
+    public function createInvoiceCategory(InvoiceItemCategory $invoiceCategory)
     {
         $url = "invoice_item_categories";
 
@@ -2442,31 +2440,31 @@ use Harvest\Model\Client,
      * @param  InvoiceItemCategory $invoiceCategory Invoice Category
      * @return Result
      */
-    public function updateInvoiceCategory( InvoiceItemCategory $invoiceCategory )
+    public function updateInvoiceCategory(InvoiceItemCategory $invoiceCategory)
     {
         $url = "invoice_item_categories/" . $invoiceCategory->get( "id" );
 
         return $this->performPUT( $url, $invoiceCategory->toXML() );
     }
 
-    /**
-     * delete an Invoice Category
-     *
-     * <code>
-     * $invoiceCategory_id = 12345;
-     *
-     * $api = new HarvestAPI();
-     *
-     * $result = $api->deleteInvoiceCategory( $invoiceCategory_id );
-     * if ( $result->isSuccess() ) {
-     *     //success logic
-     * }
-     * </code>
-     *
-     * @param  int    $invoiceCategory_id Invoice Category Identifier
-     * @return Result
-     */
-    public function deleteInvoiceCategory( int $invoiceCategory_id )
+     /**
+      * delete an Invoice Category
+      *
+      * <code>
+      * $invoiceCategory_id = 12345;
+      *
+      * $api = new HarvestAPI();
+      *
+      * $result = $api->deleteInvoiceCategory( $invoiceCategory_id );
+      * if ( $result->isSuccess() ) {
+      *     //success logic
+      * }
+      * </code>
+      *
+      * @param $invoiceCategory_id int Invoice Category Identifier
+      * @return Result
+      */
+    public function deleteInvoiceCategory($invoiceCategory_id)
     {
         $url = "invoice_item_categories/$invoiceCategory_id";
 
@@ -2477,16 +2475,16 @@ use Harvest\Model\Client,
     /*----------------- API Access & Parse Methods -----------------*/
     /*--------------------------------------------------------------*/
 
-    /**
-     * generate the update_since query params
-     * @param  mixed  $update_since DateTime
-     * @return string
-     */
-    public function appendUpdatedSinceParam( $updated_since = null )
+     /**
+      * generate the update_since query params
+      * @param $updated_since mixed DateTime
+      * @return string
+      */
+    public function appendUpdatedSinceParam($updated_since = null)
     {
         if ( is_null( $updated_since) ) {
             return "";
-        } elseif ($updated_since instanceOf \DateTime) {
+        } elseif ($updated_since instanceOf DateTime) {
             return '?updated_since=' . urlencode($updated_since->format("Y-m-d G:i"));
         } else {
             return '?updated_since=' . urlencode($updated_since);
@@ -2499,7 +2497,7 @@ use Harvest\Model\Client,
      * @param  mixed  $multi Flag to specify if multiple items are returned by request
      * @return Result
      */
-    protected function performGET( $url, $multi = true )
+    protected function performGET($url, $multi = true)
     {
         $data = null;
         $code = null;
@@ -2533,7 +2531,7 @@ use Harvest\Model\Client,
      * @param $url
      * @return object cURL Handler
      */
-    protected function generateCURL( $url )
+    protected function generateCURL($url)
     {
         $this->resetHeader();
         $http = "http://";
@@ -2557,7 +2555,7 @@ use Harvest\Model\Client,
      * @param  string $data data to be sent
      * @return Result
      */
-    protected function performPUT( $url, $data )
+    protected function performPUT($url, $data)
     {
         $rData = null;
         $code = null;
@@ -2583,7 +2581,7 @@ use Harvest\Model\Client,
      * @param $data PUT Data
      * @return object cURL Handler
      */
-    protected function generatePUTCURL( $url, $data )
+    protected function generatePUTCURL($url, $data)
     {
         $ch = $this->generateCURL( $url );
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
@@ -2592,13 +2590,14 @@ use Harvest\Model\Client,
         return $ch;
     }
 
-    /**
-     * perform http post command
-     * @param  string $url  url of server to process request
-     * @param  string $data data to be sent
-     * @return Result
-     */
-    protected function performPOST( $url, $data, $multi = "id" )
+     /**
+      * perform http post command
+      * @param  string $url url of server to process request
+      * @param  string $data data to be sent
+      * @param  string $multi
+      * @return Result
+      */
+    protected function performPOST($url, $data, $multi = "id")
     {
         $rData = null;
         $code = null;
@@ -2635,7 +2634,7 @@ use Harvest\Model\Client,
      * @param $data Array of Post Data
      * @return object cURL Handler
      */
-    protected function generatePOSTCURL( $url, $data )
+    protected function generatePOSTCURL($url, $data)
     {
         $ch = $this->generateCURL( $url );
         curl_setopt($ch, CURLOPT_POST, 1);
@@ -2649,7 +2648,7 @@ use Harvest\Model\Client,
      * @param  string $url url of server to process request
      * @return Result
      */
-    protected function performDELETE( $url)
+    protected function performDELETE($url)
     {
         $data = null;
         $code = null;
@@ -2674,7 +2673,7 @@ use Harvest\Model\Client,
      * @param $url
      * @return object cURL Handler
      */
-    protected function generateDELETECURL( $url )
+    protected function generateDELETECURL($url)
     {
         $ch = $this->generateCURL( $url );
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
@@ -2689,7 +2688,7 @@ use Harvest\Model\Client,
      * @param  array  $data Associated Aray of form data
      * @return Result
      */
-    protected function performMultiPart( $url, $data )
+    protected function performMultiPart($url, $data)
     {
         $rData = null;
         $code = null;
@@ -2715,7 +2714,7 @@ use Harvest\Model\Client,
      * @param $data array of MultiPart Form Data
      * @return object cURL Handler
      */
-    protected function generateMultiPartCURL( $url, $data )
+    protected function generateMultiPartCURL($url, $data)
     {
         $ch = $this->generateCURL( $url );
         curl_setopt($ch, CURLOPT_POST, 1);
@@ -2730,7 +2729,7 @@ use Harvest\Model\Client,
      * @param  string $xml XML String
      * @return array
      */
-    protected function parseItems( $xml )
+    protected function parseItems($xml)
     {
         $items = array();
         $xmlDoc = new \DOMDocument();
@@ -2751,7 +2750,7 @@ use Harvest\Model\Client,
      * @param  string $xml XML String
      * @return mixed
      */
-    protected function parseItem( $xml )
+    protected function parseItem($xml)
     {
         $xmlDoc = new \DOMDocument();
         $xmlDoc->loadXML($xml);
@@ -2765,7 +2764,7 @@ use Harvest\Model\Client,
      * @param  DocumentElement $node document element
      * @return mixed
      */
-    protected function parseNode( $node )
+    protected function parseNode($node)
     {
         $item = null;
         switch ($node->nodeName) {
@@ -2845,7 +2844,7 @@ use Harvest\Model\Client,
      * @param  string      $header Header line text to be parsed
      * @return int
      */
-    protected function parseHeader( $ch, $header )
+    protected function parseHeader($ch, $header)
     {
         $pos = strpos( $header, ":" );
         $key = substr( $header, 0, $pos );
@@ -2863,23 +2862,24 @@ use Harvest\Model\Client,
      * reset headers variable
      * @return void
      */
-    protected function resetHeader( )
+    protected function resetHeader()
     {
         $this->_headers = array();
     }
 
-    /**
-     * simple autoload function
-     * returns true if the class was loaded, otherwise false
-     *
-     * <code>
-     * // register the class auto loader
-     * spl_autoload_register( array('HarvestAPI', 'autoload') );
-     * </code>
-     *
-     * @param  string  $classname Name of Class to be loaded
-     * @return boolean
-     */
+     /**
+      * simple autoload function
+      * returns true if the class was loaded, otherwise false
+      *
+      * <code>
+      * // register the class auto loader
+      * spl_autoload_register( array('HarvestAPI', 'autoload') );
+      * </code>
+      *
+      * @param $className
+      * @internal param string $classname Name of Class to be loaded
+      * @return boolean
+      */
     public static function autoload($className)
     {
         if (class_exists($className, false) || interface_exists($className, false)) {
