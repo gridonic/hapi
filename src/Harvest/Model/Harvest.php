@@ -163,7 +163,7 @@ abstract class Harvest
     {
         $xml = "<$this->_root>";
         foreach ($this->_values as $key => $value) {
-            $xml .= "<$key>$value</$key>";
+            $xml .= sprintf("<$key>%s</$key>", htmlspecialchars($value, ENT_XML1));
         }
         $xml .= "</$this->_root>";
 
