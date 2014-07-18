@@ -1392,7 +1392,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "expesnses/$expense->id";
 
-        return $this->performPUT( $url, $obj->toXML() );
+        return $this->performPUT( $url, $expense->toXML() );
     }
 
     /**
@@ -1463,7 +1463,7 @@ use Harvest\Model\Invoice\Filter;
      */
     public function attachReceipt($expense_id, $image_url)
     {
-        $url = "expenses/$expense_id/$receipt";
+        $url = "expenses/$expense_id/receipt";
         $data = array();
         $data["expense[receipt]"] = "@$image_url";
 
@@ -2143,7 +2143,7 @@ use Harvest\Model\Invoice\Filter;
      */
     public function deleteInvoiceMessage($invoice_id, $message_id)
     {
-        $url = "invoices/$inovice_id/messages/$message_id";
+        $url = "invoices/$invoice_id/messages/$message_id";
 
         return $this->performDELETE( $url );
     }
@@ -2366,7 +2366,7 @@ use Harvest\Model\Invoice\Filter;
      */
     public function deleteInvoicePayment($invoice_id, $payment_id)
     {
-        $url = "invoices/$inovice_id/payments/$payment_id";
+        $url = "invoices/$invoice_id/payments/$payment_id";
 
         return $this->performDELETE( $url );
     }
