@@ -15,7 +15,7 @@
     </php>
 
     <testsuites>
-        <testsuite name="hAPI Test Suite">
+        <testsuite name="HaPi Test Suite">
             <directory>./tests/Harvest/</directory>
         </testsuite>
     </testsuites>
