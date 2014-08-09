@@ -49,11 +49,11 @@ class HarvestAPITest extends \PHPUnit_Framework_TestCase
         $api->setAccount($config->account);
 
         /** @var \Harvest\Model\Result $result */
-        $result = $api->getClient(1300267);
+        $result = $api->getClients();
 
         $this->assertInstanceOf('\Harvest\Model\Result', $result);
 
-        $this->assertEquals(200, $result->get('code'));
+        $this->assertTrue($result->isSuccess());
         $this->assertNotEmpty($result->get('headers'));
         $this->assertNotEmpty($result->get('data'));
     }
