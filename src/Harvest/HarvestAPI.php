@@ -1580,6 +1580,7 @@ use Harvest\Model\Invoice\Filter;
      *
      * <code>
      * $userAssignment = new UserAssignment();
+     * $userAssignment->set( "id", 22222 );
      * $userAssignment->set( "user-id", 11111 );
      * $userAssignment->set( "project-id", 12345 );
      * $userAssignment->set( "deactivated", true );
@@ -1599,7 +1600,7 @@ use Harvest\Model\Invoice\Filter;
      */
     public function updateProjectUserAssignment(UserAssignment $userAssignment)
     {
-        $url = "projects/" . $userAssignment->get("project-id") . "/user_assignments/" . $userAssignment->get("user-id");
+        $url = "projects/" . $userAssignment->get("project-id") . "/user_assignments/" . $userAssignment->get("id");
 
         return $this->performPUT( $url, $userAssignment->toXML() );
     }
