@@ -2476,7 +2476,7 @@ use Harvest\Model\Invoice\Filter;
             if ($multi === true) {
                 $data = $this->parseItems($data);
             } elseif ($multi == "raw") {
-                $data = data;
+                $data = $data;
             } else {
                 $data = $this->parseItem($data);
             }
