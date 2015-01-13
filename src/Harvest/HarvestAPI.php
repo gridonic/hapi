@@ -77,11 +77,6 @@ use Harvest\Model\Invoice\Filter;
     protected $_account;
 
     /**
-     * @var boolean is SSL enabled account?
-     */
-    protected $_ssl = true;
-
-    /**
      * @var string retry mode for over threshold
      */
     protected $_mode = "FAIL";
@@ -142,22 +137,6 @@ use Harvest\Model\Invoice\Filter;
     public function setAccount($account)
     {
         $this->_account = $account;
-    }
-
-    /**
-     * set SSL enabled
-     *
-     * <code>
-     * $api = new HarvestAPI();
-     * $api->setSSL(true);
-     * </code>
-     *
-     * @param  boolean $ssl ssl enabled
-     * @return void
-     */
-    public function setSSL($ssl)
-    {
-        $this->_ssl = $ssl;
     }
 
     /**
@@ -298,7 +277,7 @@ use Harvest\Model\Invoice\Filter;
      * @param $entry    Day Entry
      * @return Result
      */
-    public function createEntry($entry)
+    public function createEntry(DayEntry $entry)
     {
         $url = "daily/add";
 
@@ -326,7 +305,7 @@ use Harvest\Model\Invoice\Filter;
      * @param $entry    Day Entry
      * @return Result
      */
-    public function startNewTimer($entry)
+    public function startNewTimer(DayEntry $entry)
     {
         $entry->set("hours", " ");
         $url = "daily/add";
@@ -381,7 +360,7 @@ use Harvest\Model\Invoice\Filter;
      * @param $entry    Day Entry
      * @return Result
      */
-    public function updateEntry($entry)
+    public function updateEntry(DayEntry $entry)
     {
         $url = "daily/update/$entry->id";
 
@@ -1684,7 +1663,7 @@ use Harvest\Model\Invoice\Filter;
      * @param  Task   $task       Task
      * @return Result
      */
-    public function createProjectTaskAssignment($project_id, $task)
+    public function createProjectTaskAssignment($project_id, Task $task)
     {
         $url = "projects/$project_id/task_assignments/add_with_create_new_task";
 
@@ -2514,12 +2493,8 @@ use Harvest\Model\Invoice\Filter;
     protected function generateCURL($url)
     {
         $this->resetHeader();
-        $http = "http://";
-        if ($this->_ssl) {
-            $http = "https://";
-        }
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $http . $this->_account . ".harvestapp.com/" . $url);
+        curl_setopt($ch, CURLOPT_URL, "https://" . $this->_account . ".harvestapp.com/" . $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
