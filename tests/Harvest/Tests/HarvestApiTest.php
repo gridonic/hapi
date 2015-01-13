@@ -2,12 +2,12 @@
 
 namespace Harvest\Tests;
 
-use Harvest\HarvestAPI;
+use Harvest\HarvestApi;
 
 /**
- * HarvestAPI test cases
+ * HarvestApi test cases
  */
-class HarvestAPITest extends \PHPUnit_Framework_TestCase
+class HarvestApiTest extends \PHPUnit_Framework_TestCase
 {
     public function testNothing()
     {
@@ -16,12 +16,12 @@ class HarvestAPITest extends \PHPUnit_Framework_TestCase
 
     public function testInstance()
     {
-        $this->assertInstanceOf('Harvest\HarvestAPI', new HarvestAPI());
+        $this->assertInstanceOf('Harvest\HarvestApi', new HarvestApi());
     }
 
     public function testAPIProperties()
     {
-        $api = new HarvestAPI();
+        $api = new HarvestApi();
 
         $api->setUser('your@email.com');
         $api->setPassword('password');
@@ -37,7 +37,7 @@ class HarvestAPITest extends \PHPUnit_Framework_TestCase
      */
     public function testClientsRetrieval()
     {
-        $api = new HarvestAPI();
+        $api = new HarvestApi();
         $config = file_exists(BASE_PATH . DIRECTORY_SEPARATOR . $_SERVER['API_CONFIG_FILE']) ? json_decode(file_get_contents(BASE_PATH . DIRECTORY_SEPARATOR . $_SERVER['API_CONFIG_FILE'])) : array();
 
         if (!$config) {

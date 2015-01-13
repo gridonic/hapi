@@ -1,22 +1,5 @@
 <?php
-/*
- * copyright (c) 2009 MDBitz - Matthew John Denton - mdbitz.com
- *
- * This file is part of HarvestAPI.
- *
- * HarvestAPI is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * HarvestAPI is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with HarvestAPI. If not, see <http://www.gnu.org/licenses/>.
- */
+
 
 namespace Harvest\Model\Invoice;
 
@@ -27,8 +10,6 @@ use Harvest\Exception\HarvestException;
  *
  * This file contains the class Filter
  *
- * @author Matthew John Denton <matt@mdbitz.com>
- * @package com.mdbitz.harvest
  */
 
 /**
@@ -42,39 +23,38 @@ use Harvest\Exception\HarvestException;
  *   <li>page</li>
  * </ul>
  *
- * @package com.mdbitz.harvest
  */
 class Filter
 {
     /**
      * Status : "open"
      */
-    const OPEN                       = "open";
+    const OPEN = "open";
 
     /**
      * Status : "partial"
      */
-    const PARTIAL                    = "partial";
+    const PARTIAL = "partial";
 
     /**
      * Status : "draft"
      */
-    const DRAFT                      = "draft";
+    const DRAFT = "draft";
 
     /**
      * Status : "paid"
      */
-    const PAID                       = "paid";
+    const PAID = "paid";
 
     /**
      * Status : "unpaid"
      */
-    const UNPAID                     = "unpaid";
+    const UNPAID = "unpaid";
 
     /**
      * Status : "pastdue"
      */
-    const PASTDUE                    = "pastdue";
+    const PASTDUE = "pastdue";
 
     /**
      * @var Range Time Range
@@ -104,13 +84,13 @@ class Filter
     /**
      * magic method to return non public properties
      *
-     * @see     get
+     * @see    get
      * @param  mixed $property
      * @return mixed
      */
     public function __get($property)
     {
-        return $this->get( $property );
+        return $this->get($property);
     }
 
     /**
@@ -138,7 +118,7 @@ class Filter
                 return $this->_updated_since;
             break;
             default:
-                throw new HarvestException( sprintf('Unknown method %s::%s', get_class($this), $method));
+                throw new HarvestException(sprintf('Unknown method %s::%s', get_class($this), $method));
             break;
         }
     }
@@ -152,7 +132,7 @@ class Filter
      */
     public function __set($property, $value)
     {
-        $this->set( $property, $value );
+        $this->set($property, $value);
     }
 
     /**
@@ -180,7 +160,7 @@ class Filter
                 $this->_updated_since = $value;
             break;
             default:
-                throw new HarvestException( sprintf('Unknown method %s::%s', get_class($this), $method));
+                throw new HarvestException(sprintf('Unknown method %s::%s', get_class($this), $method));
             break;
         }
     }
@@ -194,13 +174,13 @@ class Filter
      */
     public function __call($method, $arguments)
     {
-        if ( count($arguments) == 0 ) {
-            return $this->get( $method );
-        } elseif ( count( $arguments ) == 1 ) {
-            return $this->set( $method, $arguments[0] );
+        if(count($arguments) === 0) {
+            return $this->get($method);
+        } elseif(count($arguments) === 1) {
+            return $this->set($method, $arguments[0]);
         }
 
-        throw new HarvestException( sprintf('Unknown method %s::%s', get_class($this), $method));
+        throw new HarvestException(sprintf('Unknown method %s::%s', get_class($this), $method));
     }
 
     /**
@@ -211,27 +191,27 @@ class Filter
     public function toURL()
     {
         $query = "";
-        if ( ! is_null( $this->_page ) ) {
+        if(!is_null($this->_page)) {
             $query .= "&page=" . $this->_page;
         }
-        if ( ! is_null( $this->_client ) ) {
+        if(!is_null($this->_client)) {
             $query .= "&client=" . $this->_client;
         }
-        if ( ! is_null( $this->_status ) ) {
+        if(!is_null($this->_status)) {
             $query .= "&status=". $this->_status;
         }
-        if ( ! is_null( $this->_range ) ) {
+        if(!is_null($this->_range)) {
             $query .= "&from=" . $this->_range->from() . "&to=" . $this->_range->to();
         }
-        if ( ! is_null( $this->_updated_since ) ) {
+        if(!is_null($this->_updated_since)) {
             $query .= '&updated_since=';
-            if ($this->_updated_since instanceOf DateTime) {
+            if($this->_updated_since instanceOf DateTime) {
                 $query .= urlencode($this->_updated_since->format("Y-m-d G:i"));
             } else {
                 $query .= urlencode($this->_updated_since);
             }
         }
-        $query = "?" . substr( $query, 1 );
+        $query = "?" . substr($query, 1);
 
         return $query;
     }

@@ -1,6 +1,6 @@
-# Original HarvestAPI PHP Wrapper Library Changelog
+# Original HarvestApi PHP Wrapper Library Changelog
 
-This is the changelog of the HarvestAPI library for PHP. The original library can be found at http://resources.mdbitz.com/2009/11
+This is the changelog of the HarvestApi library for PHP. The original library can be found at http://resources.mdbitz.com/2009/11
 
 * 1.1.1 (released 10-04-2010)
 
@@ -46,7 +46,7 @@ This is the changelog of the HarvestAPI library for PHP. The original library ca
 
     Changes:
 
-    * New HarvestReports extension class - extends the HarvestAPI class with additional reporting features
+    * New HarvestReports extension class - extends the HarvestApi class with additional reporting features
         * getActiveClients
         * getInactiveClients
         * getActiveProjects
@@ -121,8 +121,8 @@ This is the changelog of the HarvestAPI library for PHP. The original library ca
     * phpDocument - documentation compliant
     * Creation of Currency Class
     * Creation of TimeZone Class
-    * HarvestAPI - extended REST Support
-    * HarvestAPI - ssl support
+    * HarvestApi - extended REST Support
+    * HarvestApi - ssl support
 
 * 0.2.0 (released 11-11-2009)
 
@@ -133,13 +133,13 @@ This is the changelog of the HarvestAPI library for PHP. The original library ca
     Changes:
 
     * Added _toXML_ function to Harvest
-    * Added helper functions to HarvestAPI
-        * performPUT -> performs PUT request
-        * performPOST -> performs POST request
-        * performDELETE -> performs DELETE request
+    * Added helper functions to HarvestApi
+        * performPut -> performs PUT request
+        * performPost -> performs POST request
+        * performDelete -> performs DELETE request
         * parseHeader -> parse header into array that can be used in perform functions
         * resetHeader -> reset header array.
-    * Addition of HarvestAPI functions for Clients, Projects, and Client Contacts
+    * Addition of HarvestApi functions for Clients, Projects, and Client Contacts
         * createClient - Create a new Client
         * updateClient - Update an existing Client
         * toggleClient - Toggle CLient active-inactive
@@ -160,10 +160,10 @@ This is the changelog of the HarvestAPI library for PHP. The original library ca
 
     Comment:
 
-    Initial Version of the HarvestAPI
+    Initial Version of the HarvestApi
 
     Changes:
 
-    * Creation of main Class HarvestAPI
+    * Creation of main Class HarvestApi
     * Creation of Harvest Class Objects
     * Implementation of GET methods of Harvest API
