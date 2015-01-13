@@ -4,6 +4,7 @@ HaPi – Harvest API
 PHP Wrapper Library for the Harvest API.
 
 [![Build Status](https://travis-ci.org/gridonic/hapi.svg?branch=master)](https://travis-ci.org/gridonic/hapi)
+[![Code Climate](https://codeclimate.com/github/gridonic/hapi/badges/gpa.svg)](https://codeclimate.com/github/gridonic/hapi)
 
 Usage
 -----
