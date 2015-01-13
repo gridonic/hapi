@@ -1,9 +1,9 @@
 {
     "name": "gridonic/hapi",
+    "type": "library",
     "description": "PHP Wrapper Library for the Harvest API",
     "keywords": ["api", "harvest"],
     "homepage": "http://github.com/gridonic/hapi",
-    "type": "library",
     "license": "GPL-3.0",
     "require": {
         "php": ">=5.3.0"
