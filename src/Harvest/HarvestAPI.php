@@ -24,32 +24,32 @@ use Harvest\Model\Client,
 use Harvest\Model\Invoice\Filter;
 
 /**
- * HarvestAPI
+ * HarvestApi
  *
- * This file contains the class HarvestAPI
+ * This file contains the class HarvestApi
  *
  */
 
 /**
- * HarvestAPI defines the methods available to the API, as well as
+ * HarvestApi defines the methods available to the API, as well as
  * handlers for parsing the returned data.
  *
  * <code>
  * // require the Harvest API core class
- * require_once(PATH_TO_LIB . '/HarvestAPI.php');
+ * require_once(PATH_TO_LIB . '/HarvestApi.php');
  *
  * // register the class auto loader
- * spl_autoload_register(array('HarvestAPI', 'autoload'));
+ * spl_autoload_register(array('HarvestApi', 'autoload'));
  *
  * // instantiate the api object
- * $api = new HarvestAPI();
+ * $api = new HarvestApi();
  * $api->setUser("user@email.com");
  * $api->setPassword("password");
  * $api->setAccount("account");
  * </code>
  *
  */
- class HarvestAPI
+ class HarvestApi
  {
     /**
      *  WAIT
@@ -95,7 +95,7 @@ use Harvest\Model\Invoice\Filter;
      * set Harvest User Name
      *
      * <code>
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      * $api->setUser("user name");
      * </code>
      *
@@ -111,7 +111,7 @@ use Harvest\Model\Invoice\Filter;
      * set Harvest Password
      *
      * <code>
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      * $api->setPassword("password");
      * </code>
      *
@@ -127,7 +127,7 @@ use Harvest\Model\Invoice\Filter;
      * set Harvest Account
      *
      * <code>
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      * $api->setAccount("account");
      * </code>
      *
@@ -143,8 +143,8 @@ use Harvest\Model\Invoice\Filter;
      * set retry mode
      *
      * <code>
-     * $api = new HarvestAPI();
-     * $api->setRetryMode(HarvestAPI::RETRY);
+     * $api = new HarvestApi();
+     * $api->setRetryMode(HarvestApi::RETRY);
      * </code>
      *
      * @param  boolean $mode retry mode
@@ -159,7 +159,7 @@ use Harvest\Model\Invoice\Filter;
      * get your current throttle status
      *
      * <code>
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->getThrottleStatus();
      * $throttle = $result->data;
@@ -171,7 +171,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "account/rate_limit_status";
 
-        return $this->performGET($url, false);
+        return $this->performGet($url, false);
     }
 
     /*--------------------------------------------------------------*/
@@ -185,7 +185,7 @@ use Harvest\Model\Invoice\Filter;
      * $day_of_year = 267;
      * $year = 2009
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->getDailyActivity($day_of_year, $year);
      * if ($result->isSuccess()) {
@@ -204,7 +204,7 @@ use Harvest\Model\Invoice\Filter;
             $url .= $day_of_year . "/" . $year;
         }
 
-        return $this->performGET($url, false);
+        return $this->performGet($url, false);
     }
 
     /**
@@ -213,7 +213,7 @@ use Harvest\Model\Invoice\Filter;
      * <code>
      * $entry_id = 12345;
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->getEntry($entry_id);
      * if ($result->isSuccess()) {
@@ -228,7 +228,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "daily/show/" . $entry_id;
 
-        return $this->performGET($url, false);
+        return $this->performGet($url, false);
     }
 
     /**
@@ -237,7 +237,7 @@ use Harvest\Model\Invoice\Filter;
      * <code>
      * $entry_id = 12345;
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->toggleTimer($entry_id);
      * if ($result->isSuccess()) {
@@ -252,7 +252,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "daily/timer/" . $entry_id;
 
-        return $this->performGET($url, false);
+        return $this->performGet($url, false);
     }
 
     /**
@@ -266,7 +266,7 @@ use Harvest\Model\Invoice\Filter;
      * $entry->set("task_id", 14);
      * $entry->set("spent_at", "Tue, 17 Oct 2006");
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->createEntry($entry);
      * if ($result->isSuccess()) {
@@ -281,7 +281,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "daily/add";
 
-        return $this->performPOST($url, $entry->toXML(), false);
+        return $this->performPost($url, $entry->toXML(), false);
     }
 
     /**
@@ -294,7 +294,7 @@ use Harvest\Model\Invoice\Filter;
      * $entry->set("task_id", 14);
      * $entry->set("spent_at", "Tue, 17 Oct 2006");
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->startNewTimer($entry);
      * if ($result->isSuccess()) {
@@ -310,7 +310,7 @@ use Harvest\Model\Invoice\Filter;
         $entry->set("hours", " ");
         $url = "daily/add";
 
-        return $this->performPOST($url, $entry->toXML(), false);
+        return $this->performPost($url, $entry->toXML(), false);
     }
 
     /**
@@ -319,7 +319,7 @@ use Harvest\Model\Invoice\Filter;
      * <code>
      * $entry_id = 12345;
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->deleteEntry($entry_id);
      * if ($result->isSuccess()) {
@@ -334,7 +334,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "daily/delete/" . $entry_id;
 
-        return $this->performDELETE($url);
+        return $this->performDelete($url);
     }
 
     /**
@@ -349,7 +349,7 @@ use Harvest\Model\Invoice\Filter;
      * $entry->set("task_id", 14);
      * $entry->set("spent_at", "Tue, 17 Oct 2006");
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->updateEntry($entry);
      * if ($result->isSuccess()) {
@@ -364,7 +364,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "daily/update/$entry->id";
 
-        return $this->performPOST($url, $entry->toXML());
+        return $this->performPost($url, $entry->toXML());
     }
 
     /*--------------------------------------------------------------*/
@@ -375,7 +375,7 @@ use Harvest\Model\Invoice\Filter;
      * get all clients
      *
      * <code>
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->getClients();
      * if ($result->isSuccess()) {
@@ -390,7 +390,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "clients" . $this->appendUpdatedSinceParam($updated_since);
 
-        return $this->performGET($url, true);
+        return $this->performGet($url, true);
     }
 
     /**
@@ -398,7 +398,7 @@ use Harvest\Model\Invoice\Filter;
      *
      * <code>
      * $client_id = 11111;
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->getClient($client_id);
      * if ($result->isSuccess()) {
@@ -413,7 +413,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "clients/$client_id";
 
-        return $this->performGET($url, false);
+        return $this->performGet($url, false);
     }
 
     /**
@@ -424,7 +424,7 @@ use Harvest\Model\Invoice\Filter;
      * $client->set("name", "Company LLC");
      * $client->set("details", "Company Details");
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->createClient($client);
      * if ($result->isSuccess()) {
@@ -440,7 +440,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "clients";
 
-        return $this->performPOST($url, $client->toXML());
+        return $this->performPost($url, $client->toXML());
     }
 
     /**
@@ -452,7 +452,7 @@ use Harvest\Model\Invoice\Filter;
      * client->set("name", "Company LLC");
      * $client->set("details", "New Company Details");
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->updateClient($client);
      * if ($result->isSuccess()) {
@@ -467,7 +467,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "clients/$client->id";
 
-        return $this->performPUT($url, $client->toXML());
+        return $this->performPut($url, $client->toXML());
     }
 
     /**
@@ -475,7 +475,7 @@ use Harvest\Model\Invoice\Filter;
      *
      * <code>
      * $client_id = 11111;
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      * $result = $api->toggleClient($client_id);
      * if ($result->isSuccess()) {
      *     // addtional logic
@@ -489,7 +489,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "clients/$client_id/toggle";
 
-        return $this->performPUT($url, "");
+        return $this->performPut($url, "");
     }
 
     /**
@@ -497,7 +497,7 @@ use Harvest\Model\Invoice\Filter;
      *
      * <code>
      * $client_id = 11111;
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      * $result = $api->deleteClient($client_id);
      * if ($result->isSuccess()) {
      *      // additional logic
@@ -511,7 +511,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "clients/$client_id";
 
-        return $this->performDELETE($url);
+        return $this->performDelete($url);
     }
 
     /*--------------------------------------------------------------*/
@@ -522,7 +522,7 @@ use Harvest\Model\Invoice\Filter;
      * get all contacts for an account
      *
      * <code>
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      * $result = $api->getContacts();
      * if ($result->isSuccess()) {
      *     $contacts = $result->data;
@@ -536,7 +536,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "contacts" . $this->appendUpdatedSinceParam($updated_since);
 
-        return $this->performGET($url, true);
+        return $this->performGet($url, true);
 
     }
 
@@ -545,7 +545,7 @@ use Harvest\Model\Invoice\Filter;
      *
      * <code>
      * $client_id = 11111;
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      * $result = $api->getClientContacts($client_id);
      * if ($result->isSuccess()) {
      *     $contacts = $result->data;
@@ -559,7 +559,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "clients/$client_id/contacts";
 
-        return $this->performGET($url, true);
+        return $this->performGet($url, true);
     }
 
     /**
@@ -567,7 +567,7 @@ use Harvest\Model\Invoice\Filter;
      *
      * <code>
      * $contact_id = 11111;
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      * $result = $api->getContact($contact_id);
      * if ($result->isSuccess()) {
      *     $contact = $result->data;
@@ -581,7 +581,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "contacts/$contact_id";
 
-        return $this->performGET($url, false);
+        return $this->performGet($url, false);
     }
 
     /**
@@ -594,7 +594,7 @@ use Harvest\Model\Invoice\Filter;
      * $contact->set("email", "jd@email.com");
      * $contact->set("client-id", 12345);
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->createContact($Contact);
      * if ($result->isSuccess()) {
@@ -610,7 +610,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "contacts";
 
-        return $this->performPOST($url, $contact->toXML());
+        return $this->performPost($url, $contact->toXML());
     }
 
     /**
@@ -622,7 +622,7 @@ use Harvest\Model\Invoice\Filter;
      * $contact->set("first-name", "John");
      * $contact->set("last-name", "Smith");
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->updateContact($contact);
      * if ($result->isSuccess()) {
@@ -637,7 +637,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "contacts/$contact->id";
 
-        return $this->performPUT($url, $contact->toXML());
+        return $this->performPut($url, $contact->toXML());
     }
 
     /**
@@ -645,7 +645,7 @@ use Harvest\Model\Invoice\Filter;
      *
      * <code>
      * $contact_id = 11111;
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->deleteContact($contact_id);
      * if ($result->isSuccess()) {
@@ -660,7 +660,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "contacts/$contact_id";
 
-        return $this->performDELETE($url);
+        return $this->performDelete($url);
     }
 
     /*--------------------------------------------------------------*/
@@ -671,7 +671,7 @@ use Harvest\Model\Invoice\Filter;
      * get all projects
      *
      * <code>
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->getProjects();
      * if ($result->isSuccess()) {
@@ -686,14 +686,14 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "projects" . $this->appendUpdatedSinceParam($updated_since);
 
-        return $this->performGET($url, true);
+        return $this->performGet($url, true);
     }
 
     /**
      * get all projects of a client
      *
      * <code>
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->getClientProjects();
      * if ($result->isSuccess()) {
@@ -708,7 +708,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "projects?client=$client_id";
 
-        return $this->performGET($url, true);
+        return $this->performGet($url, true);
     }
 
     /**
@@ -716,7 +716,7 @@ use Harvest\Model\Invoice\Filter;
      *
      * <code>
      * $project_id = 11111;
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->getProject($project_id);
      * if ($result->isSuccess()) {
@@ -731,7 +731,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "projects/$project_id";
 
-        return $this->performGET($url, false);
+        return $this->performGet($url, false);
     }
 
     /**
@@ -742,7 +742,7 @@ use Harvest\Model\Invoice\Filter;
      * $project->set("name", "New Project");
      * $project->set("client-id", 11111);
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->createProject($project);
      * if ($result->isSuccess()) {
@@ -758,7 +758,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "projects";
 
-        return $this->performPOST($url, $project->toXML());
+        return $this->performPost($url, $project->toXML());
     }
 
     /**
@@ -770,7 +770,7 @@ use Harvest\Model\Invoice\Filter;
      * $project->set("name", "New Project");
      * $project->set("client-id", 11111);
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->updateProject($project);
      * if ($result->isSuccess()) {
@@ -785,7 +785,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "projects/$project->id";
 
-        return $this->performPUT($url, $project->toXML());
+        return $this->performPut($url, $project->toXML());
     }
 
     /**
@@ -793,7 +793,7 @@ use Harvest\Model\Invoice\Filter;
      *
      * <code>
      * $project_id = 11111;
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->toggleProject($project_id);
      * if ($result->isSuccess()) {
@@ -808,7 +808,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "projects/$project_id/toggle";
 
-        return $this->performPUT($url, "");
+        return $this->performPut($url, "");
     }
 
     /**
@@ -816,7 +816,7 @@ use Harvest\Model\Invoice\Filter;
      *
      * <code>
      * $project_id = 11111;
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->deleteProject($project_id);
      * if ($result->isSuccess()) {
@@ -831,7 +831,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "projects/$project_id";
 
-        return $this->performDELETE($url);
+        return $this->performDelete($url);
     }
 
     /*--------------------------------------------------------------*/
@@ -842,7 +842,7 @@ use Harvest\Model\Invoice\Filter;
      * get all tasks
      *
      * <code>
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->getTasks();
      * if ($result->isSuccess()) {
@@ -856,7 +856,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "tasks";
 
-        return $this->performGET($url, true);
+        return $this->performGet($url, true);
     }
 
     /**
@@ -864,7 +864,7 @@ use Harvest\Model\Invoice\Filter;
      *
      * <code>
      * $task_id = 11111;
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->getTask($task_id);
      * if ($result->isSuccess()) {
@@ -879,7 +879,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "tasks/$task_id";
 
-        return $this->performGET($url, false);
+        return $this->performGet($url, false);
     }
 
     /**
@@ -891,7 +891,7 @@ use Harvest\Model\Invoice\Filter;
      * $task->set("billable-by-default", true);
      * $task->set("default-hourly-rate", 65.50);
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->createTask($task);
      * if ($result->isSuccess()) {
@@ -907,7 +907,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "tasks";
 
-        return $this->performPOST($url, $task->toXML());
+        return $this->performPost($url, $task->toXML());
     }
 
     /**
@@ -919,7 +919,7 @@ use Harvest\Model\Invoice\Filter;
      * $task->set("name", "New Task name");
      * $task->set("default-hourly-rate", 73.00);
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->updateTask($task);
      * if ($result->isSuccess()) {
@@ -934,7 +934,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "tasks/$task->id";
 
-        return $this->performPUT($url, $task->toXML());
+        return $this->performPut($url, $task->toXML());
     }
 
     /**
@@ -942,7 +942,7 @@ use Harvest\Model\Invoice\Filter;
      *
      * <code>
      * $task_id = 11111;
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->deleteTask($task_id);
      * if ($result->isSuccess()) {
@@ -957,7 +957,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "tasks/$task_id";
 
-        return $this->performDELETE($url);
+        return $this->performDelete($url);
     }
 
     /*--------------------------------------------------------------*/
@@ -968,7 +968,7 @@ use Harvest\Model\Invoice\Filter;
      * get all users
      *
      * <code>
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->getUsers();
      * if ($result->isSuccess()) {
@@ -982,7 +982,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "people";
 
-        return $this->performGET($url, true);
+        return $this->performGet($url, true);
     }
 
     /**
@@ -990,7 +990,7 @@ use Harvest\Model\Invoice\Filter;
      *
      * <code>
      * $user_id = 11111;
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->getUser($user_id);
      * if ($result->isSuccess()) {
@@ -1005,7 +1005,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "people/$user_id";
 
-        return $this->performGET($url, false);
+        return $this->performGet($url, false);
     }
 
     /**
@@ -1022,7 +1022,7 @@ use Harvest\Model\Invoice\Filter;
      * $user->set('is_admin', false);
      * $user->set('telephone', '555-2345');
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->createUser($user);
      * if ($result->isSuccess()) {
@@ -1038,7 +1038,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "people";
 
-        return $this->performPOST($url, $user->toXML());
+        return $this->performPost($url, $user->toXML());
     }
 
     /**
@@ -1050,7 +1050,7 @@ use Harvest\Model\Invoice\Filter;
      * $user->set("first_name", "Matthew");
      * $user->set("last_name", "Denton");
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->updateUser($user);
      * if ($result->isSuccess()) {
@@ -1065,7 +1065,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "people/$user->id";
 
-        return $this->performPUT($url, $user->toXML());
+        return $this->performPut($url, $user->toXML());
     }
 
     /**
@@ -1073,7 +1073,7 @@ use Harvest\Model\Invoice\Filter;
      *
      * <code>
      * $user_id = 11111;
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->toggleUser($user_id);
      * if ($result->isSuccess()) {
@@ -1088,7 +1088,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "people/$user_id/toggle";
 
-        return $this->performPUT($url, "");
+        return $this->performPut($url, "");
     }
 
     /**
@@ -1096,7 +1096,7 @@ use Harvest\Model\Invoice\Filter;
      *
      * <code>
      * $user_id = 11111;
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->resetUserPassword($user_id);
      * if ($result->isSuccess()) {
@@ -1111,7 +1111,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "people/$user_id/reset_password";
 
-        return $this->performPUT($url, "");
+        return $this->performPut($url, "");
     }
 
     /**
@@ -1119,7 +1119,7 @@ use Harvest\Model\Invoice\Filter;
      *
      * <code>
      * $user_id = 11111;
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->deleteuser($user_id);
      * if ($result->isSuccess()) {
@@ -1134,7 +1134,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "people/" . $user_id;
 
-        return $this->performDELETE($url);
+        return $this->performDelete($url);
     }
 
     /*--------------------------------------------------------------*/
@@ -1145,7 +1145,7 @@ use Harvest\Model\Invoice\Filter;
      * get all expense categories
      *
      * <code>
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->getExpenseCategories();
      * if ($result->isSuccess()) {
@@ -1159,7 +1159,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "expense_categories";
 
-        return $this->performGET($url, true);
+        return $this->performGet($url, true);
     }
 
     /**
@@ -1171,7 +1171,7 @@ use Harvest\Model\Invoice\Filter;
      * $expenseCategory->set('unit-name', "Miles");
      * $expenseCategory->set('unit-price', "0.485");
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->createExpenseCategory($expenseCategory);
      * if ($result->isSuccess()) {
@@ -1187,7 +1187,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "expense_categories";
 
-        return $this->performPOST($url, $expenseCategory->toXML());
+        return $this->performPost($url, $expenseCategory->toXML());
     }
 
     /**
@@ -1198,7 +1198,7 @@ use Harvest\Model\Invoice\Filter;
      * $expenseCategory->set("id", 12345);
      * $expenseCategory->set("unit-name", "Kilometers");
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->updateExpenseCategory($expenseCategory);
      * if ($result->isSuccess()) {
@@ -1213,7 +1213,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "expesnse_categories/$expenseCategory->id";
 
-        return $this->performPUT($url, $expenseCategory->toXML());
+        return $this->performPut($url, $expenseCategory->toXML());
     }
 
     /**
@@ -1221,7 +1221,7 @@ use Harvest\Model\Invoice\Filter;
      *
      * <code>
      * $expenseCategory_id = 11111;
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->deleteExpenseCategory($expenseCategory_id);
      * if ($result->isSuccess()) {
@@ -1236,7 +1236,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "expense_categories/$expense_category_id";
 
-        return $this->performDELETE($url);
+        return $this->performDelete($url);
     }
 
     /*--------------------------------------------------------------*/
@@ -1248,7 +1248,7 @@ use Harvest\Model\Invoice\Filter;
      *
      * <code>
      * $expense_id = 11111;
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->getExpense($expense_id);
      * if ($result->isSuccess()) {
@@ -1263,7 +1263,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "expenses/$expense_id";
 
-        return $this->performGET($url, false);
+        return $this->performGet($url, false);
     }
 
     /**
@@ -1278,7 +1278,7 @@ use Harvest\Model\Invoice\Filter;
      * $expense->set("expense_category_id", 1);
      * $expense->set("spent_at", "Sun, 10 Feb 2008");
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->updateExpense($expense);
      * if ($result->isSuccess()) {
@@ -1293,7 +1293,7 @@ use Harvest\Model\Invoice\Filter;
      * $expense->set("expense_category_id", 2);
      * $expense->set("spent_at", "Sun, 10 Feb 2008");
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->updateExpense($expense);
      * if ($result->isSuccess()) {
@@ -1308,7 +1308,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "expenses";
 
-        return $this->performPOST($url, $expense->toXML());
+        return $this->performPost($url, $expense->toXML());
     }
 
     /**
@@ -1321,7 +1321,7 @@ use Harvest\Model\Invoice\Filter;
      * $expense->set("notes", "Office Supplies");
      * $expense->set("total_cost", 18.97);
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->updateExpense($expense);
      * if ($result->isSuccess()) {
@@ -1334,7 +1334,7 @@ use Harvest\Model\Invoice\Filter;
      * $expense->set("notes", "Drive to Rochester");
      * $expense->set("units", 33);
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->updateExpense($expense);
      * if ($result->isSuccess()) {
@@ -1349,7 +1349,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "expesnses/$expense->id";
 
-        return $this->performPUT($url, $expense->toXML());
+        return $this->performPut($url, $expense->toXML());
     }
 
     /**
@@ -1357,7 +1357,7 @@ use Harvest\Model\Invoice\Filter;
      *
      * <code>
      * $expense_id = 11111;
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->deleteExpense($expense_id);
      * if ($result->isSuccess()) {
@@ -1372,7 +1372,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "expenses/" . $expense_id;
 
-        return $this->performDELETE($url);
+        return $this->performDelete($url);
     }
 
     /**
@@ -1381,7 +1381,7 @@ use Harvest\Model\Invoice\Filter;
      * <code>
      * $expense_id = 12345;
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->getReceipt($expense_id);
      * if ($result->isSuccess()) {
@@ -1396,7 +1396,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "expenses/$expense_id/receipt";
 
-        return $this->performGET($url, "raw");
+        return $this->performGet($url, "raw");
     }
 
     /**
@@ -1406,7 +1406,7 @@ use Harvest\Model\Invoice\Filter;
      * $expense_id = 12345;
      * $image_url = "test.jpg"
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->attachReceipt($expense_id, $image_url);
      * if ($result->isSuccess()) {
@@ -1436,7 +1436,7 @@ use Harvest\Model\Invoice\Filter;
      *
      * <code>
      * $project_id = 12345;
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->getProjectUserAssignments($project_id);
      * if ($result->isSuccess()) {
@@ -1451,7 +1451,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "projects/$project_id/user_assignments";
 
-        return $this->performGET($url, true);
+        return $this->performGet($url, true);
     }
 
     /**
@@ -1460,7 +1460,7 @@ use Harvest\Model\Invoice\Filter;
      * <code>
      * $project_id = 11111;
      * $userAssignment_id = 12345;
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->getProjectUserAssignment($project_id, $userAssignment_id);
      * if ($result->isSuccess()) {
@@ -1476,7 +1476,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "projects/$project_id/user_assignments/$user_assignment_id";
 
-        return $this->performGET($url, false);
+        return $this->performGet($url, false);
     }
 
     /**
@@ -1486,7 +1486,7 @@ use Harvest\Model\Invoice\Filter;
      * $project_id = 12345;
      * $user_id = 23456;
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $api->assignUserToProject($project_id, $user_id);
      * if ($result->isSuccess()) {
@@ -1503,7 +1503,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "projects/$project_id/user_assignments";
 
-        return $this->performPOST($url, "<user><id>$user_id</id></user>");
+        return $this->performPost($url, "<user><id>$user_id</id></user>");
     }
 
     /**
@@ -1513,7 +1513,7 @@ use Harvest\Model\Invoice\Filter;
      * $project_id = 12345;
      * $userAssignment_id = 23456;
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $api->removeUserFromProject($project_id, $userAssignment_id);
      * if ($result->isSuccess()) {
@@ -1529,7 +1529,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "projects/$project_id/user_assignments/$user_assignment_id";
 
-        return $this->performDELETE($url);
+        return $this->performDelete($url);
     }
 
     /**
@@ -1544,7 +1544,7 @@ use Harvest\Model\Invoice\Filter;
      * $userAssignment->set("hourly-rate", 74.50);
      * $userAssignment->set("is-project-manager", false);
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $api->updateProjectUserAssignment($userAssignment);
      * if ($result->isSuccess()) {
@@ -1559,7 +1559,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "projects/" . $userAssignment->get("project-id") . "/user_assignments/" . $userAssignment->get("id");
 
-        return $this->performPUT($url, $userAssignment->toXML());
+        return $this->performPut($url, $userAssignment->toXML());
     }
 
     /*--------------------------------------------------------------*/
@@ -1571,7 +1571,7 @@ use Harvest\Model\Invoice\Filter;
      *
      * <code>
      * $project_id = 12345;
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->getProjectTaskAssignments($project_id);
      * if ($result->isSuccess()) {
@@ -1586,7 +1586,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "projects/$project_id/task_assignments";
 
-        return $this->performGET($url, true);
+        return $this->performGet($url, true);
     }
 
     /**
@@ -1596,7 +1596,7 @@ use Harvest\Model\Invoice\Filter;
      * $project_id = 11111;
      * $taskAssignment_id = 12345;
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->getProjectTaskAssignment($project_id, $taskAssignment_id);
      * if ($result->isSuccess()) {
@@ -1612,7 +1612,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "projects/$project_id/task_assignments/$task_assignment_id";
 
-        return $this->performGET($url, false);
+        return $this->performGet($url, false);
     }
 
     /**
@@ -1622,7 +1622,7 @@ use Harvest\Model\Invoice\Filter;
      * $project_id = 12345;
      * $task_id = 23456;
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $api->assignTaskToProject($project_id, $task_id);
      * if ($result->isSuccess()) {
@@ -1639,7 +1639,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "projects/$project_id/task_assignments";
 
-        return $this->performPOST($url, "<task><id>$task_id</id></task>");
+        return $this->performPost($url, "<task><id>$task_id</id></task>");
     }
 
     /**
@@ -1650,7 +1650,7 @@ use Harvest\Model\Invoice\Filter;
      * $task = new Task();
      * $task->set("name", "Task Name");
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $api->createProjectTaskAssignment($project_id, $task);
      * if ($result->isSuccess()) {
@@ -1667,7 +1667,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "projects/$project_id/task_assignments/add_with_create_new_task";
 
-        return $this->performPOST($url, $task->toXML());
+        return $this->performPost($url, $task->toXML());
     }
 
     /**
@@ -1677,7 +1677,7 @@ use Harvest\Model\Invoice\Filter;
      * $project_id = 12345;
      * $taskAssignment_id = 23456;
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $api->deleteProjectTaskAssignment($project_id, $taskAssignment_id);
      * if ($result->isSuccess()) {
@@ -1693,7 +1693,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "projects/$project_id/task_assignments/$task_assignment_id";
 
-        return $this->performDELETE($url);
+        return $this->performDelete($url);
     }
 
     /**
@@ -1706,7 +1706,7 @@ use Harvest\Model\Invoice\Filter;
      * $taskAssignment->set("deactivated", false);
      * $taskAssignment->set("hourly-rate", 74.50);
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $api->updateProjectTaskAssignment($taskAssignment);
      * if ($result->isSuccess()) {
@@ -1721,7 +1721,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "projects/" . $taskAssignment->get("project-id") . "/task_assignments/" . $taskAssignment->get("id");
 
-        return $this->performPUT($url, $taskAssignment->toXML());
+        return $this->performPut($url, $taskAssignment->toXML());
     }
 
     /*--------------------------------------------------------------*/
@@ -1736,7 +1736,7 @@ use Harvest\Model\Invoice\Filter;
      * $project_id = 12345;
      * $user_id = 11111;
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->getProjectEntries($project_id, $range, $user_id);
      * if ($result->isSuccess()) {
@@ -1756,7 +1756,7 @@ use Harvest\Model\Invoice\Filter;
             $url .= "&user_id=" . $user_id;
         }
 
-        return $this->performGET($url, true);
+        return $this->performGet($url, true);
     }
 
     /**
@@ -1767,7 +1767,7 @@ use Harvest\Model\Invoice\Filter;
      * $project_id = 12345;
      * $user_id = 11111;
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->getUserEntries($user_id, $range, $project_id);
      * if ($result->isSuccess()) {
@@ -1787,7 +1787,7 @@ use Harvest\Model\Invoice\Filter;
             $url .= "&project_id=" . $project_id;
         }
 
-        return $this->performGET($url, true);
+        return $this->performGet($url, true);
     }
 
     /**
@@ -1797,7 +1797,7 @@ use Harvest\Model\Invoice\Filter;
      * $range = new Range("20090712", "20090719");
      * $user_id = 11111;
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->getUserExpenses($user_id, $range);
      * if ($result->isSuccess()) {
@@ -1813,7 +1813,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "people/" . $user_id . "/expenses?from=" . $range->from() . '&to=' . $range->to();
 
-        return $this->performGET($url, true);
+        return $this->performGet($url, true);
     }
 
     /*--------------------------------------------------------------*/
@@ -1827,7 +1827,7 @@ use Harvest\Model\Invoice\Filter;
      * $filter = new Filter();
      * $filter->set("status", Filter::UNPAID);
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->getInvoice($filter);
      * if ($result->isSuccess()) {
@@ -1845,7 +1845,7 @@ use Harvest\Model\Invoice\Filter;
             $url .= $filter->toURL();
         }
 
-        return $this->performGET($url, true);
+        return $this->performGet($url, true);
     }
 
     /**
@@ -1854,7 +1854,7 @@ use Harvest\Model\Invoice\Filter;
      * <code>
      * $invoice_id = 12345;
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->getInvoice($invoice_id);
      * if ($result->isSuccess()) {
@@ -1869,7 +1869,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "invoices/" . $invoice_id;
 
-        return $this->performGET($url, false);
+        return $this->performGet($url, false);
     }
 
     /**
@@ -1881,7 +1881,7 @@ use Harvest\Model\Invoice\Filter;
      * $invoice->set("notes", "Some Notes");
      * // set other values
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->createInvoice($invoice);
      * if ($result->isSuccess()) {
@@ -1897,7 +1897,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "invoices";
 
-        return $this->performPOST($url, $invoice->toXML());
+        return $this->performPost($url, $invoice->toXML());
     }
 
     /**
@@ -1908,7 +1908,7 @@ use Harvest\Model\Invoice\Filter;
      * $invoice->set("id", 12345);
      * $invoice->set("notes", "Some Notes");
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->updateInvoice($invoice);
      * if ($result->isSuccess()) {
@@ -1923,7 +1923,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "invoices/" . $invoice->get("id");
 
-        return $this->performPUT($url, $invoice->toXML());
+        return $this->performPut($url, $invoice->toXML());
     }
 
     /**
@@ -1932,7 +1932,7 @@ use Harvest\Model\Invoice\Filter;
      * <code>
      * $invoice_id = 12345;
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->deleteInvoice($invoice_id);
      * if ($result->isSuccess()) {
@@ -1947,7 +1947,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "invoices/" . $invoice_id;
 
-        return $this->performDELETE($url);
+        return $this->performDelete($url);
     }
 
     /**
@@ -1956,7 +1956,7 @@ use Harvest\Model\Invoice\Filter;
      * <code>
      * $invoice_id = 12345;
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->closeInvoice($invoice_id);
      * if ($result->isSuccess()) {
@@ -1971,7 +1971,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "invoices/$invoice_id/mark_as_closed";
 
-        return $this->performPUT($url, null);
+        return $this->performPut($url, null);
     }
 
     /**
@@ -1980,7 +1980,7 @@ use Harvest\Model\Invoice\Filter;
      * <code>
      * $invoice_id = 12345;
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->markOffInvoice($invoice_id);
      * if ($result->isSuccess()) {
@@ -2006,7 +2006,7 @@ use Harvest\Model\Invoice\Filter;
      * <code>
      * $invoice_id = 12345;
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->getInvoiceMessages($invoice_id);
      * if ($result->isSuccess()) {
@@ -2021,7 +2021,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "invoices/" . $invoice_id . "/messages";
 
-        return $this->performGET($url, true);
+        return $this->performGet($url, true);
     }
 
     /**
@@ -2031,7 +2031,7 @@ use Harvest\Model\Invoice\Filter;
      * $invoice_id = 12345;
      * $message_id = 11111;
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->getInvoiceMessage($invoice_id, $message_id);
      * if ($result->isSuccess()) {
@@ -2047,7 +2047,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "invoices/" . $invoice_id . "/messages/" . $message_id;
 
-        return $this->performGET($url, false);
+        return $this->performGet($url, false);
     }
 
     /**
@@ -2060,7 +2060,7 @@ use Harvest\Model\Invoice\Filter;
      * $message->set("body", "The Message");
      * $message->set("recipients", "test@example.com");
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->sendInvoiceMessage($invoice_id, $message);
      * if ($result->isSuccess()) {
@@ -2077,7 +2077,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "invoices/$invoice_id/messages";
 
-        return $this->performPOST($url, $message->toXML());
+        return $this->performPost($url, $message->toXML());
     }
 
     /**
@@ -2087,7 +2087,7 @@ use Harvest\Model\Invoice\Filter;
      * $invoice_id = 12345;
      * $message_id = 11111;
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->deleteInvoiceMessage($invoice_id, $message_id);
      * if ($result->isSuccess()) {
@@ -2103,7 +2103,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "invoices/$invoice_id/messages/$message_id";
 
-        return $this->performDELETE($url);
+        return $this->performDelete($url);
     }
 
     /**
@@ -2115,7 +2115,7 @@ use Harvest\Model\Invoice\Filter;
      * $message = new InvoiceMessage();
      * $message->set("body", "The Message");
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->createSentInvoiceMessage($invoice_id, $message);
      * if ($result->isSuccess()) {
@@ -2132,7 +2132,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "invoices/$invoice_id/messages/mark_as_sent";
 
-        return $this->performPOST($url, $message->toXML());
+        return $this->performPost($url, $message->toXML());
     }
 
     /**
@@ -2144,7 +2144,7 @@ use Harvest\Model\Invoice\Filter;
      * $message = new InvoiceMessage();
      * $message->set("body", "The Message");
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->createClosedInvoiceMessage($invoice_id, $message);
      * if ($result->isSuccess()) {
@@ -2161,7 +2161,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "invoices/$invoice_id/messages/mark_as_closed";
 
-        return $this->performPOST($url, $message->toXML());
+        return $this->performPost($url, $message->toXML());
     }
 
     /**
@@ -2173,7 +2173,7 @@ use Harvest\Model\Invoice\Filter;
      * $message = new InvoiceMessage();
      * $message->set("body", "The Message");
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->createReOpenInvoiceMessage($invoice_id, $message);
      * if ($result->isSuccess()) {
@@ -2190,7 +2190,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "invoices/$invoice_id/messages/re_open";
 
-        return $this->performPOST($url, $message->toXML());
+        return $this->performPost($url, $message->toXML());
     }
 
     /**
@@ -2202,7 +2202,7 @@ use Harvest\Model\Invoice\Filter;
      * $message = new InvoiceMessage();
      * $message->set("body", "The Message");
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->createMarkAsDraftInvoiceMessage($invoice_id, $message);
      * if ($result->isSuccess()) {
@@ -2219,7 +2219,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "invoices/$invoice_id/messages/mark_as_draft";
 
-        return $this->performPOST($url, $message->toXML());
+        return $this->performPost($url, $message->toXML());
     }
 
     /*--------------------------------------------------------------*/
@@ -2230,7 +2230,7 @@ use Harvest\Model\Invoice\Filter;
      * get all recorded payments for an invoice
      *
      * <code>
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      * $invoice_id = 1111;
      *
      * $result = $api->getInvoicePayments($invoice_id);
@@ -2246,7 +2246,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "invoices/$invoice_id/payments";
 
-        return $this->performGET($url, true);
+        return $this->performGet($url, true);
     }
 
     /**
@@ -2256,7 +2256,7 @@ use Harvest\Model\Invoice\Filter;
      * $invoice_id = 12345;
      * $payment_id = 11111;
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->getInvoicePayment($invoice_id, $payment_id);
      * if ($result->isSuccess()) {
@@ -2272,7 +2272,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "invoices/$invoice_id/payments/$payment_id";
 
-        return $this->performGET($url, false);
+        return $this->performGet($url, false);
     }
 
     /**
@@ -2283,7 +2283,7 @@ use Harvest\Model\Invoice\Filter;
      * $payment->set("paid-at", "2008-02-14T00:00:00Z");
      * $payment->set("amount", 5400.00);
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->createInvoicePayment($payment);
      * if ($result->isSuccess()) {
@@ -2300,7 +2300,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "invoices/$invoice_id/payments";
 
-        return $this->performPOST($url, $payment->toXML());
+        return $this->performPost($url, $payment->toXML());
     }
 
     /**
@@ -2310,7 +2310,7 @@ use Harvest\Model\Invoice\Filter;
      * $invoice_id = 12345;
      * $payment_id = 12111;
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->deleteInvoicePayment($invoice_id, $payment_id);
      * if ($result->isSuccess()) {
@@ -2326,7 +2326,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "invoices/$invoice_id/payments/$payment_id";
 
-        return $this->performDELETE($url);
+        return $this->performDelete($url);
     }
 
     /*--------------------------------------------------------------*/
@@ -2337,7 +2337,7 @@ use Harvest\Model\Invoice\Filter;
      * get all invoice categories
      *
      * <code>
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->getInvoiceCategories();
      * if ($result->isSuccess()) {
@@ -2351,7 +2351,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "invoice_item_categories";
 
-        return $this->performGET($url, true);
+        return $this->performGet($url, true);
     }
 
     /**
@@ -2361,7 +2361,7 @@ use Harvest\Model\Invoice\Filter;
      * $invoiceCategory = new InvoiceItemCategory();
      * $invoiceCategory->set("name", "Entertainment");
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->createInvoiceCategory($invoiceCategory);
      * if ($result->isSuccess()) {
@@ -2377,7 +2377,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "invoice_item_categories";
 
-        return $this->performPOST($url, $invoiceCategory->toXML());
+        return $this->performPost($url, $invoiceCategory->toXML());
     }
 
     /**
@@ -2388,7 +2388,7 @@ use Harvest\Model\Invoice\Filter;
      * $invoiceCategory->set("id", 11111);
      * $invoiceCategory->set("name", "Entertainment");
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->updateInvoiceCategory($invoiceCategory);
      * if ($result->isSuccess()) {
@@ -2403,7 +2403,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "invoice_item_categories/" . $invoiceCategory->get("id");
 
-        return $this->performPUT($url, $invoiceCategory->toXML());
+        return $this->performPut($url, $invoiceCategory->toXML());
     }
 
     /**
@@ -2412,7 +2412,7 @@ use Harvest\Model\Invoice\Filter;
      * <code>
      * $invoiceCategory_id = 12345;
      *
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      *
      * $result = $api->deleteInvoiceCategory($invoiceCategory_id);
      * if ($result->isSuccess()) {
@@ -2427,7 +2427,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "invoice_item_categories/$invoiceCategory_id";
 
-        return $this->performDELETE($url);
+        return $this->performDelete($url);
     }
 
     /*--------------------------------------------------------------*/
@@ -2456,16 +2456,16 @@ use Harvest\Model\Invoice\Filter;
      * @param  mixed  $multi Flag to specify if multiple items are returned by request
      * @return Result
      */
-    protected function performGET($url, $multi = true)
+    protected function performGet($url, $multi = true)
     {
         $data = null;
         $code = null;
         $success = false;
         while (! $success) {
-            $ch = $this->generateCURL($url);
+            $ch = $this->generateCurl($url);
             $data = curl_exec($ch);
             $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            if ($this->_mode == HarvestAPI::RETRY && $code == "503") {
+            if ($this->_mode == HarvestApi::RETRY && $code == "503") {
                 $success = false;
                 sleep($this->_headers['Retry-After']);
             } else {
@@ -2490,7 +2490,7 @@ use Harvest\Model\Invoice\Filter;
      * @param $url
      * @return object cURL Handler
      */
-    protected function generateCURL($url)
+    protected function generateCurl($url)
     {
         $this->resetHeader();
         $ch = curl_init();
@@ -2510,16 +2510,16 @@ use Harvest\Model\Invoice\Filter;
      * @param  string $data data to be sent
      * @return Result
      */
-    protected function performPUT($url, $data)
+    protected function performPut($url, $data)
     {
         $rData = null;
         $code = null;
         $success = false;
         while (! $success) {
-            $ch = $this->generatePUTCURL($url, $data);
+            $ch = $this->generatePutCurl($url, $data);
             $rData = curl_exec($ch);
             $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            if ($this->_mode == HarvestAPI::RETRY && $code == "503") {
+            if ($this->_mode == HarvestApi::RETRY && $code == "503") {
                 $success = false;
                 sleep($this->_headers['Retry-After']);
             } else {
@@ -2536,9 +2536,9 @@ use Harvest\Model\Invoice\Filter;
      * @param $data PUT Data
      * @return object cURL Handler
      */
-    protected function generatePUTCURL($url, $data)
+    protected function generatePutCurl($url, $data)
     {
-        $ch = $this->generateCURL($url);
+        $ch = $this->generateCurl($url);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 
@@ -2551,16 +2551,16 @@ use Harvest\Model\Invoice\Filter;
      * @param  string $data data to be sent
      * @return Result
      */
-    protected function performPOST($url, $data, $multi = "id")
+    protected function performPost($url, $data, $multi = "id")
     {
         $rData = null;
         $code = null;
         $success = false;
         while (! $success) {
-            $ch = $this->generatePOSTCURL($url, $data);
+            $ch = $this->generatePostCurl($url, $data);
             $rData = curl_exec($ch);
             $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            if ($this->_mode == HarvestAPI::RETRY && $code == "503") {
+            if ($this->_mode == HarvestApi::RETRY && $code == "503") {
                 $success = false;
                 sleep($this->_headers['Retry-After']);
             } else {
@@ -2588,9 +2588,9 @@ use Harvest\Model\Invoice\Filter;
      * @param $data Array of Post Data
      * @return object cURL Handler
      */
-    protected function generatePOSTCURL($url, $data)
+    protected function generatePostCurl($url, $data)
     {
-        $ch = $this->generateCURL($url);
+        $ch = $this->generateCurl($url);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 
@@ -2602,16 +2602,16 @@ use Harvest\Model\Invoice\Filter;
      * @param  string $url url of server to process request
      * @return Result
      */
-    protected function performDELETE($url)
+    protected function performDelete($url)
     {
         $data = null;
         $code = null;
         $success = false;
         while (! $success) {
-            $ch = $this->generateDELETECURL($url);
+            $ch = $this->generateDeleteCurl($url);
             $data = curl_exec($ch);
             $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            if ($this->_mode == HarvestAPI::RETRY && $code == "503") {
+            if ($this->_mode == HarvestApi::RETRY && $code == "503") {
                 $success = false;
                 sleep($this->_headers['Retry-After']);
             } else {
@@ -2627,9 +2627,9 @@ use Harvest\Model\Invoice\Filter;
      * @param $url
      * @return object cURL Handler
      */
-    protected function generateDELETECURL($url)
+    protected function generateDeleteCurl($url)
     {
-        $ch = $this->generateCURL($url);
+        $ch = $this->generateCurl($url);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
 
         return $ch;
@@ -2648,10 +2648,10 @@ use Harvest\Model\Invoice\Filter;
         $code = null;
         $success = false;
         while (! $success) {
-            $ch = $this->generateMultiPartCURL($url, $data);
+            $ch = $this->generateMultiPartCurl($url, $data);
             $rData = curl_exec($ch);
             $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            if ($this->_mode == HarvestAPI::RETRY && $code == "503") {
+            if ($this->_mode == HarvestApi::RETRY && $code == "503") {
                 $success = false;
                 sleep($this->_headers['Retry-After']);
             } else {
@@ -2668,9 +2668,9 @@ use Harvest\Model\Invoice\Filter;
      * @param $data array of MultiPart Form Data
      * @return object cURL Handler
      */
-    protected function generateMultiPartCURL($url, $data)
+    protected function generateMultiPartCurl($url, $data)
     {
-        $ch = $this->generateCURL($url);
+        $ch = $this->generateCurl($url);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('User-Agent: PHP Wrapper Library for Harvest API', 'Accept: application/xml', 'Content-Type: multipart/form-data', 'Authorization: Basic (' . base64_encode($this->_user . ":" . $this->_password). ')'));
@@ -2786,7 +2786,7 @@ use Harvest\Model\Invoice\Filter;
             break;
         }
         if (! is_null($item)) {
-            $item->parseXML($node);
+            $item->parseXml($node);
         }
 
         return $item;
@@ -2804,9 +2804,9 @@ use Harvest\Model\Invoice\Filter;
         $key = substr($header, 0, $pos);
         $value = trim(substr($header, $pos + 1));
         if ($key == "Location") {
-            $this->_headers[ $key ] = trim(substr($value, strrpos($value, "/") + 1));
+            $this->_headers[$key] = trim(substr($value, strrpos($value, "/") + 1));
         } else {
-            $this->_headers[ $key ] = $value;
+            $this->_headers[$key] = $value;
         }
 
         return strlen($header);
@@ -2827,7 +2827,7 @@ use Harvest\Model\Invoice\Filter;
      *
      * <code>
      * // register the class auto loader
-     * spl_autoload_register(array('HarvestAPI', 'autoload'));
+     * spl_autoload_register(array('HarvestApi', 'autoload'));
      * </code>
      *
      * @param  string  $classname Name of Class to be loaded
@@ -2852,7 +2852,7 @@ use Harvest\Model\Invoice\Filter;
      * Get the root path to Harvest API
      *
      * <code>
-     * $api = new HarvestAPI();
+     * $api = new HarvestApi();
      * $api->getPath();
      * </code>
      *

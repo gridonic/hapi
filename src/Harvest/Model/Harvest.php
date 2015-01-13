@@ -124,7 +124,7 @@ abstract class Harvest
      * @param  XMLNode $node xml node to parse
      * @return void
      */
-    public function parseXML($node)
+    public function parseXml($node)
     {
         foreach ($node->childNodes as $item) {
             if ($item->nodeName != "#text") {

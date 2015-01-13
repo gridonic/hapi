@@ -29,7 +29,7 @@ namespace Harvest;
  * </code>
  *
  */
-class HarvestReports extends HarvestAPI
+class HarvestReports extends HarvestApi
 {
     /**
      * @var string Start of Week

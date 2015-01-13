@@ -82,13 +82,13 @@ class Timer extends Harvest
      * @param  XMLNode $node xml node to parse
      * @return void
      */
-    public function parseXML($node)
+    public function parseXml($node)
     {
         foreach ($node->childNodes as $item) {
             switch ($item->nodeName) {
                 case "day_entry":
                     $this->_dayEntry = new DayEntry();
-                    $this->_dayEntry->parseXML( $node );
+                    $this->_dayEntry->parseXml( $node );
                 break;
                 case "hours_for_previously_running_timer":
                     $this->_hoursForPrevious = $item->nodeValue;

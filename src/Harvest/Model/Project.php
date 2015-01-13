@@ -96,7 +96,7 @@ class Project extends Harvest
      * @param  XMLNode $node xml node to parse
      * @return void
      */
-    public function parseXML($node)
+    public function parseXml($node)
     {
         foreach ($node->childNodes as $item) {
             switch ($item->nodeName) {
@@ -150,7 +150,7 @@ class Project extends Harvest
             break;
         }
         if ( ! is_null( $item ) ) {
-            $item->parseXML( $node );
+            $item->parseXml( $node );
         }
 
         return $item;
