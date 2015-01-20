@@ -3,6 +3,8 @@
 
 namespace Harvest;
 
+use Harvest\Model\Range;
+
 /**
  * HarvestReports
  *
