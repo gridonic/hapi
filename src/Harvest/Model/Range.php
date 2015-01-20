@@ -53,7 +53,7 @@ class Range
      */
     public function to()
     {
-        if ($this->_to instanceof DateTime) {
+        if ($this->_to instanceof \DateTime) {
             return $this->_to->format( "Ymd" );
         } else {
             return $this->_to;
@@ -65,7 +65,7 @@ class Range
      */
     public function from()
     {
-        if ($this->_from instanceof DateTime) {
+        if ($this->_from instanceof \DateTime) {
             return $this->_from->format( "Ymd" );
         } else {
             return $this->_from;
@@ -87,11 +87,11 @@ class Range
         $now = null;
         $before = null;
         if ( is_null($timeZone) ) {
-            $now = new DateTime();
-            $before = new DateTime();
+            $now = new \DateTime();
+            $before = new \DateTime();
         } else {
-            $now = new DateTime( "now", new DateTimeZone( $timeZone ) );
-            $before = new DateTime( "now", new DateTimeZone( $timeZone ) );
+            $now = new \DateTime( "now", new \DateTimeZone( $timeZone ) );
+            $before = new \DateTime( "now", new \DateTimeZone( $timeZone ) );
         }
         $range = new Range( $before, $now );
 
@@ -114,11 +114,11 @@ class Range
         $now = null;
         $before = null;
         if ( is_null($timeZone) ) {
-            $now = new DateTime();
-            $before = new DateTime();
+            $now = new \DateTime();
+            $before = new \DateTime();
         } else {
-            $now = new DateTime( "now", new DateTimeZone( $timeZone ) );
-            $before = new DateTime( "now", new DateTimeZone( $timeZone ) );
+            $now = new \DateTime( "now", new \DateTimeZone( $timeZone ) );
+            $before = new \DateTime( "now", new \DateTimeZone( $timeZone ) );
         }
         $dayOfWeek = $now->format( "w" );
         $offset = (($dayOfWeek - $startOfWeek ) + 7 ) % 7;
@@ -144,11 +144,11 @@ class Range
         $now = null;
         $before = null;
         if ( is_null($timeZone) ) {
-            $now = new DateTime();
-            $before = new DateTime();
+            $now = new \DateTime();
+            $before = new \DateTime();
         } else {
-            $now = new DateTime( "now", new DateTimeZone( $timeZone ) );
-            $before = new DateTime( "now", new DateTimeZone( $timeZone ) );
+            $now = new \DateTime( "now", new \DateTimeZone( $timeZone ) );
+            $before = new \DateTime( "now", new \DateTimeZone( $timeZone ) );
         }
         $dayOfWeek = $now->format( "w" );
         $offset = (($dayOfWeek - $startOfWeek ) + 7 ) % 7;
@@ -176,11 +176,11 @@ class Range
         $now = null;
         $before = null;
         if ( is_null($timeZone) ) {
-            $now = new DateTime();
-            $before = new DateTime();
+            $now = new \DateTime();
+            $before = new \DateTime();
         } else {
-            $now = new DateTime( "now", new DateTimeZone( $timeZone ) );
-            $before = new DateTime( "now", new DateTimeZone( $timeZone ) );
+            $now = new \DateTime( "now", new \DateTimeZone( $timeZone ) );
+            $before = new \DateTime( "now", new \DateTimeZone( $timeZone ) );
         }
         $dayOfMonth = $now->format( "j" );
         $offset = $dayOfMonth - 1;
@@ -205,11 +205,11 @@ class Range
         $now = null;
         $before = null;
         if ( is_null($timeZone) ) {
-            $now = new DateTime();
-            $before = new DateTime();
+            $now = new \DateTime();
+            $before = new \DateTime();
         } else {
-            $now = new DateTime( "now", new DateTimeZone( $timeZone ) );
-            $before = new DateTime( "now", new DateTimeZone( $timeZone ) );
+            $now = new \DateTime( "now", new \DateTimeZone( $timeZone ) );
+            $before = new \DateTime( "now", new \DateTimeZone( $timeZone ) );
         }
         $dayOfMonth = $now->format( "j" );
         $offset = $dayOfMonth - 1;
