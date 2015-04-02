@@ -245,7 +245,7 @@ use Harvest\Model\Invoice\Filter;
      * }
      * </code>
      *
-     * @param $entry_id    Day Entry Identifier
+     * @param $entry_id    DayEntry Identifier
      * @return Result
      */
     public function toggleTimer($entry_id)
@@ -274,7 +274,7 @@ use Harvest\Model\Invoice\Filter;
       * }
       * </code>
       *
-      * @param Day|DayEntry $entry Day Entry
+      * @param DayEntry $entry Day Entry
       * @return Result
       */
     public function createEntry(DayEntry $entry)
@@ -302,7 +302,7 @@ use Harvest\Model\Invoice\Filter;
       * }
       * </code>
       *
-      * @param Day|DayEntry $entry Day Entry
+      * @param DayEntry $entry Day Entry
       * @return Result
       */
     public function startNewTimer(DayEntry $entry)
@@ -327,7 +327,7 @@ use Harvest\Model\Invoice\Filter;
      * }
      * </code>
      *
-     * @param $entry_id    Day Entry Identifier
+     * @param $entry_id    DayEntry Identifier
      * @return Result
      */
     public function deleteEntry($entry_id)
@@ -357,7 +357,7 @@ use Harvest\Model\Invoice\Filter;
       * }
       * </code>
       *
-      * @param Day|DayEntry $entry Day Entry
+      * @param DayEntry $entry Day Entry
       * @return Result
       */
     public function updateEntry(DayEntry $entry)
@@ -1349,7 +1349,7 @@ use Harvest\Model\Invoice\Filter;
      */
     public function updateExpense(Expense $expense)
     {
-        $url = "expesnses/$expense->id";
+        $url = "expenses/$expense->id";
 
         return $this->performPut($url, $expense->toXML());
     }
@@ -1416,8 +1416,8 @@ use Harvest\Model\Invoice\Filter;
      * }
      * </code>
      *
-     * @param $expense_id Expense Identifier
-     * @param $image_url Image URL
+     * @param Expense $expense_id Identifier
+     * @param string $image_url Image URL
      * @return Result
      */
     public function attachReceipt($expense_id, $image_url)
@@ -2479,7 +2479,7 @@ use Harvest\Model\Invoice\Filter;
             if ($multi === true) {
                 $data = $this->parseItems($data);
             } elseif ($multi == "raw") {
-                $data = $data;
+                //$data = $data;
             } else {
                 $data = $this->parseItem($data);
             }
@@ -2490,8 +2490,8 @@ use Harvest\Model\Invoice\Filter;
 
     /**
      * generate cURL get request
-     * @param $url
-     * @return object cURL Handler
+     * @param string $url
+     * @return resource cURL Handler
      */
     protected function generateCurl($url)
     {
@@ -2533,12 +2533,12 @@ use Harvest\Model\Invoice\Filter;
         return new Result($code, $rData, $this->_headers);
     }
 
-    /**
-     * generate cURL put request
-     * @param $url
-     * @param $data PUT Data
-     * @return object cURL Handler
-     */
+     /**
+      * generate cURL put request
+      * @param $url
+      * @param $data
+      * @return resource
+      */
     protected function generatePutCurl($url, $data)
     {
         $ch = $this->generateCurl($url);
@@ -2590,7 +2590,7 @@ use Harvest\Model\Invoice\Filter;
      * generate cURL get request
      * @param $url
      * @param $data Array of Post Data
-     * @return object cURL Handler
+     * @return resource cURL Handler
      */
     protected function generatePostCurl($url, $data)
     {
@@ -2629,7 +2629,7 @@ use Harvest\Model\Invoice\Filter;
     /**
      * generate cURL get request
      * @param $url
-     * @return object cURL Handler
+     * @return resource cURL Handler
      */
     protected function generateDeleteCurl($url)
     {
@@ -2670,7 +2670,7 @@ use Harvest\Model\Invoice\Filter;
      * generate MultiPart/Form-Data request
      * @param $url
      * @param $data array of MultiPart Form Data
-     * @return object cURL Handler
+     * @return resource cURL Handler
      */
     protected function generateMultiPartCurl($url, $data)
     {
@@ -2719,7 +2719,7 @@ use Harvest\Model\Invoice\Filter;
 
     /**
      * parse xml node
-     * @param  DocumentElement $node document element
+     * @param  \DOMElement $node document element
      * @return mixed
      */
     protected function parseNode($node)
@@ -2743,6 +2743,7 @@ use Harvest\Model\Invoice\Filter;
                         break;
                     }
                 }
+            break;
             case "day_entry":
             case "day-entry":
                 $item = new DayEntry();
@@ -2802,7 +2803,7 @@ use Harvest\Model\Invoice\Filter;
      * @param  string      $header Header line text to be parsed
      * @return int
      */
-    protected function parseHeader($ch, $header)
+    protected function parseHeader($header)
     {
         $pos = strpos($header, ":");
         $key = substr($header, 0, $pos);

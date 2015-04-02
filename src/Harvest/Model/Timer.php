@@ -3,8 +3,6 @@
 
 namespace Harvest\Model;
 
-use Harvest\Model\DayEntry;
-
 /**
  * Timer
  *
@@ -82,7 +80,7 @@ class Timer extends Harvest
     /**
      * parse XML represenation into a Harvest Timer object
      *
-     * @param  XMLNode $node xml node to parse
+     * @param  \DOMNode $node xml node to parse
      * @return void
      */
     public function parseXml($node)

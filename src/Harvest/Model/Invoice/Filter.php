@@ -4,6 +4,7 @@
 namespace Harvest\Model\Invoice;
 
 use Harvest\Exception\HarvestException;
+use Harvest\Model\Range;
 
 /**
  * Filter
@@ -120,7 +121,7 @@ class Filter
                 return $this->_updated_since;
             break;
             default:
-                throw new HarvestException(sprintf('Unknown method %s::%s', get_class($this), $method));
+                throw new HarvestException(sprintf('Unknown method %s::%s', get_class($this), $property));
             break;
         }
     }
@@ -163,7 +164,7 @@ class Filter
                 $this->_updated_since = $value;
             break;
             default:
-                throw new HarvestException(sprintf('Unknown method %s::%s', get_class($this), $method));
+                throw new HarvestException(sprintf('Unknown method %s::%s', get_class($this), $property));
             break;
         }
     }
@@ -182,7 +183,7 @@ class Filter
         if(count($arguments) === 0) {
             return $this->get($method);
         } elseif(count($arguments) === 1) {
-            return $this->set($method, $arguments[0]);
+            $this->set($method, $arguments[0]);
         }
 
         throw new HarvestException(sprintf('Unknown method %s::%s', get_class($this), $method));
@@ -210,7 +211,7 @@ class Filter
         }
         if(!is_null($this->_updated_since)) {
             $query .= '&updated_since=';
-            if($this->_updated_since instanceOf DateTime) {
+            if($this->_updated_since instanceOf \DateTime) {
                 $query .= urlencode($this->_updated_since->format("Y-m-d G:i"));
             } else {
                 $query .= urlencode($this->_updated_since);

@@ -33,6 +33,7 @@ use Harvest\Exception\HarvestException;
  *   <li>Hint</li>
  * </ul>
  *
+ * @property array|mixed data
  */
 class Result
 {

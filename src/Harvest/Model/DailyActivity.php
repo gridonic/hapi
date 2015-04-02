@@ -4,7 +4,6 @@
 namespace Harvest\Model;
 
 use Harvest\Exception\HarvestException;
-use Harvest\Model\DayEntry;
 
 /**
  * DailyActivity
@@ -46,7 +45,7 @@ class DailyActivity extends Harvest
      */
     protected $_projects = null;
     /**
-     * get specifed property
+     * get specified property
      *
      * @param  mixed $property
      * @return mixed
@@ -99,16 +98,16 @@ class DailyActivity extends Harvest
         if ( count($arguments) == 0 ) {
             return $this->get( $method );
         } elseif ( count( $arguments ) == 1 ) {
-            return $this->set( $method, $arguments[0] );
+            $this->set( $method, $arguments[0] );
         }
 
         throw new HarvestException( sprintf('Unknown method %s::%s', get_class($this), $method));
     }
 
     /**
-     * parse XML represenation into a Harvest DailyActivity object
+     * parse XML representation into a Harvest DailyActivity object
      *
-     * @param  XMLNode $node xml node to parse
+     * @param  \DOMNode $node xml node to parse
      * @return void
      */
     public function parseXml($node)
@@ -133,7 +132,7 @@ class DailyActivity extends Harvest
 
     /**
      * parse xml list
-     * @param  string $xml
+     * @param  \DOMNode $xml
      * @return array
      */
     private function parseItems($xml)
@@ -153,7 +152,7 @@ class DailyActivity extends Harvest
 
     /**
      * parse xml node
-     * @param  XMLNode $node
+     * @param  \DOMNode $node
      * @return mixed
      */
     private function parseNode($node)

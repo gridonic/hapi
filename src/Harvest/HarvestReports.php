@@ -4,6 +4,7 @@
 namespace Harvest;
 
 use Harvest\Model\Range;
+use Harvest\Model\Result;
 
 /**
  * HarvestReports

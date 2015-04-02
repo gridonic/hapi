@@ -49,7 +49,7 @@ class Range
     }
 
     /**
-     * @return _to
+     * @return string
      */
     public function to()
     {
@@ -61,7 +61,7 @@ class Range
     }
 
     /**
-     * @return _from
+     * @return string
      */
     public function from()
     {
@@ -120,7 +120,7 @@ class Range
             $now = new \DateTime( "now", new \DateTimeZone( $timeZone ) );
             $before = new \DateTime( "now", new \DateTimeZone( $timeZone ) );
         }
-        $dayOfWeek = $now->format( "w" );
+        $dayOfWeek = (int) $now->format( "w" );
         $offset = (($dayOfWeek - $startOfWeek ) + 7 ) % 7;
         $before->modify( "-$offset day" );
         $range = new Range( $before, $now );
@@ -150,7 +150,7 @@ class Range
             $now = new \DateTime( "now", new \DateTimeZone( $timeZone ) );
             $before = new \DateTime( "now", new \DateTimeZone( $timeZone ) );
         }
-        $dayOfWeek = $now->format( "w" );
+        $dayOfWeek = (int) $now->format( "w" );
         $offset = (($dayOfWeek - $startOfWeek ) + 7 ) % 7;
         $beginOffset = $offset + 7;
         $endOffset = $offset + 1;
