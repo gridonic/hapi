@@ -545,6 +545,7 @@ class HarvestReports extends HarvestApi
      * }
      * </code>
      *
+     * @param $user_id
      * @return Result
      */
     public function getUsersActiveTimer($user_id)

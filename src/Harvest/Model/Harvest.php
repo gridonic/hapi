@@ -104,8 +104,10 @@ abstract class Harvest
      * magic method used for method overloading
      *
      * @param  string $method name of the method
-     * @param  array  $args   method arguments
-     * @return mixed  the return value of the given method
+     * @param $arguments
+     * @return mixed the return value of the given method
+     * @throws HarvestException
+     * @internal param array $args method arguments
      */
     public function __call($method, $arguments)
     {

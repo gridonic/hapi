@@ -255,28 +255,28 @@ use Harvest\Model\Invoice\Filter;
         return $this->performGet($url, false);
     }
 
-    /**
-     * create an entry
-     *
-     * <code>
-     * $entry = new DayEntry();
-     * $entry->set("notes", "Test Support");
-     * $entry->set("hours", 3);
-     * $entry->set("project_id", 3);
-     * $entry->set("task_id", 14);
-     * $entry->set("spent_at", "Tue, 17 Oct 2006");
-     *
-     * $api = new HarvestApi();
-     *
-     * $result = $api->createEntry($entry);
-     * if ($result->isSuccess()) {
-     *     $timer = $result->data;
-     * }
-     * </code>
-     *
-     * @param $entry    Day Entry
-     * @return Result
-     */
+     /**
+      * create an entry
+      *
+      * <code>
+      * $entry = new DayEntry();
+      * $entry->set("notes", "Test Support");
+      * $entry->set("hours", 3);
+      * $entry->set("project_id", 3);
+      * $entry->set("task_id", 14);
+      * $entry->set("spent_at", "Tue, 17 Oct 2006");
+      *
+      * $api = new HarvestApi();
+      *
+      * $result = $api->createEntry($entry);
+      * if ($result->isSuccess()) {
+      *     $timer = $result->data;
+      * }
+      * </code>
+      *
+      * @param Day|DayEntry $entry Day Entry
+      * @return Result
+      */
     public function createEntry(DayEntry $entry)
     {
         $url = "daily/add";
@@ -284,27 +284,27 @@ use Harvest\Model\Invoice\Filter;
         return $this->performPost($url, $entry->toXML(), false);
     }
 
-    /**
-     * creates an entry and starts its timer
-     *
-     * <code>
-     * $entry = new DayEntry();
-     * $entry->set("notes", "Test Support");
-     * $entry->set("project_id", 3);
-     * $entry->set("task_id", 14);
-     * $entry->set("spent_at", "Tue, 17 Oct 2006");
-     *
-     * $api = new HarvestApi();
-     *
-     * $result = $api->startNewTimer($entry);
-     * if ($result->isSuccess()) {
-     *     $timer = $result->data;
-     * }
-     * </code>
-     *
-     * @param $entry    Day Entry
-     * @return Result
-     */
+     /**
+      * creates an entry and starts its timer
+      *
+      * <code>
+      * $entry = new DayEntry();
+      * $entry->set("notes", "Test Support");
+      * $entry->set("project_id", 3);
+      * $entry->set("task_id", 14);
+      * $entry->set("spent_at", "Tue, 17 Oct 2006");
+      *
+      * $api = new HarvestApi();
+      *
+      * $result = $api->startNewTimer($entry);
+      * if ($result->isSuccess()) {
+      *     $timer = $result->data;
+      * }
+      * </code>
+      *
+      * @param Day|DayEntry $entry Day Entry
+      * @return Result
+      */
     public function startNewTimer(DayEntry $entry)
     {
         $entry->set("hours", " ");
@@ -337,29 +337,29 @@ use Harvest\Model\Invoice\Filter;
         return $this->performDelete($url);
     }
 
-    /**
-     * update an entry
-     *
-     * <code>
-     * $entry = new DayEntry();
-     * $entry->set("id" 11111);
-     * $entry->set("notes", "Test Support");
-     * $entry->set("hours", 3);
-     * $entry->set("project_id", 3);
-     * $entry->set("task_id", 14);
-     * $entry->set("spent_at", "Tue, 17 Oct 2006");
-     *
-     * $api = new HarvestApi();
-     *
-     * $result = $api->updateEntry($entry);
-     * if ($result->isSuccess()) {
-     *     // success logic
-     * }
-     * </code>
-     *
-     * @param $entry    Day Entry
-     * @return Result
-     */
+     /**
+      * update an entry
+      *
+      * <code>
+      * $entry = new DayEntry();
+      * $entry->set("id" 11111);
+      * $entry->set("notes", "Test Support");
+      * $entry->set("hours", 3);
+      * $entry->set("project_id", 3);
+      * $entry->set("task_id", 14);
+      * $entry->set("spent_at", "Tue, 17 Oct 2006");
+      *
+      * $api = new HarvestApi();
+      *
+      * $result = $api->updateEntry($entry);
+      * if ($result->isSuccess()) {
+      *     // success logic
+      * }
+      * </code>
+      *
+      * @param Day|DayEntry $entry Day Entry
+      * @return Result
+      */
     public function updateEntry(DayEntry $entry)
     {
         $url = "daily/update/$entry->id";
@@ -470,21 +470,22 @@ use Harvest\Model\Invoice\Filter;
         return $this->performPut($url, $client->toXML());
     }
 
-    /**
-     * activate / deactivate a client
-     *
-     * <code>
-     * $client_id = 11111;
-     * $api = new HarvestApi();
-     * $result = $api->toggleClient($client_id);
-     * if ($result->isSuccess()) {
-     *     // addtional logic
-     * }
-     * </code>
-     *
-     * @param $int client_id Client Identifier
-     * @return Result
-     */
+     /**
+      * activate / deactivate a client
+      *
+      * <code>
+      * $client_id = 11111;
+      * $api = new HarvestApi();
+      * $result = $api->toggleClient($client_id);
+      * if ($result->isSuccess()) {
+      *     // addtional logic
+      * }
+      * </code>
+      *
+      * @param string $client_id
+      * @return Result
+      * @internal param client_id $int Client Identifier
+      */
     public function toggleClient($client_id)
     {
         $url = "clients/$client_id/toggle";
@@ -640,22 +641,23 @@ use Harvest\Model\Invoice\Filter;
         return $this->performPut($url, $contact->toXML());
     }
 
-    /**
-     * delete a contact
-     *
-     * <code>
-     * $contact_id = 11111;
-     * $api = new HarvestApi();
-     *
-     * $result = $api->deleteContact($contact_id);
-     * if ($result->isSuccess()) {
-     *      // additional logic
-     * }
-     * </code>
-     *
-     * @param  int    $contact_Id Contact Identifier
-     * @return Result
-     */
+     /**
+      * delete a contact
+      *
+      * <code>
+      * $contact_id = 11111;
+      * $api = new HarvestApi();
+      *
+      * $result = $api->deleteContact($contact_id);
+      * if ($result->isSuccess()) {
+      *      // additional logic
+      * }
+      * </code>
+      *
+      * @param string $contact_id
+      * @return Result
+      * @internal param int $contact_Id Contact Identifier
+      */
     public function deleteContact($contact_id)
     {
         $url = "contacts/$contact_id";
@@ -2434,16 +2436,17 @@ use Harvest\Model\Invoice\Filter;
     /*----------------- API Access & Parse Methods -----------------*/
     /*--------------------------------------------------------------*/
 
-    /**
-     * generate the update_since query params
-     * @param  mixed  $update_since DateTime
-     * @return string
-     */
+     /**
+      * generate the update_since query params
+      * @param \DateTime $updated_since
+      * @return string
+      * @internal param mixed $update_since DateTime
+      */
     public function appendUpdatedSinceParam($updated_since = null)
     {
         if (is_null($updated_since)) {
             return "";
-        } elseif ($updated_since instanceOf DateTime) {
+        } elseif ($updated_since instanceOf \DateTime) {
             return '?updated_since=' . urlencode($updated_since->format("Y-m-d G:i"));
         } else {
             return '?updated_since=' . urlencode($updated_since);
@@ -2545,12 +2548,13 @@ use Harvest\Model\Invoice\Filter;
         return $ch;
     }
 
-    /**
-     * perform http post command
-     * @param  string $url  url of server to process request
-     * @param  string $data data to be sent
-     * @return Result
-     */
+     /**
+      * perform http post command
+      * @param  string $url url of server to process request
+      * @param  string $data data to be sent
+      * @param string $multi
+      * @return Result
+      */
     protected function performPost($url, $data, $multi = "id")
     {
         $rData = null;
@@ -2821,18 +2825,18 @@ use Harvest\Model\Invoice\Filter;
         $this->_headers = array();
     }
 
-    /**
-     * simple autoload function
-     * returns true if the class was loaded, otherwise false
-     *
-     * <code>
-     * // register the class auto loader
-     * spl_autoload_register(array('HarvestApi', 'autoload'));
-     * </code>
-     *
-     * @param  string  $classname Name of Class to be loaded
-     * @return boolean
-     */
+     /**
+      * simple autoload function
+      * returns true if the class was loaded, otherwise false
+      *
+      * <code>
+      * // register the class auto loader
+      * spl_autoload_register(array('HarvestApi', 'autoload'));
+      * </code>
+      *
+      * @param string $className Name of Class to be loaded
+      * @return bool
+      */
     public static function autoload($className)
     {
         if (class_exists($className, false) || interface_exists($className, false)) {

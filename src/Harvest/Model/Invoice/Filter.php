@@ -94,10 +94,12 @@ class Filter
     }
 
     /**
-     * get specifed property
+     * get specified property
      *
-     * @param $mixed $property
+     * @param $property
      * @return mixed
+     * @throws HarvestException
+     * @internal param $mixed $property
      */
     public function get($property)
     {
@@ -140,6 +142,7 @@ class Filter
      *
      * @param mixed $property
      * @param mixed $value
+     * @throws HarvestException
      */
     public function set($property, $value)
     {
@@ -169,8 +172,10 @@ class Filter
      * magic method used for method overloading
      *
      * @param  string $method name of the method
-     * @param  array  $args   method arguments
-     * @return mixed  the return value of the given method
+     * @param $arguments
+     * @return mixed the return value of the given method
+     * @throws HarvestException
+     * @internal param array $args method arguments
      */
     public function __call($method, $arguments)
     {
