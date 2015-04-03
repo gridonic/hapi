@@ -2743,7 +2743,6 @@ use Harvest\Model\Invoice\Filter;
                         break;
                     }
                 }
-            break;
             case "day_entry":
             case "day-entry":
                 $item = new DayEntry();
@@ -2803,7 +2802,7 @@ use Harvest\Model\Invoice\Filter;
      * @param  string      $header Header line text to be parsed
      * @return int
      */
-    protected function parseHeader($header)
+    protected function parseHeader($ch,$header)
     {
         $pos = strpos($header, ":");
         $key = substr($header, 0, $pos);

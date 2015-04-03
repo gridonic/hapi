@@ -47,7 +47,7 @@ abstract class Harvest
     }
 
     /**
-     * get specifed property
+     * get specified property
      *
      * @param  mixed $property
      * @return mixed
@@ -153,4 +153,7 @@ abstract class Harvest
         return $xml;
     }
 
+    public function __toString(){
+        return (string)$this->id;
+    }
 }
