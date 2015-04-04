@@ -25,6 +25,7 @@ namespace Harvest\Model;
  *  <li>name</li>
  * </ul>
  *
+ * @property mixed id
  */
 class Client extends Harvest
 {

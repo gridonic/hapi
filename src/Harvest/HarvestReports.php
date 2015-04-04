@@ -4,6 +4,7 @@
 namespace Harvest;
 
 use Harvest\Model\Range;
+use Harvest\Model\Result;
 
 /**
  * HarvestReports
@@ -277,6 +278,7 @@ class HarvestReports extends HarvestApi
         if ( $result->isSuccess() ) {
             $data = array();
             foreach ($result->data as $obj) {
+                /** @var \Harvest\Model\User $obj */
                 if ( $obj->get("is-active") == "true" ) {
                     $data[$obj->id] = $obj;
                 }
@@ -307,6 +309,7 @@ class HarvestReports extends HarvestApi
         if ( $result->isSuccess() ) {
             $data = array();
             foreach ($result->data as $obj) {
+                /** @var \Harvest\Model\User $obj */
                 if ( $obj->get("is-active") == "false" ) {
                     $data[$obj->id] = $obj;
                 }
@@ -337,6 +340,7 @@ class HarvestReports extends HarvestApi
         if ( $result->isSuccess() ) {
             $data = array();
             foreach ($result->data as $obj) {
+                /** @var \Harvest\Model\User $obj */
                 if ( $obj->get("is-admin") == "true" ) {
                     $data[$obj->id] = $obj;
                 }
@@ -367,6 +371,7 @@ class HarvestReports extends HarvestApi
         if ( $result->isSuccess() ) {
             $data = array();
             foreach ($result->data as $obj) {
+                /** @var \Harvest\Model\User $obj */
                 if ( $obj->get("is-active") == "true" && $obj->get("is-admin") == "true" ) {
                     $data[$obj->id] = $obj;
                 }
@@ -397,6 +402,7 @@ class HarvestReports extends HarvestApi
         if ( $result->isSuccess() ) {
             $data = array();
             foreach ($result->data as $obj) {
+                /** @var \Harvest\Model\User $obj */
                 if ( $obj->get("is-active") == "false" && $obj->get("is-admin") ) {
                     $data[$obj->id] = $obj;
                 }
@@ -427,6 +433,7 @@ class HarvestReports extends HarvestApi
         if ( $result->isSuccess() ) {
             $data = array();
             foreach ($result->data as $obj) {
+                /** @var \Harvest\Model\User $obj */
                 if ( $obj->get("is-contractor") == "true" ) {
                     $data[$obj->id] = $obj;
                 }
@@ -457,6 +464,7 @@ class HarvestReports extends HarvestApi
         if ( $result->isSuccess() ) {
             $data = array();
             foreach ($result->data as $obj) {
+                /** @var \Harvest\Model\User $obj */
                 if ( $obj->get("is-active") == "true" && $obj->get("is-contractor") == "true" ) {
                     $data[$obj->id] = $obj;
                 }
@@ -487,6 +495,7 @@ class HarvestReports extends HarvestApi
         if ( $result->isSuccess() ) {
             $data = array();
             foreach ($result->data as $obj) {
+                /** @var \Harvest\Model\User $obj */
                 if ( $obj->get("is-active") == "false" && $obj->get("is-contractor") ) {
                     $data[$obj->id] = $obj;
                 }
@@ -545,6 +554,7 @@ class HarvestReports extends HarvestApi
      * }
      * </code>
      *
+     * @param $user_id
      * @return Result
      */
     public function getUsersActiveTimer($user_id)

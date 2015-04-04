@@ -15,6 +15,7 @@ use Harvest\Exception\HarvestException;
 /**
  * Harvest defines the base class utilized by all Harvest Objects
  *
+ * @property mixed id
  */
 abstract class Harvest
 {
@@ -46,7 +47,7 @@ abstract class Harvest
     }
 
     /**
-     * get specifed property
+     * get specified property
      *
      * @param  mixed $property
      * @return mixed
@@ -104,15 +105,17 @@ abstract class Harvest
      * magic method used for method overloading
      *
      * @param  string $method name of the method
-     * @param  array  $args   method arguments
-     * @return mixed  the return value of the given method
+     * @param $arguments
+     * @return mixed the return value of the given method
+     * @throws HarvestException
+     * @internal param array $args method arguments
      */
     public function __call($method, $arguments)
     {
         if ( count($arguments) == 0 ) {
             return $this->get( $method );
         } elseif ( count( $arguments ) == 1 ) {
-            return $this->set( $method, $arguments[0] );
+            $this->set( $method, $arguments[0] );
         }
 
         throw new HarvestException( sprintf('Unknown method %s::%s', get_class($this), $method));
@@ -121,7 +124,7 @@ abstract class Harvest
     /**
      * magic method used for method overloading
      *
-     * @param  XMLNode $node xml node to parse
+     * @param  \DOMNode $node xml node to parse
      * @return void
      */
     public function parseXml($node)
@@ -150,4 +153,7 @@ abstract class Harvest
         return $xml;
     }
 
+    public function __toString(){
+        return (string)$this->id;
+    }
 }

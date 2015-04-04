@@ -245,7 +245,7 @@ use Harvest\Model\Invoice\Filter;
      * }
      * </code>
      *
-     * @param $entry_id    Day Entry Identifier
+     * @param $entry_id    DayEntry Identifier
      * @return Result
      */
     public function toggleTimer($entry_id)
@@ -255,28 +255,28 @@ use Harvest\Model\Invoice\Filter;
         return $this->performGet($url, false);
     }
 
-    /**
-     * create an entry
-     *
-     * <code>
-     * $entry = new DayEntry();
-     * $entry->set("notes", "Test Support");
-     * $entry->set("hours", 3);
-     * $entry->set("project_id", 3);
-     * $entry->set("task_id", 14);
-     * $entry->set("spent_at", "Tue, 17 Oct 2006");
-     *
-     * $api = new HarvestApi();
-     *
-     * $result = $api->createEntry($entry);
-     * if ($result->isSuccess()) {
-     *     $timer = $result->data;
-     * }
-     * </code>
-     *
-     * @param $entry    Day Entry
-     * @return Result
-     */
+     /**
+      * create an entry
+      *
+      * <code>
+      * $entry = new DayEntry();
+      * $entry->set("notes", "Test Support");
+      * $entry->set("hours", 3);
+      * $entry->set("project_id", 3);
+      * $entry->set("task_id", 14);
+      * $entry->set("spent_at", "Tue, 17 Oct 2006");
+      *
+      * $api = new HarvestApi();
+      *
+      * $result = $api->createEntry($entry);
+      * if ($result->isSuccess()) {
+      *     $timer = $result->data;
+      * }
+      * </code>
+      *
+      * @param DayEntry $entry Day Entry
+      * @return Result
+      */
     public function createEntry(DayEntry $entry)
     {
         $url = "daily/add";
@@ -284,27 +284,27 @@ use Harvest\Model\Invoice\Filter;
         return $this->performPost($url, $entry->toXML(), false);
     }
 
-    /**
-     * creates an entry and starts its timer
-     *
-     * <code>
-     * $entry = new DayEntry();
-     * $entry->set("notes", "Test Support");
-     * $entry->set("project_id", 3);
-     * $entry->set("task_id", 14);
-     * $entry->set("spent_at", "Tue, 17 Oct 2006");
-     *
-     * $api = new HarvestApi();
-     *
-     * $result = $api->startNewTimer($entry);
-     * if ($result->isSuccess()) {
-     *     $timer = $result->data;
-     * }
-     * </code>
-     *
-     * @param $entry    Day Entry
-     * @return Result
-     */
+     /**
+      * creates an entry and starts its timer
+      *
+      * <code>
+      * $entry = new DayEntry();
+      * $entry->set("notes", "Test Support");
+      * $entry->set("project_id", 3);
+      * $entry->set("task_id", 14);
+      * $entry->set("spent_at", "Tue, 17 Oct 2006");
+      *
+      * $api = new HarvestApi();
+      *
+      * $result = $api->startNewTimer($entry);
+      * if ($result->isSuccess()) {
+      *     $timer = $result->data;
+      * }
+      * </code>
+      *
+      * @param DayEntry $entry Day Entry
+      * @return Result
+      */
     public function startNewTimer(DayEntry $entry)
     {
         $entry->set("hours", " ");
@@ -327,7 +327,7 @@ use Harvest\Model\Invoice\Filter;
      * }
      * </code>
      *
-     * @param $entry_id    Day Entry Identifier
+     * @param $entry_id    DayEntry Identifier
      * @return Result
      */
     public function deleteEntry($entry_id)
@@ -337,29 +337,29 @@ use Harvest\Model\Invoice\Filter;
         return $this->performDelete($url);
     }
 
-    /**
-     * update an entry
-     *
-     * <code>
-     * $entry = new DayEntry();
-     * $entry->set("id" 11111);
-     * $entry->set("notes", "Test Support");
-     * $entry->set("hours", 3);
-     * $entry->set("project_id", 3);
-     * $entry->set("task_id", 14);
-     * $entry->set("spent_at", "Tue, 17 Oct 2006");
-     *
-     * $api = new HarvestApi();
-     *
-     * $result = $api->updateEntry($entry);
-     * if ($result->isSuccess()) {
-     *     // success logic
-     * }
-     * </code>
-     *
-     * @param $entry    Day Entry
-     * @return Result
-     */
+     /**
+      * update an entry
+      *
+      * <code>
+      * $entry = new DayEntry();
+      * $entry->set("id" 11111);
+      * $entry->set("notes", "Test Support");
+      * $entry->set("hours", 3);
+      * $entry->set("project_id", 3);
+      * $entry->set("task_id", 14);
+      * $entry->set("spent_at", "Tue, 17 Oct 2006");
+      *
+      * $api = new HarvestApi();
+      *
+      * $result = $api->updateEntry($entry);
+      * if ($result->isSuccess()) {
+      *     // success logic
+      * }
+      * </code>
+      *
+      * @param DayEntry $entry Day Entry
+      * @return Result
+      */
     public function updateEntry(DayEntry $entry)
     {
         $url = "daily/update/$entry->id";
@@ -470,21 +470,22 @@ use Harvest\Model\Invoice\Filter;
         return $this->performPut($url, $client->toXML());
     }
 
-    /**
-     * activate / deactivate a client
-     *
-     * <code>
-     * $client_id = 11111;
-     * $api = new HarvestApi();
-     * $result = $api->toggleClient($client_id);
-     * if ($result->isSuccess()) {
-     *     // addtional logic
-     * }
-     * </code>
-     *
-     * @param $int client_id Client Identifier
-     * @return Result
-     */
+     /**
+      * activate / deactivate a client
+      *
+      * <code>
+      * $client_id = 11111;
+      * $api = new HarvestApi();
+      * $result = $api->toggleClient($client_id);
+      * if ($result->isSuccess()) {
+      *     // addtional logic
+      * }
+      * </code>
+      *
+      * @param string $client_id
+      * @return Result
+      * @internal param client_id $int Client Identifier
+      */
     public function toggleClient($client_id)
     {
         $url = "clients/$client_id/toggle";
@@ -640,22 +641,23 @@ use Harvest\Model\Invoice\Filter;
         return $this->performPut($url, $contact->toXML());
     }
 
-    /**
-     * delete a contact
-     *
-     * <code>
-     * $contact_id = 11111;
-     * $api = new HarvestApi();
-     *
-     * $result = $api->deleteContact($contact_id);
-     * if ($result->isSuccess()) {
-     *      // additional logic
-     * }
-     * </code>
-     *
-     * @param  int    $contact_Id Contact Identifier
-     * @return Result
-     */
+     /**
+      * delete a contact
+      *
+      * <code>
+      * $contact_id = 11111;
+      * $api = new HarvestApi();
+      *
+      * $result = $api->deleteContact($contact_id);
+      * if ($result->isSuccess()) {
+      *      // additional logic
+      * }
+      * </code>
+      *
+      * @param string $contact_id
+      * @return Result
+      * @internal param int $contact_Id Contact Identifier
+      */
     public function deleteContact($contact_id)
     {
         $url = "contacts/$contact_id";
@@ -1347,7 +1349,7 @@ use Harvest\Model\Invoice\Filter;
      */
     public function updateExpense(Expense $expense)
     {
-        $url = "expesnses/$expense->id";
+        $url = "expenses/$expense->id";
 
         return $this->performPut($url, $expense->toXML());
     }
@@ -1414,8 +1416,8 @@ use Harvest\Model\Invoice\Filter;
      * }
      * </code>
      *
-     * @param $expense_id Expense Identifier
-     * @param $image_url Image URL
+     * @param Expense $expense_id Identifier
+     * @param string $image_url Image URL
      * @return Result
      */
     public function attachReceipt($expense_id, $image_url)
@@ -2434,16 +2436,17 @@ use Harvest\Model\Invoice\Filter;
     /*----------------- API Access & Parse Methods -----------------*/
     /*--------------------------------------------------------------*/
 
-    /**
-     * generate the update_since query params
-     * @param  mixed  $update_since DateTime
-     * @return string
-     */
+     /**
+      * generate the update_since query params
+      * @param \DateTime $updated_since
+      * @return string
+      * @internal param mixed $update_since DateTime
+      */
     public function appendUpdatedSinceParam($updated_since = null)
     {
         if (is_null($updated_since)) {
             return "";
-        } elseif ($updated_since instanceOf DateTime) {
+        } elseif ($updated_since instanceOf \DateTime) {
             return '?updated_since=' . urlencode($updated_since->format("Y-m-d G:i"));
         } else {
             return '?updated_since=' . urlencode($updated_since);
@@ -2476,7 +2479,7 @@ use Harvest\Model\Invoice\Filter;
             if ($multi === true) {
                 $data = $this->parseItems($data);
             } elseif ($multi == "raw") {
-                $data = $data;
+                //$data = $data;
             } else {
                 $data = $this->parseItem($data);
             }
@@ -2487,8 +2490,8 @@ use Harvest\Model\Invoice\Filter;
 
     /**
      * generate cURL get request
-     * @param $url
-     * @return object cURL Handler
+     * @param string $url
+     * @return resource cURL Handler
      */
     protected function generateCurl($url)
     {
@@ -2530,12 +2533,12 @@ use Harvest\Model\Invoice\Filter;
         return new Result($code, $rData, $this->_headers);
     }
 
-    /**
-     * generate cURL put request
-     * @param $url
-     * @param $data PUT Data
-     * @return object cURL Handler
-     */
+     /**
+      * generate cURL put request
+      * @param $url
+      * @param $data
+      * @return resource
+      */
     protected function generatePutCurl($url, $data)
     {
         $ch = $this->generateCurl($url);
@@ -2545,12 +2548,13 @@ use Harvest\Model\Invoice\Filter;
         return $ch;
     }
 
-    /**
-     * perform http post command
-     * @param  string $url  url of server to process request
-     * @param  string $data data to be sent
-     * @return Result
-     */
+     /**
+      * perform http post command
+      * @param  string $url url of server to process request
+      * @param  string $data data to be sent
+      * @param string $multi
+      * @return Result
+      */
     protected function performPost($url, $data, $multi = "id")
     {
         $rData = null;
@@ -2586,7 +2590,7 @@ use Harvest\Model\Invoice\Filter;
      * generate cURL get request
      * @param $url
      * @param $data Array of Post Data
-     * @return object cURL Handler
+     * @return resource cURL Handler
      */
     protected function generatePostCurl($url, $data)
     {
@@ -2625,7 +2629,7 @@ use Harvest\Model\Invoice\Filter;
     /**
      * generate cURL get request
      * @param $url
-     * @return object cURL Handler
+     * @return resource cURL Handler
      */
     protected function generateDeleteCurl($url)
     {
@@ -2666,7 +2670,7 @@ use Harvest\Model\Invoice\Filter;
      * generate MultiPart/Form-Data request
      * @param $url
      * @param $data array of MultiPart Form Data
-     * @return object cURL Handler
+     * @return resource cURL Handler
      */
     protected function generateMultiPartCurl($url, $data)
     {
@@ -2715,7 +2719,7 @@ use Harvest\Model\Invoice\Filter;
 
     /**
      * parse xml node
-     * @param  DocumentElement $node document element
+     * @param  \DOMElement $node document element
      * @return mixed
      */
     protected function parseNode($node)
@@ -2798,7 +2802,7 @@ use Harvest\Model\Invoice\Filter;
      * @param  string      $header Header line text to be parsed
      * @return int
      */
-    protected function parseHeader($ch, $header)
+    protected function parseHeader($ch,$header)
     {
         $pos = strpos($header, ":");
         $key = substr($header, 0, $pos);
@@ -2821,18 +2825,18 @@ use Harvest\Model\Invoice\Filter;
         $this->_headers = array();
     }
 
-    /**
-     * simple autoload function
-     * returns true if the class was loaded, otherwise false
-     *
-     * <code>
-     * // register the class auto loader
-     * spl_autoload_register(array('HarvestApi', 'autoload'));
-     * </code>
-     *
-     * @param  string  $classname Name of Class to be loaded
-     * @return boolean
-     */
+     /**
+      * simple autoload function
+      * returns true if the class was loaded, otherwise false
+      *
+      * <code>
+      * // register the class auto loader
+      * spl_autoload_register(array('HarvestApi', 'autoload'));
+      * </code>
+      *
+      * @param string $className Name of Class to be loaded
+      * @return bool
+      */
     public static function autoload($className)
     {
         if (class_exists($className, false) || interface_exists($className, false)) {

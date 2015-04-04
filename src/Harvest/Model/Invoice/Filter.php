@@ -4,6 +4,7 @@
 namespace Harvest\Model\Invoice;
 
 use Harvest\Exception\HarvestException;
+use Harvest\Model\Range;
 
 /**
  * Filter
@@ -94,10 +95,12 @@ class Filter
     }
 
     /**
-     * get specifed property
+     * get specified property
      *
-     * @param $mixed $property
+     * @param $property
      * @return mixed
+     * @throws HarvestException
+     * @internal param $mixed $property
      */
     public function get($property)
     {
@@ -118,7 +121,7 @@ class Filter
                 return $this->_updated_since;
             break;
             default:
-                throw new HarvestException(sprintf('Unknown method %s::%s', get_class($this), $method));
+                throw new HarvestException(sprintf('Unknown method %s::%s', get_class($this), $property));
             break;
         }
     }
@@ -140,6 +143,7 @@ class Filter
      *
      * @param mixed $property
      * @param mixed $value
+     * @throws HarvestException
      */
     public function set($property, $value)
     {
@@ -160,7 +164,7 @@ class Filter
                 $this->_updated_since = $value;
             break;
             default:
-                throw new HarvestException(sprintf('Unknown method %s::%s', get_class($this), $method));
+                throw new HarvestException(sprintf('Unknown method %s::%s', get_class($this), $property));
             break;
         }
     }
@@ -169,15 +173,17 @@ class Filter
      * magic method used for method overloading
      *
      * @param  string $method name of the method
-     * @param  array  $args   method arguments
-     * @return mixed  the return value of the given method
+     * @param $arguments
+     * @return mixed the return value of the given method
+     * @throws HarvestException
+     * @internal param array $args method arguments
      */
     public function __call($method, $arguments)
     {
         if(count($arguments) === 0) {
             return $this->get($method);
         } elseif(count($arguments) === 1) {
-            return $this->set($method, $arguments[0]);
+            $this->set($method, $arguments[0]);
         }
 
         throw new HarvestException(sprintf('Unknown method %s::%s', get_class($this), $method));
@@ -205,7 +211,7 @@ class Filter
         }
         if(!is_null($this->_updated_since)) {
             $query .= '&updated_since=';
-            if($this->_updated_since instanceOf DateTime) {
+            if($this->_updated_since instanceOf \DateTime) {
                 $query .= urlencode($this->_updated_since->format("Y-m-d G:i"));
             } else {
                 $query .= urlencode($this->_updated_since);

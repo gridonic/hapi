@@ -93,7 +93,7 @@ class Project extends Harvest
     /**
      * parse XML represenation into a Harvest Project object
      *
-     * @param  XMLNode $node xml node to parse
+     * @param  \DOMNode $node xml node to parse
      * @return void
      */
     public function parseXml($node)
@@ -115,7 +115,7 @@ class Project extends Harvest
 
     /**
      * parse xml list
-     * @param  string $xml
+     * @param  \DOMNode $xml
      * @return array
      */
     private function parseItems($xml)
@@ -135,7 +135,7 @@ class Project extends Harvest
 
     /**
      * parse xml node
-     * @param  XMLNode $node
+     * @param  \DOMNode $node
      * @return mixed
      */
     private function parseNode($node)

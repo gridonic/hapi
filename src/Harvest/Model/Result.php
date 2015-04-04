@@ -33,6 +33,7 @@ use Harvest\Exception\HarvestException;
  *   <li>Hint</li>
  * </ul>
  *
+ * @property array|mixed data
  */
 class Result
 {
@@ -83,6 +84,7 @@ class Result
      *
      * @param  mixed $property The property to return
      * @return mixed
+     * @throws HarvestException
      */
     public function get($property)
     {
@@ -123,8 +125,8 @@ class Result
      * sets the specified property
      *
      * @param  mixed $property The property to set
-     * @param  mixed $value    value of property
-     * @return void
+     * @param  mixed $value value of property
+     * @throws HarvestException
      */
     public function set($property, $value)
     {
@@ -145,7 +147,7 @@ class Result
     }
 
     /**
-     * is request successfull
+     * is request successful
      * @return boolean
      */
     public function isSuccess()

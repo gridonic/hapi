@@ -3,8 +3,6 @@
 
 namespace Harvest\Model;
 
-use Harvest\Model\DayEntry;
-
 /**
  * Timer
  *
@@ -35,10 +33,11 @@ class Timer extends Harvest
     protected $_hoursForPrevious = null;
 
     /**
-     * get specifed property
+     * get specified property
      *
-     * @param $mixed $property
-     * @param mixed
+     * @param mixed $property
+     * @return Float|DayEntry|mixed|null
+     * @internal param $mixed $property
      */
     public function get($property)
     {
@@ -58,8 +57,10 @@ class Timer extends Harvest
     /**
      * set property to specified value
      *
-     * @param $mixed $property
-     * @return void
+     * @param mixed $property Property
+     * @param mixed $value Value
+     * @internal param $mixed $property
+     * @return null|void
      */
     public function set($property, $value)
     {
@@ -79,7 +80,7 @@ class Timer extends Harvest
     /**
      * parse XML represenation into a Harvest Timer object
      *
-     * @param  XMLNode $node xml node to parse
+     * @param  \DOMNode $node xml node to parse
      * @return void
      */
     public function parseXml($node)
