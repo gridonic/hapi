@@ -6,6 +6,10 @@ PHP Wrapper Library for the Harvest API.
 [![Build Status](https://travis-ci.org/gridonic/hapi.svg?branch=master)](https://travis-ci.org/gridonic/hapi)
 [![Code Climate](https://codeclimate.com/github/gridonic/hapi/badges/gpa.svg)](https://codeclimate.com/github/gridonic/hapi)
 [![Dependency Status](https://www.versioneye.com/user/projects/54b59bf305064657eb0000c1/badge.svg?style=flat)](https://www.versioneye.com/user/projects/54b59bf305064657eb0000c1)
+[![Total Downloads](https://poser.pugx.org/gridonic/hapi/d/total.svg)](https://packagist.org/packages/gridonic/hapi)
+[![Latest Stable Version](https://poser.pugx.org/gridonic/hapi/v/stable.svg)](https://packagist.org/packages/gridonic/hapi)
+[![Latest Unstable Version](https://poser.pugx.org/gridonic/hapi/v/unstable.svg)](https://packagist.org/packages/gridonic/hapi)
+[![License](https://poser.pugx.org/gridonic/hapi/license.svg)](https://packagist.org/packages/gridonic/hapi)
 
 Usage
 -----
