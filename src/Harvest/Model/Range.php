@@ -76,7 +76,7 @@ class Range
      * return Range object set to today
      *
      * <code>
-     * $range = Range:today( "EST" );
+     * $range = Range::today( "EST" );
      * </code>
      *
      * @param  string $timeZone User Time Zone
@@ -102,7 +102,7 @@ class Range
      * return Range object set to this week
      *
      * <code>
-     * $range = Range:thisWeek( "EST", Range::SUNDAY );
+     * $range = Range::thisWeek( "EST", Range::SUNDAY );
      * </code>
      *
      * @param  string $timeZone    User Time Zone
@@ -132,7 +132,7 @@ class Range
      * return Range object set to last week
      *
      * <code>
-     * $range = Range:lastWeek( "EST", Range::MONDAY );
+     * $range = Range::lastWeek( "EST", Range::MONDAY );
      * </code>
      *
      * @param  string $timeZone    User Time Zone
@@ -165,7 +165,7 @@ class Range
      * return Range object set to this month
      *
      * <code>
-     * $range = Range:thisMonth( "EST" );
+     * $range = Range::thisMonth( "EST" );
      * </code>
      *
      * @param  string $timeZone User Time Zone
@@ -194,7 +194,7 @@ class Range
      * return Range object set to last month
      *
      * <code>
-     * $range = Range:lastMonth( "EST" );
+     * $range = Range::lastMonth( "EST" );
      * </code>
      *
      * @param  string $timeZone User Time Zone
