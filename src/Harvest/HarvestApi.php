@@ -221,12 +221,19 @@ use Harvest\Model\Invoice\Filter;
      * }
      * </code>
      *
-     * @param  int    $entry_id Entry Identifier
+     * @param int $entry_id Entry Identifier
+     * @param int|bool $user_id
      * @return Result
+     *
+     * @see http://www.getharvest.com/api/time-tracking#other-users
      */
-    public function getEntry($entry_id)
+    public function getEntry($entry_id, $user_id = false)
     {
         $url = "daily/show/" . $entry_id;
+
+        if($user_id) {
+          $url .= "?of_user=" . $user_id;
+        }
 
         return $this->performGet($url, false);
     }
