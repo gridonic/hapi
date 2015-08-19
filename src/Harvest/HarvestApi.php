@@ -344,32 +344,39 @@ use Harvest\Model\Invoice\Filter;
         return $this->performDelete($url);
     }
 
-     /**
-      * update an entry
-      *
-      * <code>
-      * $entry = new DayEntry();
-      * $entry->set("id" 11111);
-      * $entry->set("notes", "Test Support");
-      * $entry->set("hours", 3);
-      * $entry->set("project_id", 3);
-      * $entry->set("task_id", 14);
-      * $entry->set("spent_at", "Tue, 17 Oct 2006");
-      *
-      * $api = new HarvestApi();
-      *
-      * $result = $api->updateEntry($entry);
-      * if ($result->isSuccess()) {
-      *     // success logic
-      * }
-      * </code>
-      *
-      * @param DayEntry $entry Day Entry
-      * @return Result
-      */
-    public function updateEntry(DayEntry $entry)
+    /**
+     * update an entry
+     *
+     * <code>
+     * $entry = new DayEntry();
+     * $entry->set("id" 11111);
+     * $entry->set("notes", "Test Support");
+     * $entry->set("hours", 3);
+     * $entry->set("project_id", 3);
+     * $entry->set("task_id", 14);
+     * $entry->set("spent_at", "Tue, 17 Oct 2006");
+     *
+     * $api = new HarvestApi();
+     *
+     * $result = $api->updateEntry($entry);
+     * if ($result->isSuccess()) {
+     *     // success logic
+     * }
+     * </code>
+     *
+     * @param DayEntry $entry
+     * @param bool $other_user
+     * @return Result
+     *
+     * @see http://www.getharvest.com/api/time-tracking#other-users
+     */
+    public function updateEntry(DayEntry $entry, $other_user = true)
     {
         $url = "daily/update/$entry->id";
+
+        if($other_user) {
+            $url .= "?of_user=" . $entry->get("user-id");
+        }
 
         return $this->performPost($url, $entry->toXML());
     }
