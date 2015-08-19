@@ -2572,7 +2572,7 @@ use Harvest\Model\Invoice\Filter;
             }
         }
         if ("2" == substr($code, 0, 1)) {
-            if ($multi == "id") {
+            if ($multi == "id" && isset($this->_headers["Location"])) {
                 $rData = $this->_headers["Location"];
             } elseif ($multi === true) {
                 $rData = $this->parseItems($rData);
