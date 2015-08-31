@@ -504,7 +504,7 @@ use Harvest\Model\Invoice\Filter;
     {
         $url = "clients/$client_id/toggle";
 
-        return $this->performPut($url, "");
+        return $this->performPOST($url, "");
     }
 
     /**
