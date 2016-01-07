@@ -227,16 +227,16 @@ use Harvest\Model\Invoice\Filter;
      *
      * @see http://www.getharvest.com/api/time-tracking#other-users
      */
-    public function getEntry($entry_id, $user_id = false)
-    {
-        $url = "daily/show/" . $entry_id;
+     public function getEntry($entry_id, $user_id = false)
+     {
+         $url = "daily/show/" . $entry_id;
 
-        if($user_id) {
-          $url .= "?of_user=" . $user_id;
-        }
+         if ($user_id) {
+             $url .= "?of_user=" . $user_id;
+         }
 
-        return $this->performGet($url, false);
-    }
+         return $this->performGet($url, false);
+     }
 
     /**
      * toggle a timer on/off
@@ -370,16 +370,16 @@ use Harvest\Model\Invoice\Filter;
      *
      * @see http://www.getharvest.com/api/time-tracking#other-users
      */
-    public function updateEntry(DayEntry $entry, $other_user = true)
-    {
-        $url = "daily/update/$entry->id";
+     public function updateEntry(DayEntry $entry, $other_user = true)
+     {
+         $url = "daily/update/$entry->id";
 
-        if($other_user) {
-            $url .= "?of_user=" . $entry->get("user-id");
-        }
+         if ($other_user) {
+             $url .= "?of_user=" . $entry->get("user-id");
+         }
 
-        return $this->performPost($url, $entry->toXML());
-    }
+         return $this->performPost($url, $entry->toXML());
+     }
 
     /*--------------------------------------------------------------*/
     /*------------------------- Client API -------------------------*/
