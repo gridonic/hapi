@@ -5,6 +5,7 @@ namespace Harvest;
 
 use Harvest\Model\Range;
 use Harvest\Model\Result;
+use Harvest\Model\Task;
 
 /**
  * HarvestReports
@@ -569,6 +570,38 @@ class HarvestReports extends HarvestApi
                 }
             }
             $result->data = $data;
+        }
+
+        return $result;
+    }
+
+    /**
+     * get all tasks assigned to a project
+     *
+     * <code>
+     * $api = new HarvestReports();
+     *
+     * $result = $api->getProjectTasks( 12345 );
+     * if ( $result->isSuccess() ) {
+     *     $tasks = $result->data;
+     * }
+     * </code>
+     *
+     * @param $project_id
+     * @return Result
+     */
+    public function getProjectTasks($project_id)
+    {
+        $result = $this->getProjectTaskAssignments($project_id);
+        if ($result->isSuccess()) {
+            $tasks = array();
+            foreach ($result->data as $taskAssignment) {
+                $taskResult = $this->getTask($taskAssignment->task_id);
+                if ($taskResult->isSuccess()) {
+                    $tasks[$taskResult->data->id] = $taskResult->data;
+                }
+            }
+            $result->data = $tasks;
         }
 
         return $result;
