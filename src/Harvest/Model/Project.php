@@ -91,7 +91,7 @@ class Project extends Harvest
     }
 
     /**
-     * parse XML represenation into a Harvest Project object
+     * parse XML representation into a Harvest Project object
      *
      * @param  \DOMNode $node xml node to parse
      * @return void
