@@ -282,12 +282,17 @@ use Harvest\Model\Invoice\Filter;
       * </code>
       *
       * @param DayEntry $entry Day Entry
+      * @param bool $other_user
       * @return Result
       */
-    public function createEntry(DayEntry $entry)
+    public function createEntry(DayEntry $entry, $other_user = true)
     {
         $url = "daily/add";
 
+        if ($other_user) {
+            $url .= "?of_user=" . $entry->get("user-id");
+        }
+ 
         return $this->performPost($url, $entry->toXML(), false);
     }
 
