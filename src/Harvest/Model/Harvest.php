@@ -145,11 +145,24 @@ abstract class Harvest
     public function toXML()
     {
         $xml = "<$this->_root>";
-        foreach ($this->_values as $key => $value) {
-            $xml .= sprintf("<$key>%s</$key>", htmlspecialchars($value, ENT_XML1));
-        }
+        $xml .= $this->_xmlTags($this->_values);
         $xml .= "</$this->_root>";
 
+        return $xml;
+    }
+
+    protected function _xmlTags($tags)
+    {
+        $xml = '';
+        foreach($tags as $key => $value) {
+            $xml .= "<$key>";
+            if (is_array($value)) {
+                $xml .= $this->_xmlTags($value);
+            } else {
+                $xml .= htmlspecialchars($value, ENT_XML1);
+            }
+            $xml .= "</$key>";
+        }
         return $xml;
     }
 
