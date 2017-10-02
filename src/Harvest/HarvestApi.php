@@ -208,6 +208,35 @@ use Harvest\Model\Invoice\Filter;
     }
 
     /**
+     * gets daily activity for assigned user and just time entries for them
+     *
+     * <code>
+     * $user_id = 456455325;
+     * $onlyTimeEntries = true;
+     *
+     * $api = new HarvestApi();
+     *
+     * $result = $api->getUserDailyActivity($user_id, $onlyTimeEntries);
+     * if ($result->isSuccess()) {
+     *     $entries =  $result->data;
+     * }
+     * </code>
+     * @param int $user_id
+     * @param bool $slim
+     * @return Result
+     */
+    public function getUserDailyActivity($user_id, $onlyTimeEntries = false)
+    {
+        $url = "daily?of_user=" . $user_id;
+  
+        if ($onlyTimeEntries) {
+            $url .= "&slim=1";
+        }
+  
+        return $this->performGet($url, false);
+    }
+    
+    /**
      * gets the entry specified
      *
      * <code>
